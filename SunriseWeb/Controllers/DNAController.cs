@@ -65,5 +65,6 @@ namespace SunriseWeb.Controllers
             SearchStone _data1 = (new JavaScriptSerializer()).Deserialize<SearchStone>(_response);
             return View(_data1);
         }
+
     }
 }
