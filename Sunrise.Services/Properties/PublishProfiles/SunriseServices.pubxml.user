@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Project\Project_Publish\SunriseServices</_PublishTargetUrl>
+    <History>True|2023-07-28T06:33:15.9199694Z;True|2023-07-28T11:39:03.5299224+05:30;True|2023-07-28T11:32:03.8885881+05:30;True|2023-07-28T11:16:15.3046233+05:30;True|2023-07-21T09:16:39.0885343+05:30;True|2023-07-19T13:49:22.7188547+05:30;True|2023-06-21T17:14:21.9968152+05:30;True|2023-06-21T17:14:14.1970929+05:30;True|2023-06-19T14:39:01.5889830+05:30;True|2023-06-07T15:14:34.5726735+05:30;True|2023-06-06T12:25:25.1954076+05:30;True|2023-06-06T12:08:02.2705620+05:30;True|2023-06-06T11:32:08.0583913+05:30;True|2023-06-06T11:19:02.4259447+05:30;True|2023-06-05T15:30:26.0326297+05:30;True|2023-06-05T11:58:14.3181573+05:30;True|2023-05-31T16:52:27.3331675+05:30;True|2023-05-31T14:08:21.5661862+05:30;True|2023-05-31T12:51:04.8975448+05:30;True|2023-05-31T12:45:08.5690251+05:30;True|2023-05-31T12:21:54.4936524+05:30;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplePushCertificate/iPad/Atit_APNSKey_Development_iPad.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPad/Atit_APNSKey_Distribution_iPad.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPad/ShairuGems_APNSKey_Development_iPad.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPad/ShairuGems_APNSKey_Distribution_iPad.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPad/Sunrise_APNSKey_Development_iPad.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPad/Sunrise_APNSKey_Distribution_iPad.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPad/vssver2.scc">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPhone/Atit_APNSKey_Development_iPhone.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPhone/Atit_APNSKey_Distribution_iPhone.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPhone/ShairuGems_APNSKey_Development_iPhone.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPhone/ShairuGems_APNSKey_Distribution_iPhone.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPhone/Sunrise_APNSKey_Development_iPhone.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPhone/Sunrise_APNSKey_Distribution_iPhone.p12">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="ApplePushCertificate/iPhone/vssver2.scc">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="bin/ClosedXML.dll">
+      <publishTime>12/29/2017 16:10:24</publishTime>
+    </File>
+    <File Include="bin/DAL.dll">
+      <publishTime>07/28/2023 12:03:11</publishTime>
+    </File>
+    <File Include="bin/DAL.dll.config">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="bin/DAL.pdb">
+      <publishTime>07/28/2023 12:03:11</publishTime>
+    </File>
+    <File Include="bin/DocumentFormat.OpenXml.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/EpExcelExport.dll">
+      <publishTime>07/28/2023 12:03:11</publishTime>
+    </File>
+    <File Include="bin/EpExcelExport.pdb">
+      <publishTime>07/28/2023 12:03:11</publishTime>
+    </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/ExcelExportLib.dll">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="bin/itextsharp.dll">
+      <publishTime>05/17/2021 15:20:27</publishTime>
+    </File>
+    <File Include="bin/Lib.dll">
+      <publishTime>07/28/2023 12:03:12</publishTime>
+    </File>
+    <File Include="bin/Lib.dll.config">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="bin/Lib.pdb">
+      <publishTime>07/28/2023 12:03:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/Oracle.DataAccess.dll">
+      <publishTime>08/31/2012 13:51:26</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/Renci.SshNet.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe.config">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.rsp">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe.config">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.rsp">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Managed.Core.targets">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Win32.Primitives.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.AppContext.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Console.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.FileVersionInfo.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Globalization.Calendars.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.Compression.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.Compression.ZipFile.dll">
+      <publishTime>05/17/2021 15:20:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Net.Http.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Net.Sockets.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Runtime.InteropServices.RuntimeInformation.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Algorithms.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Encoding.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Primitives.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.X509Certificates.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Text.Encoding.CodePages.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Threading.Tasks.Extensions.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.ValueTuple.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.ReaderWriter.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XmlDocument.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XPath.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XPath.XDocument.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe.config">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.rsp">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/Select.Html.dep">
+      <publishTime>05/17/2021 15:20:23</publishTime>
+    </File>
+    <File Include="bin/Select.HtmlToPdf.dll">
+      <publishTime>05/17/2021 15:20:23</publishTime>
+    </File>
+    <File Include="bin/Sunrise.Services.dll">
+      <publishTime>07/28/2023 12:03:13</publishTime>
+    </File>
+    <File Include="bin/Sunrise.Services.pdb">
+      <publishTime>07/28/2023 12:03:13</publishTime>
+    </File>
+    <File Include="bin/System.IO.Packaging.dll">
+      <publishTime>05/17/2021 15:20:24</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>03/26/2018 16:24:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Extensions.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Primitives.dll">
+      <publishTime>05/17/2021 15:20:21</publishTime>
+    </File>
+    <File Include="bin/System.Security.dll">
+      <publishTime>03/26/2018 16:24:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Cors.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Cors.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Owin.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>05/17/2021 15:20:19</publishTime>
+    </File>
+    <File Include="bin/WhatsAppApi.dll">
+      <publishTime>05/17/2021 15:20:27</publishTime>
+    </File>
+    <File Include="Connected Services/FortuneService/Sunrise.Services.FortuneService.CommonResultResponse.datasource">
+      <publishTime>06/23/2023 11:52:42</publishTime>
+    </File>
+    <File Include="Content/PdfAssets/Style.css">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="Properties/DataSources/System.Data.DataSet.datasource">
+      <publishTime>05/17/2021 15:20:18</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>07/19/2023 13:49:18</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,24 @@
+﻿@model Lib.Models.SearchStone
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/images/nav-logo.png">
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.stone_ref_no :: Certi Type</title>
+</head>
+<body>
+    @if (Model != null)
+    {
+        <div class="col-md-12">
+            <iframe frameborder="0" height="1000px" width="100%" src="@Model.CertiTypeLink"></iframe>
+        </div>
+        @*<div class="col-md-12">
+            <iframe frameborder="0" height="1000px" width="100%" src="https://4e0s0i2r4n0u1s0.com/img/5403871470/PR.jpg"></iframe>
+        </div>*@
+    }
+</body>
+</html>
