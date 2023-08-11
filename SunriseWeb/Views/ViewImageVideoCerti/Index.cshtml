@@ -215,10 +215,10 @@
         </div>
         <div id="divCerti" class="row" style="display:none">
             <div class="col-lg-12">
-                @*<iframe id="CertiFrame" width="100%" height="600" frameborder="0" src="" style="text-align: center;height: 950px;width: 100%;"></iframe>*@
-                <object name="CertiFrame" id="CertiFrame" width="100%" height="600" frameborder="0" data=''
+                <iframe id="CertiFrame" width="100%" height="600" frameborder="0" src="" style="text-align: center;height: 950px;width: 100%;"></iframe>
+                @*<object name="CertiFrame" id="CertiFrame" width="100%" height="600" frameborder="0" data=''
                         style="border: 0px; text-align: center; height: 950px; width: 100%;">
-                </object>
+                </object>*@
                 
                 <center>
                     <img src="" id="CertiImg" style="display:none;width: 100%;">
@@ -760,8 +760,8 @@
                 $("#divImage").hide();
                 $("#divCerti").show();
                 $("#divVideo").hide();
-                //$("#CertiFrame").attr('src', $("#CertiFrame").attr('src'));
-                document.getElementById('CertiFrame').data = document.getElementById('CertiFrame').data;
+                $("#CertiFrame").attr('src', $("#CertiFrame").attr('src'));
+                //document.getElementById('CertiFrame').data = document.getElementById('CertiFrame').data;
                 document.title = GetURLParameter("StoneId") + " :: Certificate";
             }
         }
@@ -803,8 +803,8 @@
                     'Access-Control-Allow-Origin': '*'
                 },
                 success: function () {
-                    //$("#CertiFrame").attr('src', FirstUrl);
-                    document.getElementById('CertiFrame').data = FirstUrl;
+                    $("#CertiFrame").attr('src', FirstUrl);
+                    //document.getElementById('CertiFrame').data = FirstUrl;
                 },
                 error: function () {
                     //alert(2);
@@ -841,8 +841,8 @@
             if (!str.includes(".JPG")) {
                 $("#CertiImg").hide();
                 $("#CertiFrame").show();
-                //$("#CertiFrame").attr('src', pdfUrl);
-                document.getElementById('CertiFrame').data = pdfUrl;
+                $("#CertiFrame").attr('src', pdfUrl);
+                //document.getElementById('CertiFrame').data = pdfUrl;
             }
             else {
                 $("#CertiFrame").hide();
