@@ -771,22 +771,22 @@ namespace Sunrise.Services.Controllers
 
                     if (obj.ExcelType == 1)
                     {
-                        filename = "Customer " + Lib.Models.Common.GetHKTime().ToString("dd-MM-yyyy");
+                        filename = "Customer " + Lib.Models.Common.GetHKTime().ToString("dd-MM-yyyy-HHmmss");
                         EpExcelExport.CreateLabCustomerExcel(dtData.DefaultView.ToTable(), realpath, realpath + filename + ".xlsx", _livepath);
                     }
                     else if (obj.ExcelType == 2)
                     {
-                        filename = "Customer " + Lib.Models.Common.GetHKTime().ToString("dd-MM-yyyy");
+                        filename = "Customer " + Lib.Models.Common.GetHKTime().ToString("dd-MM-yyyy-HHmmss");
                         EpExcelExport.CreateLabCustomerImageExcel(dtData.DefaultView.ToTable(), realpath, realpath + filename + ".xlsx", _livepath);
                     }
                     else if (obj.ExcelType == 3)
                     {
-                        filename = "Supplier " + Lib.Models.Common.GetHKTime().ToString("dd-MM-yyyy");
+                        filename = "Supplier " + Lib.Models.Common.GetHKTime().ToString("dd-MM-yyyy-HHmmss");
                         EpExcelExport.CreateLabSupplierExcel(dtData.DefaultView.ToTable(), realpath, realpath + filename + ".xlsx", _livepath);
                     }
                     else if (obj.ExcelType == 4)
                     {
-                        filename = "Buyer List " + Lib.Models.Common.GetHKTime().ToString("dd-MM-yyyy");
+                        filename = "Buyer List " + Lib.Models.Common.GetHKTime().ToString("dd-MM-yyyy-HHmmss");
                         EpExcelExport.CreateMacroExcel(dtData.DefaultView.ToTable(), realpath, realpath + filename + ".xlsx", _livepath);
                     }
 
