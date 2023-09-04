@@ -2013,6 +2013,11 @@ namespace Sunrise.Services.Controllers
                                                                             SunriseStatus = "Confirm";
                                                                             LabEntryStatus = "Confirm";
                                                                         }
+                                                                        else if (SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                                        {
+                                                                            SunriseStatus = "Confirm";
+                                                                            LabEntryStatus = "Confirm";
+                                                                        }
                                                                         else if (SupplierStatus.ToUpper().Contains("YOUR TRANSACTION DONE SUCCESSFULLY. THIS REF NO ARE NOT PROCESSED"))
                                                                         {
                                                                             SunriseStatus = "Busy";
@@ -2042,7 +2047,8 @@ namespace Sunrise.Services.Controllers
                                                                         if (_Holddata.Status != null &&
                                                                                 (
                                                                                     (_Holddata.Status.ToUpper() == "SUCCESS" && SupplierStatus.ToUpper().Contains("YOUR TRANSACTION DONE SUCCESSFULLY")) ||
-                                                                                    (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED SUCCESSFULLY."))
+                                                                                    (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED SUCCESSFULLY.")) ||
+                                                                                    (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED."))
                                                                                 )
                                                                             )
                                                                         {
@@ -2964,6 +2970,11 @@ namespace Sunrise.Services.Controllers
                                                         SunriseStatus = "Confirm";
                                                         LabEntryStatus = "Confirm";
                                                     }
+                                                    else if (SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                    {
+                                                        SunriseStatus = "Confirm";
+                                                        LabEntryStatus = "Confirm";
+                                                    }
                                                     else if (SupplierStatus.ToUpper().Contains("YOUR TRANSACTION DONE SUCCESSFULLY. THIS REF NO ARE NOT PROCESSED"))
                                                     {
                                                         SunriseStatus = "Busy";
@@ -2993,7 +3004,8 @@ namespace Sunrise.Services.Controllers
                                                     if (_Holddata.Status != null &&
                                                             (
                                                                 (_Holddata.Status.ToUpper() == "SUCCESS" && SupplierStatus.ToUpper().Contains("YOUR TRANSACTION DONE SUCCESSFULLY")) ||
-                                                                (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED SUCCESSFULLY."))
+                                                                (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED SUCCESSFULLY.")) ||
+                                                                (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED."))
                                                             )
                                                         )
                                                     {
@@ -3809,6 +3821,11 @@ namespace Sunrise.Services.Controllers
                                                         SunriseStatus = "Confirm";
                                                         LabEntryStatus = "Confirm";
                                                     }
+                                                    else if (SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                    {
+                                                        SunriseStatus = "Confirm";
+                                                        LabEntryStatus = "Confirm";
+                                                    }
                                                     else if (SupplierStatus.ToUpper().Contains("YOUR TRANSACTION DONE SUCCESSFULLY. THIS REF NO ARE NOT PROCESSED"))
                                                     {
                                                         SunriseStatus = "Busy";
@@ -3838,7 +3855,8 @@ namespace Sunrise.Services.Controllers
                                                     if (_Holddata.Status != null &&
                                                             (
                                                                 (_Holddata.Status.ToUpper() == "SUCCESS" && SupplierStatus.ToUpper().Contains("YOUR TRANSACTION DONE SUCCESSFULLY")) ||
-                                                                (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED SUCCESSFULLY."))
+                                                                (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED SUCCESSFULLY.")) ||
+                                                                (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED."))
                                                             )
                                                         )
                                                     {
@@ -4644,6 +4662,11 @@ namespace Sunrise.Services.Controllers
                                                         SunriseStatus = "Confirm";
                                                         LabEntryStatus = "Confirm";
                                                     }
+                                                    else if (SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                    {
+                                                        SunriseStatus = "Confirm";
+                                                        LabEntryStatus = "Confirm";
+                                                    }
                                                     else if (SupplierStatus.ToUpper().Contains("YOUR TRANSACTION DONE SUCCESSFULLY. THIS REF NO ARE NOT PROCESSED"))
                                                     {
                                                         SunriseStatus = "Busy";
@@ -4673,7 +4696,8 @@ namespace Sunrise.Services.Controllers
                                                     if (_Holddata.Status != null &&
                                                             (
                                                                 (_Holddata.Status.ToUpper() == "SUCCESS" && SupplierStatus.ToUpper().Contains("YOUR TRANSACTION DONE SUCCESSFULLY")) ||
-                                                                (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED SUCCESSFULLY."))
+                                                                (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED SUCCESSFULLY.")) ||
+                                                                (_Holddata.Status.ToUpper() == "1" && SupplierStatus.ToUpper().Contains("ORDER PLACED."))
                                                             )
                                                         )
                                                     {
