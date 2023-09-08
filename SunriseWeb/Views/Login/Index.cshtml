@@ -53,6 +53,85 @@
                 height: 95%;
             }
         }
+        /*@@media screen and (max-width: 5464px) and (min-width: 4099px) {
+            .fair-img {
+                display: block;
+                margin-left: 1850px;
+                padding-top: 250px;
+            }
+        }
+        @@media screen and (max-width: 4098px) and (min-width: 2733px) {
+            .fair-img {
+                display: block;
+                margin-left: 1400px;
+                padding-top: 180px;
+            }
+        }
+        @@media screen and (max-width: 2732px) and (min-width: 2500px) {
+            .fair-img {
+                display: block;
+                margin-left: 906px;
+                padding-top: 125px;
+            }
+        }
+        @@media screen and (max-width: 2499px) and (min-width: 2049px) {
+            .fair-img {
+                display: block;
+                margin-left: 705px;
+                padding-top: 105px;
+            }
+        }
+        @@media screen and (max-width: 2048px) and (min-width: 1821px) {
+            .fair-img {
+                display: block;
+                margin-left: 630px;
+                padding-top: 95px;
+            }
+        }
+        @@media screen and (max-width: 1820px) and (min-width: 1707px) {
+            .fair-img {
+                display: block;
+                margin-left: 600px;
+                padding-top: 90px;
+            }
+        }
+        @@media screen and (max-width: 1706px) and (min-width: 1517px) {
+            .fair-img {
+                display: block;
+                margin-left: 540px;
+                padding-top: 90px;
+            }
+        }
+        @@media screen and (max-width: 1516px) and (min-width: 1366px) {
+            .fair-img {
+                display: block;
+                margin-left: 457px;
+                padding-top: 80px;
+            }
+        }
+        @@media screen and (max-width: 1365px) and (min-width: 1200px) {
+            .fair-img {
+                display: block;
+                margin-left: 397px;
+                padding-top: 80px;
+            }
+        }
+        @@media screen and (max-width: 1199px) and (min-width: 1000px) {
+            .fair-img {
+                display: block;
+                margin-left: 312px;
+                padding-top: 61px;
+            }
+            .sun-logo {
+                width: 267px !important;
+                margin-left: -3px;
+            }
+        }
+        @@media screen and (max-width: 999px) and (min-width: 0px) {
+            .fair-img {
+                display: none;
+            }
+        }*/
     </style>
 </head>
 
@@ -133,12 +212,12 @@
             <div class="stars2"></div>
             <div class="stars3"></div>
         </div>
-        <div class="coming-soon-center cmingsoon-content">
+        <div class="coming-soon-center cmingsoon-content @*col-md-4*@">
             <div class="logo-backdrop">
                 <img src="~/Content/Login/images/backlogo.png" class="img-fluid" alt="image">
             </div>
             <div class="coming-soon-logo">
-                <img src="~/Content/Login/images/logo.png">
+                <img src="~/Content/Login/images/logo.png" @*class="sun-logo"*@>
             </div>
             <div class="brand-col">
                 <p>@LanguageProvider.get("alsoavalblon")</p>
@@ -166,23 +245,29 @@
                         </li>
                     </ul>
                 </div>
+
                 @*<center>
-                        <div style="margin-top: 9px;margin-bottom: -16px !important;"><p>Address</p></div>
-                        <div style="text-align: left;margin-left: 170px;margin-bottom: -90px;">
-                            Unit 1,14/F, Peninsula Square,<br />
-                            East Wing, 15 Sung On Street,<br />
-                            Hunghom, Kowloon,<br />
-                            Hong Kong,<br />
-                            TEL:+852-27235100 FAX :+852-23149100<br />
-                            SKYPE ID:SUNRISE.DIAMONDS<br />
-                            QQ ID: 1482631351<br />
-                            Support : support@sunrisediam.com<br />
-                            RAPNET ID :71657
-                        </div>
-                    </center>*@
+                <div style="margin-top: 9px;margin-bottom: -16px !important;"><p>Address</p></div>
+                <div style="text-align: left;margin-left: 170px;margin-bottom: -90px;">
+                    Unit 1,14/F, Peninsula Square,<br />
+                    East Wing, 15 Sung On Street,<br />
+                    Hunghom, Kowloon,<br />
+                    Hong Kong,<br />
+                    TEL:+852-27235100 FAX :+852-23149100<br />
+                    SKYPE ID:SUNRISE.DIAMONDS<br />
+                    QQ ID: 1482631351<br />
+                    Support : support@sunrisediam.com<br />
+                    RAPNET ID :71657
+                </div>
+            </center>*@
             </div>
+            
         </div>
-        <div class="container">
+        @*<div class="col-md-4 fair-img">
+            <img src="/Content/images/Fair_18_22_Sep-2023.jpeg" style="width: 84%;">
+        </div>*@
+        <div class="container @*col-md-4*@">
+            
             <div class="row">
                 <div class="col-sm-12">
                     <div class="login-form-center">
@@ -268,7 +353,7 @@
                                         <label class="fa-icon"><i class="fa fa-user" aria-hidden="true"></i></label>
                                         <input type="text" class="input-field" name="ForgotUsername" id="txtForgotUsername" placeholder="@LanguageProvider.get("enterusernm")" required>
                                         @*@Html.TextBoxFor(a => a.Username, new { @class = "input-field", placeholder = "Enter User Name" })
-                                            @Html.ValidationMessageFor(m => m.Username)*@
+                                    @Html.ValidationMessageFor(m => m.Username)*@
                                     </div>
                                     <div class="form-group login-button">
                                         <button type="submit" class="swing wow animated" data-wow-delay="0.5s">@LanguageProvider.get("recover")</button>
