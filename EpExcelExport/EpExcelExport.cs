@@ -16651,47 +16651,47 @@ namespace EpExcelExportLib
                 worksheet.Cells[6, 1, 6, 41].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 worksheet.Cells[6, 1, 6, 41].AutoFilter = true;
 
-                worksheet.Cells[6, 1].AutoFitColumns(12);
-                worksheet.Cells[6, 2].AutoFitColumns(8);
-                worksheet.Cells[6, 3].AutoFitColumns(10);
-                worksheet.Cells[6, 4].AutoFitColumns(10);
-                worksheet.Cells[6, 5].AutoFitColumns(10);
-                worksheet.Cells[6, 6].AutoFitColumns(9);
-                worksheet.Cells[6, 7].AutoFitColumns(9);
-                worksheet.Cells[6, 8].AutoFitColumns(8);
-                worksheet.Cells[6, 9].AutoFitColumns(8);
-                worksheet.Cells[6, 10].AutoFitColumns(8);
-                worksheet.Cells[6, 11].AutoFitColumns(11);
-                worksheet.Cells[6, 12].AutoFitColumns(11);
-                worksheet.Cells[6, 13].AutoFitColumns(10.5);
-                worksheet.Cells[6, 14].AutoFitColumns(11.5);
-                worksheet.Cells[6, 15].AutoFitColumns(11.5);
-                worksheet.Cells[6, 16].AutoFitColumns(8);
-                worksheet.Cells[6, 17].AutoFitColumns(8);
-                worksheet.Cells[6, 18].AutoFitColumns(8);
-                worksheet.Cells[6, 19].AutoFitColumns(8);
-                worksheet.Cells[6, 20].AutoFitColumns(8);
-                worksheet.Cells[6, 21].AutoFitColumns(8);
-                worksheet.Cells[6, 22].AutoFitColumns(8);
-                worksheet.Cells[6, 23].AutoFitColumns(8);
-                worksheet.Cells[6, 24].AutoFitColumns(8);
-                worksheet.Cells[6, 25].AutoFitColumns(8);
-                worksheet.Cells[6, 26].AutoFitColumns(25);
-                worksheet.Cells[6, 27].AutoFitColumns(25);
-                worksheet.Cells[6, 28].AutoFitColumns(8);
-                worksheet.Cells[6, 29].AutoFitColumns(8);
-                worksheet.Cells[6, 30].AutoFitColumns(8);
-                worksheet.Cells[6, 31].AutoFitColumns(8);
-                worksheet.Cells[6, 32].AutoFitColumns(8);
-                worksheet.Cells[6, 33].AutoFitColumns(8);
-                worksheet.Cells[6, 34].AutoFitColumns(8);
-                worksheet.Cells[6, 35].AutoFitColumns(8);
-                worksheet.Cells[6, 36].AutoFitColumns(8);
-                worksheet.Cells[6, 37].AutoFitColumns(8);
-                worksheet.Cells[6, 38].AutoFitColumns(8);
-                worksheet.Cells[6, 39].AutoFitColumns(8);
-                worksheet.Cells[6, 40].AutoFitColumns(8);
-                worksheet.Cells[6, 41].AutoFitColumns(8);
+                worksheet.Cells[6, 1].AutoFitColumns(12);               // Ref No
+                worksheet.Cells[6, 2].AutoFitColumns(8);                // Lab
+                worksheet.Cells[6, 3].AutoFitColumns(10);               // HD Image
+                worksheet.Cells[6, 4].AutoFitColumns(10);               // HD Video
+                worksheet.Cells[6, 5].AutoFitColumns(10);               // Shape
+                worksheet.Cells[6, 6].AutoFitColumns(9);                // Pointer
+                worksheet.Cells[6, 7].AutoFitColumns(9);                // BGM
+                worksheet.Cells[6, 8].AutoFitColumns(8);                // Color
+                worksheet.Cells[6, 9].AutoFitColumns(8);                // Clarity
+                worksheet.Cells[6, 10].AutoFitColumns(8);               // Cts
+                worksheet.Cells[6, 11].AutoFitColumns(11);              // Rap Rate
+                worksheet.Cells[6, 12].AutoFitColumns(11);              // Rap Value
+                worksheet.Cells[6, 13].AutoFitColumns(10.5);            // Sunrise Disc(%)
+                worksheet.Cells[6, 14].AutoFitColumns(11.5);            // Sunrise Value US($)
+                worksheet.Cells[6, 15].AutoFitColumns(11.5);            // Price/Cts
+                worksheet.Cells[6, 16].AutoFitColumns(8);               // Cut
+                worksheet.Cells[6, 17].AutoFitColumns(8);               // Polish
+                worksheet.Cells[6, 18].AutoFitColumns(8);               // Symm
+                worksheet.Cells[6, 19].AutoFitColumns(8);               // Fls
+                worksheet.Cells[6, 20].AutoFitColumns(8);               // Ratio
+                worksheet.Cells[6, 21].AutoFitColumns(8);               // Length
+                worksheet.Cells[6, 22].AutoFitColumns(8);               // Width
+                worksheet.Cells[6, 23].AutoFitColumns(8);               // Depth
+                worksheet.Cells[6, 24].AutoFitColumns(8);               // Depth(%)
+                worksheet.Cells[6, 25].AutoFitColumns(8);               // Table(%)
+                worksheet.Cells[6, 26].AutoFitColumns(25);              // Key to Symbol
+                worksheet.Cells[6, 27].AutoFitColumns(25);              // Gia Lab Comment
+                worksheet.Cells[6, 28].AutoFitColumns(8);               // Girdle(%)
+                worksheet.Cells[6, 29].AutoFitColumns(8);               // Crown Angle
+                worksheet.Cells[6, 30].AutoFitColumns(8);               // Crown Height
+                worksheet.Cells[6, 31].AutoFitColumns(8);               // Pav Angle
+                worksheet.Cells[6, 32].AutoFitColumns(8);               // Pav Height
+                worksheet.Cells[6, 33].AutoFitColumns(8);               // Table Natts
+                worksheet.Cells[6, 34].AutoFitColumns(8);               // Crown Natts
+                worksheet.Cells[6, 35].AutoFitColumns(8);               // Table Inclusion
+                worksheet.Cells[6, 36].AutoFitColumns(8);               // Crown Inclusion
+                worksheet.Cells[6, 37].AutoFitColumns(8);               // Culet
+                worksheet.Cells[6, 38].AutoFitColumns(8);               // Table Open
+                worksheet.Cells[6, 39].AutoFitColumns(8);               // Girdle Open
+                worksheet.Cells[6, 40].AutoFitColumns(8);               // Crown Open
+                worksheet.Cells[6, 41].AutoFitColumns(8);               // Pavilion Open
 
 
 
@@ -16936,52 +16936,52 @@ namespace EpExcelExportLib
                 worksheet.Cells[6, 1, 6, 46].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 worksheet.Cells[6, 1, 6, 46].AutoFilter = true;
 
-                worksheet.Cells[6, 1].AutoFitColumns(12);
-                worksheet.Cells[6, 2].AutoFitColumns(8);
-                worksheet.Cells[6, 3].AutoFitColumns(10);
-                worksheet.Cells[6, 4].AutoFitColumns(10);
-                worksheet.Cells[6, 5].AutoFitColumns(15);
-                worksheet.Cells[6, 6].AutoFitColumns(12);
-                worksheet.Cells[6, 7].AutoFitColumns(12);
-                worksheet.Cells[6, 8].AutoFitColumns(10);
-                worksheet.Cells[6, 9].AutoFitColumns(9);
-                worksheet.Cells[6, 10].AutoFitColumns(9);
-                worksheet.Cells[6, 11].AutoFitColumns(8);
-                worksheet.Cells[6, 12].AutoFitColumns(8);
-                worksheet.Cells[6, 13].AutoFitColumns(8);
-                worksheet.Cells[6, 14].AutoFitColumns(11);
-                worksheet.Cells[6, 15].AutoFitColumns(11);
-                worksheet.Cells[6, 16].AutoFitColumns(11.5);
-                worksheet.Cells[6, 17].AutoFitColumns(11.5);
-                worksheet.Cells[6, 18].AutoFitColumns(10.5);
-                worksheet.Cells[6, 19].AutoFitColumns(11.5);
-                worksheet.Cells[6, 20].AutoFitColumns(11.5);
-                worksheet.Cells[6, 21].AutoFitColumns(11.5);
-                worksheet.Cells[6, 22].AutoFitColumns(8);
-                worksheet.Cells[6, 23].AutoFitColumns(8);
-                worksheet.Cells[6, 24].AutoFitColumns(8);
-                worksheet.Cells[6, 25].AutoFitColumns(8);
-                worksheet.Cells[6, 26].AutoFitColumns(8);
-                worksheet.Cells[6, 27].AutoFitColumns(8);
-                worksheet.Cells[6, 28].AutoFitColumns(8);
-                worksheet.Cells[6, 29].AutoFitColumns(8);
-                worksheet.Cells[6, 30].AutoFitColumns(8);
-                worksheet.Cells[6, 31].AutoFitColumns(25);
-                worksheet.Cells[6, 32].AutoFitColumns(25);
-                worksheet.Cells[6, 33].AutoFitColumns(8);
-                worksheet.Cells[6, 34].AutoFitColumns(8);
-                worksheet.Cells[6, 35].AutoFitColumns(8);
-                worksheet.Cells[6, 36].AutoFitColumns(8);
-                worksheet.Cells[6, 37].AutoFitColumns(8);
-                worksheet.Cells[6, 38].AutoFitColumns(8);
-                worksheet.Cells[6, 39].AutoFitColumns(8);
-                worksheet.Cells[6, 40].AutoFitColumns(8);
-                worksheet.Cells[6, 41].AutoFitColumns(8);
-                worksheet.Cells[6, 42].AutoFitColumns(8);
-                worksheet.Cells[6, 43].AutoFitColumns(8);
-                worksheet.Cells[6, 44].AutoFitColumns(8);
-                worksheet.Cells[6, 45].AutoFitColumns(8);
-                worksheet.Cells[6, 46].AutoFitColumns(8);
+                worksheet.Cells[6, 1].AutoFitColumns(12);               // Ref No
+                worksheet.Cells[6, 2].AutoFitColumns(8);                // Lab
+                worksheet.Cells[6, 3].AutoFitColumns(10);               // HD Image
+                worksheet.Cells[6, 4].AutoFitColumns(10);               // HD Video
+                worksheet.Cells[6, 5].AutoFitColumns(15);               // Supplier Stock ID
+                worksheet.Cells[6, 6].AutoFitColumns(12);               // Certi No
+                worksheet.Cells[6, 7].AutoFitColumns(12);               // Supplier
+                worksheet.Cells[6, 8].AutoFitColumns(10);               // Shape
+                worksheet.Cells[6, 9].AutoFitColumns(9);                // Pointer
+                worksheet.Cells[6, 10].AutoFitColumns(9);               // BGM
+                worksheet.Cells[6, 11].AutoFitColumns(8);               // Color
+                worksheet.Cells[6, 12].AutoFitColumns(8);               // Clarity
+                worksheet.Cells[6, 13].AutoFitColumns(8);               // Cts
+                worksheet.Cells[6, 14].AutoFitColumns(11);              // Rap Rate
+                worksheet.Cells[6, 15].AutoFitColumns(11);              // Rap Value
+                worksheet.Cells[6, 16].AutoFitColumns(11.5);            // Supplier Cost Disc(%)
+                worksheet.Cells[6, 17].AutoFitColumns(11.5);            // Supplier Cost Value
+                worksheet.Cells[6, 18].AutoFitColumns(10.5);            // Sunrise Disc(%)
+                worksheet.Cells[6, 19].AutoFitColumns(11.5);            // Sunrise Value US($)
+                worksheet.Cells[6, 20].AutoFitColumns(11.5);            // Supp Base Offer(%)
+                worksheet.Cells[6, 21].AutoFitColumns(11.5);            // Supp Base Offer Value
+                worksheet.Cells[6, 22].AutoFitColumns(8);               // Cut
+                worksheet.Cells[6, 23].AutoFitColumns(8);               // Polish
+                worksheet.Cells[6, 24].AutoFitColumns(8);               // Symm
+                worksheet.Cells[6, 25].AutoFitColumns(8);               // Fls
+                worksheet.Cells[6, 26].AutoFitColumns(8);               // Length
+                worksheet.Cells[6, 27].AutoFitColumns(8);               // Width
+                worksheet.Cells[6, 28].AutoFitColumns(8);               // Depth
+                worksheet.Cells[6, 29].AutoFitColumns(8);               // Depth(%)
+                worksheet.Cells[6, 30].AutoFitColumns(8);               // Table(%)
+                worksheet.Cells[6, 31].AutoFitColumns(25);              // Key to Symbol
+                worksheet.Cells[6, 32].AutoFitColumns(25);              // Gia Lab Comment
+                worksheet.Cells[6, 33].AutoFitColumns(8);               // Girdle(%)
+                worksheet.Cells[6, 34].AutoFitColumns(8);               // Crown Angle
+                worksheet.Cells[6, 35].AutoFitColumns(8);               // Crown Height
+                worksheet.Cells[6, 36].AutoFitColumns(8);               // Pav Angle
+                worksheet.Cells[6, 37].AutoFitColumns(8);               // Pav Height
+                worksheet.Cells[6, 38].AutoFitColumns(8);               // Table Natts
+                worksheet.Cells[6, 39].AutoFitColumns(8);               // Crown Natts
+                worksheet.Cells[6, 40].AutoFitColumns(8);               // Table Inclusion
+                worksheet.Cells[6, 41].AutoFitColumns(8);               // Crown Inclusion
+                worksheet.Cells[6, 42].AutoFitColumns(8);               // Culet
+                worksheet.Cells[6, 43].AutoFitColumns(8);               // Table Open
+                worksheet.Cells[6, 44].AutoFitColumns(8);               // Girdle Open
+                worksheet.Cells[6, 45].AutoFitColumns(8);               // Crown Open
+                worksheet.Cells[6, 46].AutoFitColumns(8);               // Pavilion Open
 
 
                 //worksheet.Cells[6, 42].AutoFitColumns(10);
