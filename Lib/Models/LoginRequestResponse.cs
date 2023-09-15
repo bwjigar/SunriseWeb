@@ -56,7 +56,47 @@ namespace Lib.Models
         public string Login { get; set; }
         public string grant_type { get; set; }
     }
-
+    public class New_Shairu_Login_Req
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
+    public class New_Shairu_Login_Res
+    {
+        public string Username { get; set; }
+        public bool Status { get; set; }
+        public string Message { get; set; }
+        public string UserId { get; set; }
+        public string TokenId { get; set; }
+    }
+    public class New_Shairu_Stock_api_Req
+    {
+        public string UserId { get; set; }
+        public string TokenId { get; set; }
+        public string StoneId { get; set; }
+    }
+    public class New_Shairu_Place_Order_API_Req
+    {
+        public string StoneId { get; set; }
+        public string Comments { get; set; }
+        public string UserId { get; set; }
+        public string TokenId { get; set; }
+    }
+    public class New_Shairu_Place_Order_API_Res
+    {
+        public string Message { get; set; }
+        public bool Status { get; set; }
+        public List<list_New_Shairu_Place_Order_API_Res> Data { get; set; }
+        public New_Shairu_Place_Order_API_Res()
+        {
+            Data = new List<list_New_Shairu_Place_Order_API_Res>();
+        }
+    }
+    public class list_New_Shairu_Place_Order_API_Res
+    {
+        public string StoneId { get; set; }
+        public string Status { get; set; }
+    }
     public class KeyAccountDataResponse
     {
         public int? iUserid { get; set; }

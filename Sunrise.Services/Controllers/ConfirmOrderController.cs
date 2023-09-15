@@ -217,7 +217,7 @@ namespace Sunrise.Services.Controllers
         #region Confirm Order Grid Bind Web
 
         [HttpPost]
-        public IHttpActionResult ConfirmOrder_Grid_Param_Request([FromBody]JObject data)
+        public IHttpActionResult ConfirmOrder_Grid_Param_Request([FromBody] JObject data)
         {
             OrderHistoryRequest confirmOrderRequest = new OrderHistoryRequest();
             int LogInID = Convert.ToInt32((Request.GetRequestContext().Principal as ClaimsPrincipal).Claims.Where(e => e.Type == "UserID").FirstOrDefault().Value);
@@ -988,7 +988,110 @@ namespace Sunrise.Services.Controllers
                 return json;
             }
         }
+        public void GetShairu_New_CheckAvailability(string StoneId)
+        {
+            string json, UserId, TokenId;
+            try
+            {
+                New_Shairu_Login_Req l_req = new New_Shairu_Login_Req();
+                l_req.UserName = "samit_gandhi";
+                l_req.Password = "missme@hk123";
 
+                string inputJson = JsonConvert.SerializeObject(l_req);
+
+                WebClient client = new WebClient();
+                client.Headers.Add("Content-type", "application/json");
+                client.Encoding = Encoding.UTF8;
+                json = client.UploadString("https://shairugems.net:8011/api/buyerv2/login", "POST", inputJson);
+                client.Dispose();
+
+                New_Shairu_Login_Res l_res = new New_Shairu_Login_Res();
+                l_res = (new JavaScriptSerializer()).Deserialize<New_Shairu_Login_Res>(json);
+                UserId = l_res.UserId;
+                TokenId = l_res.TokenId;
+
+                New_Shairu_Stock_api_Req stock_req = new New_Shairu_Stock_api_Req();
+                stock_req.UserId = UserId;
+                stock_req.TokenId = TokenId;
+                stock_req.StoneId = StoneId;
+
+                inputJson = JsonConvert.SerializeObject(stock_req);
+
+                WebClient client1 = new WebClient();
+                client1.Headers.Add("Content-type", "application/json");
+                client1.Encoding = Encoding.UTF8;
+                json = client1.UploadString("https://shairugems.net:8011/api/buyerv2/checkavailability", "POST", inputJson);
+                client1.Dispose();
+                json = "Shairu Res : " + json;
+                //return "Shairu Res : " + json;
+            }
+            catch (Exception ex)
+            {
+                json = ex.Message;
+                json = "Our Res : " + json;
+            }
+
+            Shairu_New_CheckAvailability_Res_Insert(StoneId, json);
+        }
+        public (string, string) GetShairu_New_PlaceOrder(string StoneId, string Comments)
+        {
+            string json, UserId, TokenId, Message = String.Empty, Status = String.Empty;
+
+            try
+            {
+                New_Shairu_Login_Req l_req = new New_Shairu_Login_Req();
+                l_req.UserName = "samit_gandhi";
+                l_req.Password = "missme@hk123";
+
+                string inputJson = JsonConvert.SerializeObject(l_req);
+
+                WebClient client = new WebClient();
+                client.Headers.Add("Content-type", "application/json");
+                client.Encoding = Encoding.UTF8;
+                json = client.UploadString("https://shairugems.net:8011/api/buyerv2/login", "POST", inputJson);
+                client.Dispose();
+
+                New_Shairu_Login_Res l_res = new New_Shairu_Login_Res();
+                l_res = (new JavaScriptSerializer()).Deserialize<New_Shairu_Login_Res>(json);
+                UserId = l_res.UserId;
+                TokenId = l_res.TokenId;
+
+                New_Shairu_Place_Order_API_Req place_order_req = new New_Shairu_Place_Order_API_Req();
+                place_order_req.StoneId = StoneId;
+                place_order_req.Comments = Comments;
+                place_order_req.UserId = UserId;
+                place_order_req.TokenId = TokenId;
+
+                inputJson = JsonConvert.SerializeObject(place_order_req);
+
+                WebClient client1 = new WebClient();
+                client1.Headers.Add("Content-type", "application/json");
+                client1.Encoding = Encoding.UTF8;
+                json = client1.UploadString("https://shairugems.net:8011/api/buyerv2/holdstone", "POST", inputJson);
+
+                New_Shairu_Place_Order_API_Res place_order_res = new New_Shairu_Place_Order_API_Res();
+                place_order_res = (new JavaScriptSerializer()).Deserialize<New_Shairu_Place_Order_API_Res>(json);
+
+                client1.Dispose();
+
+                Message = place_order_res.Message;
+                if (place_order_res.Data != null && place_order_res.Data.Count > 0)
+                {
+                    foreach (var obj in place_order_res.Data)
+                    {
+                        if (obj.StoneId == StoneId)
+                        {
+                            Status = obj.Status;
+                        }
+                    }
+                }
+                return (Status, Message);
+            }
+            catch (Exception ex)
+            {
+                return ("Error", ex.Message);
+            }
+        }
         public string ShairuHoldStoneRequest(string Token, string StoneId, int UserId, string Comment)
         {
             string apiUrl = "https://shairugems.net:8011/api/Buyer/HoldStone";
@@ -1080,7 +1183,7 @@ namespace Sunrise.Services.Controllers
                     para.Add(db.CreateParam("LabEntryResponse", System.Data.DbType.String, System.Data.ParameterDirection.Input, null));
 
                 para.Add(db.CreateParam("LoginId", System.Data.DbType.Int32, System.Data.ParameterDirection.Input, LogInID));
-
+                
                 db.ExecuteSP("SupplierApiResponse_Insert", para.ToArray(), false);
                 return true;
             }
@@ -1088,6 +1191,33 @@ namespace Sunrise.Services.Controllers
             {
                 DAL.Common.InsertErrorLog(ex, null, Request);
                 return false;
+            }
+        }
+        public void Shairu_New_CheckAvailability_Res_Insert(string StoneId, string Response)
+        {
+            try
+            {
+                Database db = new Database();
+                System.Collections.Generic.List<System.Data.IDbDataParameter> para;
+                para = new System.Collections.Generic.List<System.Data.IDbDataParameter>();
+
+
+
+                if (!string.IsNullOrEmpty(StoneId))
+                    para.Add(db.CreateParam("StoneId", System.Data.DbType.String, System.Data.ParameterDirection.Input, StoneId.ToString()));
+                else
+                    para.Add(db.CreateParam("StoneId", System.Data.DbType.String, System.Data.ParameterDirection.Input, null));
+
+                if (!string.IsNullOrEmpty(Response))
+                    para.Add(db.CreateParam("Response", System.Data.DbType.String, System.Data.ParameterDirection.Input, Response.ToString()));
+                else
+                    para.Add(db.CreateParam("Response", System.Data.DbType.String, System.Data.ParameterDirection.Input, null));
+
+                db.ExecuteSP("Shairu_New_CheckAvailability_Res_Insert", para.ToArray(), false);
+            }
+            catch (Exception ex)
+            {
+                DAL.Common.InsertErrorLog(ex, null, Request);
             }
         }
 
@@ -1805,7 +1935,7 @@ namespace Sunrise.Services.Controllers
             }
         }
         [HttpPost]
-        public IHttpActionResult PurchaseOrder_Delete([FromBody]JObject data)
+        public IHttpActionResult PurchaseOrder_Delete([FromBody] JObject data)
         {
             PurchaseOrder_Delete_Request req = new PurchaseOrder_Delete_Request();
             try
@@ -1978,6 +2108,151 @@ namespace Sunrise.Services.Controllers
                                                     {
                                                         if (dtSupplierRef.Rows[i]["sRefno"].ToString() != "")
                                                         {
+                                                            string[] RefnoList = dtSupplierRef.Rows[i]["sRefno"].ToString().Split(',');
+                                                            foreach (string StoneId in RefnoList)
+                                                            {
+                                                                SunriseStatus = string.Empty; SupplierStatus = string.Empty; LabEntryStatus = string.Empty;
+                                                                if (StoneId.ToString() != "")
+                                                                {
+                                                                    GetShairu_New_CheckAvailability(StoneId);
+
+                                                                    DataTable DT_PurLg1 = PurchaseOrderLog_Insert(StoneId, true, false, 0, LogInID);
+                                                                    int PurLg_Id = 0;
+                                                                    if (DT_PurLg1 != null && DT_PurLg1.Rows.Count > 0)
+                                                                    {
+                                                                        PurLg_Id = Convert.ToInt32(DT_PurLg1.Rows[0]["Id"].ToString());
+                                                                    }
+
+                                                                    var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+
+                                                                    SupplierStatus = Shairu_Message;
+
+                                                                    if (SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                                    {
+                                                                        SunriseStatus = "Confirm";
+                                                                        LabEntryStatus = "Confirm";
+                                                                    }
+                                                                    else if (SupplierStatus.ToUpper().Contains("SOMETHING WENT WRONG."))
+                                                                    {
+                                                                        SunriseStatus = "Error";
+                                                                        LabEntryStatus = "Waiting";
+                                                                    }
+
+                                                                    if (Shairu_Status.ToUpper() == "CONFIRMED" && SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                                    {
+                                                                        #region SHAIRU API RETURN SUCCESS
+
+                                                                        try
+                                                                        {
+                                                                            DataTable DT_LbLg1 = LabEntryLog_Insert(StoneId, true, false, 0, LogInID);
+                                                                            int LbLg_Id = 0;
+                                                                            if (DT_LbLg1 != null && DT_LbLg1.Rows.Count > 0)
+                                                                            {
+                                                                                LbLg_Id = Convert.ToInt32(DT_LbLg1.Rows[0]["Id"].ToString());
+                                                                            }
+
+                                                                            LabResponse = InsertLabAutoEntry(obj.UserId.ToString(), obj.Refno, obj.Comments, LabEntryStatus);
+
+                                                                            DataTable DT_LbLg2 = LabEntryLog_Insert(StoneId, false, true, LbLg_Id, LogInID);
+                                                                        }
+                                                                        catch (Exception ex)
+                                                                        {
+                                                                            DAL.Common.InsertErrorLog(ex, null, Request);
+                                                                            LabResponse = ex.Message.ToString();
+                                                                        }
+
+                                                                        DataTable dtUpdate = UpdateOrderDetIsConfirmStatus(obj.Refno, obj.Orderid);
+
+                                                                        if (dtUpdate != null && dtUpdate.Rows.Count > 0)
+                                                                        {
+                                                                            if (dtUpdate.Rows[0]["Msg"].ToString() == "Success")
+                                                                            {
+                                                                                InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "", obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType, confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "Update Fail In Sunrise OrderDet Table : " + dtUpdate.Rows[0]["Msg"].ToString(), obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "Update Fail In Sunrise OrderDet Table : " + dtUpdate.Rows[0]["Msg"].ToString(), obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                                        }
+
+                                                                        try
+                                                                        {
+                                                                            SendPurchaseMail("MANUAL", "SUCCESS", obj.Orderid.ToString(), obj.Comments, obj.UserId.ToString(), LogInID.ToString(), obj.Refno, obj.SuppValue, SupplierStatus + " - " + Shairu_Status, SunriseStatus);
+                                                                        }
+                                                                        catch (Exception ex)
+                                                                        {
+                                                                            DAL.Common.InsertErrorLog(ex, null, Request);
+                                                                        }
+
+                                                                        MsgRef += obj.Refno + ",";
+
+                                                                        #endregion
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        #region SHAIRU API RETURN FAIL
+
+                                                                        if (Shairu_Status != "CONFIRMED")
+                                                                        {
+                                                                            SupplierStatus = "";
+                                                                            SunriseStatus = "Not Available";
+                                                                            LabEntryStatus = "Reject";
+                                                                        }
+
+                                                                        try
+                                                                        {
+                                                                            DataTable DT_LbLg1 = LabEntryLog_Insert(StoneId, true, false, 0, LogInID);
+                                                                            int LbLg_Id = 0;
+                                                                            if (DT_LbLg1 != null && DT_LbLg1.Rows.Count > 0)
+                                                                            {
+                                                                                LbLg_Id = Convert.ToInt32(DT_LbLg1.Rows[0]["Id"].ToString());
+                                                                            }
+
+                                                                            LabResponse = InsertLabAutoEntry(obj.UserId.ToString(), obj.Refno, obj.Comments, LabEntryStatus);
+
+                                                                            DataTable DT_LbLg2 = LabEntryLog_Insert(StoneId, false, true, LbLg_Id, LogInID);
+                                                                        }
+                                                                        catch (Exception ex)
+                                                                        {
+                                                                            DAL.Common.InsertErrorLog(ex, null, Request);
+                                                                            LabResponse = ex.Message.ToString();
+                                                                        }
+
+                                                                        InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "", obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+
+                                                                        try
+                                                                        {
+                                                                            SendPurchaseMail("MANUAL", "ERROR", obj.Orderid.ToString(), obj.Comments, obj.UserId.ToString(), LogInID.ToString(), obj.Refno, obj.SuppValue, SupplierStatus + " - " + Shairu_Status, SunriseStatus);
+                                                                        }
+                                                                        catch (Exception ex)
+                                                                        {
+                                                                            DAL.Common.InsertErrorLog(ex, null, Request);
+                                                                        }
+
+                                                                        #endregion
+                                                                    }
+
+                                                                    DataTable DT_PurLg2 = PurchaseOrderLog_Insert(StoneId, false, true, PurLg_Id, LogInID);
+
+                                                                    res_list.Add(new ConfirmPlaceOrderResponse()
+                                                                    {
+                                                                        RefNo = StoneId,
+                                                                        SunriseStatus = (SunriseStatus == "" ? "Fail" : SunriseStatus),
+                                                                        SupplierName = dtSupplierRef.Rows[i]["Supplier"].ToString().ToUpper(),
+                                                                        SupplierStatus = SupplierStatus,
+                                                                        LabEntryStatus = LabEntryStatus
+                                                                    });
+
+                                                                }
+                                                            }
+
+
+
+                                                            /*
                                                             string[] RefnoList = dtSupplierRef.Rows[i]["sRefno"].ToString().Split(',');
                                                             string _LoginResponse = GetShairuAPITaken();
                                                             ShairuApiLoginResponse _data = new ShairuApiLoginResponse();
@@ -2162,7 +2437,7 @@ namespace Sunrise.Services.Controllers
                                                                     }
                                                                 }
                                                             }
-
+                                                           */
                                                         }
                                                     }
                                                     else if (dtSupplierRef.Rows[i]["Supplier"].ToString().ToUpper() == "J.B. AND BROTHERS PVT. LTD - (S)")
@@ -2724,7 +2999,7 @@ namespace Sunrise.Services.Controllers
         #region Confirm Order API for Web
 
         [HttpPost]
-        public IHttpActionResult PlaceConfirmOrderUsingApi_Web_1([FromBody]JObject data)
+        public IHttpActionResult PlaceConfirmOrderUsingApi_Web_1([FromBody] JObject data)
         {
             SupplierApiOrderRequest confirmOrderRequest = new SupplierApiOrderRequest();
             int LogInID = Convert.ToInt32((Request.GetRequestContext().Principal as ClaimsPrincipal).Claims.Where(e => e.Type == "UserID").FirstOrDefault().Value);
@@ -2936,6 +3211,149 @@ namespace Sunrise.Services.Controllers
                                     if (dtSupplierRef.Rows[i]["sRefno"].ToString() != "")
                                     {
                                         string[] RefnoList = dtSupplierRef.Rows[i]["sRefno"].ToString().Split(',');
+                                        foreach (string StoneId in RefnoList)
+                                        {
+                                            SunriseStatus = string.Empty; SupplierStatus = string.Empty; LabEntryStatus = string.Empty;
+                                            if (StoneId.ToString() != "")
+                                            {
+                                                GetShairu_New_CheckAvailability(StoneId);
+
+                                                DataTable DT_PurLg1 = PurchaseOrderLog_Insert(StoneId, true, false, 0, LogInID);
+                                                int PurLg_Id = 0;
+                                                if (DT_PurLg1 != null && DT_PurLg1.Rows.Count > 0)
+                                                {
+                                                    PurLg_Id = Convert.ToInt32(DT_PurLg1.Rows[0]["Id"].ToString());
+                                                }
+
+                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+
+                                                SupplierStatus = Shairu_Message;
+
+                                                if (SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                {
+                                                    SunriseStatus = "Confirm";
+                                                    LabEntryStatus = "Confirm";
+                                                }
+                                                else if (SupplierStatus.ToUpper().Contains("SOMETHING WENT WRONG."))
+                                                {
+                                                    SunriseStatus = "Error";
+                                                    LabEntryStatus = "Waiting";
+                                                }
+
+                                                if (Shairu_Status.ToUpper() == "CONFIRMED" && SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                {
+                                                    #region SHAIRU API RETURN SUCCESS
+
+                                                    try
+                                                    {
+                                                        DataTable DT_LbLg1 = LabEntryLog_Insert(StoneId, true, false, 0, LogInID);
+                                                        int LbLg_Id = 0;
+                                                        if (DT_LbLg1 != null && DT_LbLg1.Rows.Count > 0)
+                                                        {
+                                                            LbLg_Id = Convert.ToInt32(DT_LbLg1.Rows[0]["Id"].ToString());
+                                                        }
+
+                                                        LabResponse = InsertLabAutoEntry(obj.UserId.ToString(), obj.Refno, obj.Comments, LabEntryStatus);
+
+                                                        DataTable DT_LbLg2 = LabEntryLog_Insert(StoneId, false, true, LbLg_Id, LogInID);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                        LabResponse = ex.Message.ToString();
+                                                    }
+
+                                                    DataTable dtUpdate = UpdateOrderDetIsConfirmStatus(obj.Refno, obj.Orderid);
+
+                                                    if (dtUpdate != null && dtUpdate.Rows.Count > 0)
+                                                    {
+                                                        if (dtUpdate.Rows[0]["Msg"].ToString() == "Success")
+                                                        {
+                                                            InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "", obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType, confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                        }
+                                                        else
+                                                        {
+                                                            InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "Update Fail In Sunrise OrderDet Table : " + dtUpdate.Rows[0]["Msg"].ToString(), obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "Update Fail In Sunrise OrderDet Table : " + dtUpdate.Rows[0]["Msg"].ToString(), obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                    }
+
+                                                    try
+                                                    {
+                                                        SendPurchaseMail("MANUAL", "SUCCESS", obj.Orderid.ToString(), obj.Comments, obj.UserId.ToString(), LogInID.ToString(), obj.Refno, obj.SuppValue, SupplierStatus + " - " + Shairu_Status, SunriseStatus);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                    }
+
+                                                    MsgRef += obj.Refno + ",";
+
+                                                    #endregion
+                                                }
+                                                else
+                                                {
+                                                    #region SHAIRU API RETURN FAIL
+
+                                                    if (Shairu_Status != "CONFIRMED")
+                                                    {
+                                                        SupplierStatus = "";
+                                                        SunriseStatus = "Not Available";
+                                                        LabEntryStatus = "Reject";
+                                                    }
+
+                                                    try
+                                                    {
+                                                        DataTable DT_LbLg1 = LabEntryLog_Insert(StoneId, true, false, 0, LogInID);
+                                                        int LbLg_Id = 0;
+                                                        if (DT_LbLg1 != null && DT_LbLg1.Rows.Count > 0)
+                                                        {
+                                                            LbLg_Id = Convert.ToInt32(DT_LbLg1.Rows[0]["Id"].ToString());
+                                                        }
+
+                                                        LabResponse = InsertLabAutoEntry(obj.UserId.ToString(), obj.Refno, obj.Comments, LabEntryStatus);
+
+                                                        DataTable DT_LbLg2 = LabEntryLog_Insert(StoneId, false, true, LbLg_Id, LogInID);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                        LabResponse = ex.Message.ToString();
+                                                    }
+
+                                                    InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "", obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+
+                                                    try
+                                                    {
+                                                        SendPurchaseMail("MANUAL", "ERROR", obj.Orderid.ToString(), obj.Comments, obj.UserId.ToString(), LogInID.ToString(), obj.Refno, obj.SuppValue, SupplierStatus + " - " + Shairu_Status, SunriseStatus);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                    }
+
+                                                    #endregion
+                                                }
+
+                                                DataTable DT_PurLg2 = PurchaseOrderLog_Insert(StoneId, false, true, PurLg_Id, LogInID);
+
+                                                res_list.Add(new ConfirmPlaceOrderResponse()
+                                                {
+                                                    RefNo = StoneId,
+                                                    SunriseStatus = (SunriseStatus == "" ? "Fail" : SunriseStatus),
+                                                    SupplierName = dtSupplierRef.Rows[i]["Supplier"].ToString().ToUpper(),
+                                                    SupplierStatus = SupplierStatus,
+                                                    LabEntryStatus = LabEntryStatus
+                                                });
+
+                                            }
+                                        }
+                                        
+                                        /*
+                                        string[] RefnoList = dtSupplierRef.Rows[i]["sRefno"].ToString().Split(',');
                                         string _LoginResponse = GetShairuAPITaken();
                                         ShairuApiLoginResponse _data = new ShairuApiLoginResponse();
                                         _data = (new JavaScriptSerializer()).Deserialize<ShairuApiLoginResponse>(_LoginResponse);
@@ -3119,7 +3537,7 @@ namespace Sunrise.Services.Controllers
                                                 }
                                             }
                                         }
-
+                                        */
                                     }
                                 }
                                 else if (dtSupplierRef.Rows[i]["Supplier"].ToString().ToUpper() == "J.B. AND BROTHERS PVT. LTD - (S)")
@@ -3787,6 +4205,149 @@ namespace Sunrise.Services.Controllers
                                     if (dtSupplierRef.Rows[i]["sRefno"].ToString() != "")
                                     {
                                         string[] RefnoList = dtSupplierRef.Rows[i]["sRefno"].ToString().Split(',');
+                                        foreach (string StoneId in RefnoList)
+                                        {
+                                            SunriseStatus = string.Empty; SupplierStatus = string.Empty; LabEntryStatus = string.Empty;
+                                            if (StoneId.ToString() != "")
+                                            {
+                                                GetShairu_New_CheckAvailability(StoneId);
+
+                                                DataTable DT_PurLg1 = PurchaseOrderLog_Insert(StoneId, true, false, 0, LogInID);
+                                                int PurLg_Id = 0;
+                                                if (DT_PurLg1 != null && DT_PurLg1.Rows.Count > 0)
+                                                {
+                                                    PurLg_Id = Convert.ToInt32(DT_PurLg1.Rows[0]["Id"].ToString());
+                                                }
+
+                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+
+                                                SupplierStatus = Shairu_Message;
+
+                                                if (SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                {
+                                                    SunriseStatus = "Confirm";
+                                                    LabEntryStatus = "Confirm";
+                                                }
+                                                else if (SupplierStatus.ToUpper().Contains("SOMETHING WENT WRONG."))
+                                                {
+                                                    SunriseStatus = "Error";
+                                                    LabEntryStatus = "Waiting";
+                                                }
+
+                                                if (Shairu_Status.ToUpper() == "CONFIRMED" && SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                {
+                                                    #region SHAIRU API RETURN SUCCESS
+
+                                                    try
+                                                    {
+                                                        DataTable DT_LbLg1 = LabEntryLog_Insert(StoneId, true, false, 0, LogInID);
+                                                        int LbLg_Id = 0;
+                                                        if (DT_LbLg1 != null && DT_LbLg1.Rows.Count > 0)
+                                                        {
+                                                            LbLg_Id = Convert.ToInt32(DT_LbLg1.Rows[0]["Id"].ToString());
+                                                        }
+
+                                                        LabResponse = InsertLabAutoEntry(obj.UserId.ToString(), obj.Refno, obj.Comments, LabEntryStatus);
+
+                                                        DataTable DT_LbLg2 = LabEntryLog_Insert(StoneId, false, true, LbLg_Id, LogInID);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                        LabResponse = ex.Message.ToString();
+                                                    }
+
+                                                    DataTable dtUpdate = UpdateOrderDetIsConfirmStatus(obj.Refno, obj.Orderid);
+
+                                                    if (dtUpdate != null && dtUpdate.Rows.Count > 0)
+                                                    {
+                                                        if (dtUpdate.Rows[0]["Msg"].ToString() == "Success")
+                                                        {
+                                                            InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "", obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType, confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                        }
+                                                        else
+                                                        {
+                                                            InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "Update Fail In Sunrise OrderDet Table : " + dtUpdate.Rows[0]["Msg"].ToString(), obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "Update Fail In Sunrise OrderDet Table : " + dtUpdate.Rows[0]["Msg"].ToString(), obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                    }
+
+                                                    try
+                                                    {
+                                                        SendPurchaseMail("MANUAL", "SUCCESS", obj.Orderid.ToString(), obj.Comments, obj.UserId.ToString(), LogInID.ToString(), obj.Refno, obj.SuppValue, SupplierStatus + " - " + Shairu_Status, SunriseStatus);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                    }
+
+                                                    MsgRef += obj.Refno + ",";
+
+                                                    #endregion
+                                                }
+                                                else
+                                                {
+                                                    #region SHAIRU API RETURN FAIL
+
+                                                    if (Shairu_Status != "CONFIRMED")
+                                                    {
+                                                        SupplierStatus = "";
+                                                        SunriseStatus = "Not Available";
+                                                        LabEntryStatus = "Reject";
+                                                    }
+
+                                                    try
+                                                    {
+                                                        DataTable DT_LbLg1 = LabEntryLog_Insert(StoneId, true, false, 0, LogInID);
+                                                        int LbLg_Id = 0;
+                                                        if (DT_LbLg1 != null && DT_LbLg1.Rows.Count > 0)
+                                                        {
+                                                            LbLg_Id = Convert.ToInt32(DT_LbLg1.Rows[0]["Id"].ToString());
+                                                        }
+
+                                                        LabResponse = InsertLabAutoEntry(obj.UserId.ToString(), obj.Refno, obj.Comments, LabEntryStatus);
+
+                                                        DataTable DT_LbLg2 = LabEntryLog_Insert(StoneId, false, true, LbLg_Id, LogInID);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                        LabResponse = ex.Message.ToString();
+                                                    }
+
+                                                    InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "", obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+
+                                                    try
+                                                    {
+                                                        SendPurchaseMail("MANUAL", "ERROR", obj.Orderid.ToString(), obj.Comments, obj.UserId.ToString(), LogInID.ToString(), obj.Refno, obj.SuppValue, SupplierStatus + " - " + Shairu_Status, SunriseStatus);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                    }
+
+                                                    #endregion
+                                                }
+
+                                                DataTable DT_PurLg2 = PurchaseOrderLog_Insert(StoneId, false, true, PurLg_Id, LogInID);
+
+                                                res_list.Add(new ConfirmPlaceOrderResponse()
+                                                {
+                                                    RefNo = StoneId,
+                                                    SunriseStatus = (SunriseStatus == "" ? "Fail" : SunriseStatus),
+                                                    SupplierName = dtSupplierRef.Rows[i]["Supplier"].ToString().ToUpper(),
+                                                    SupplierStatus = SupplierStatus,
+                                                    LabEntryStatus = LabEntryStatus
+                                                });
+
+                                            }
+                                        }
+
+                                        /*
+                                        string[] RefnoList = dtSupplierRef.Rows[i]["sRefno"].ToString().Split(',');
                                         string _LoginResponse = GetShairuAPITaken();
                                         ShairuApiLoginResponse _data = new ShairuApiLoginResponse();
                                         _data = (new JavaScriptSerializer()).Deserialize<ShairuApiLoginResponse>(_LoginResponse);
@@ -3970,7 +4531,7 @@ namespace Sunrise.Services.Controllers
                                                 }
                                             }
                                         }
-
+                                        */
                                     }
                                 }
                                 else if (dtSupplierRef.Rows[i]["Supplier"].ToString().ToUpper() == "J.B. AND BROTHERS PVT. LTD - (S)")
@@ -4628,6 +5189,149 @@ namespace Sunrise.Services.Controllers
                                     if (dtSupplierRef.Rows[i]["sRefno"].ToString() != "")
                                     {
                                         string[] RefnoList = dtSupplierRef.Rows[i]["sRefno"].ToString().Split(',');
+                                        foreach (string StoneId in RefnoList)
+                                        {
+                                            SunriseStatus = string.Empty; SupplierStatus = string.Empty; LabEntryStatus = string.Empty;
+                                            if (StoneId.ToString() != "")
+                                            {
+                                                GetShairu_New_CheckAvailability(StoneId);
+
+                                                DataTable DT_PurLg1 = PurchaseOrderLog_Insert(StoneId, true, false, 0, LogInID);
+                                                int PurLg_Id = 0;
+                                                if (DT_PurLg1 != null && DT_PurLg1.Rows.Count > 0)
+                                                {
+                                                    PurLg_Id = Convert.ToInt32(DT_PurLg1.Rows[0]["Id"].ToString());
+                                                }
+
+                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+
+                                                SupplierStatus = Shairu_Message;
+
+                                                if (SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                {
+                                                    SunriseStatus = "Confirm";
+                                                    LabEntryStatus = "Confirm";
+                                                }
+                                                else if (SupplierStatus.ToUpper().Contains("SOMETHING WENT WRONG."))
+                                                {
+                                                    SunriseStatus = "Error";
+                                                    LabEntryStatus = "Waiting";
+                                                }
+
+                                                if (Shairu_Status.ToUpper() == "CONFIRMED" && SupplierStatus.ToUpper().Contains("ORDER PLACED."))
+                                                {
+                                                    #region SHAIRU API RETURN SUCCESS
+
+                                                    try
+                                                    {
+                                                        DataTable DT_LbLg1 = LabEntryLog_Insert(StoneId, true, false, 0, LogInID);
+                                                        int LbLg_Id = 0;
+                                                        if (DT_LbLg1 != null && DT_LbLg1.Rows.Count > 0)
+                                                        {
+                                                            LbLg_Id = Convert.ToInt32(DT_LbLg1.Rows[0]["Id"].ToString());
+                                                        }
+
+                                                        LabResponse = InsertLabAutoEntry(obj.UserId.ToString(), obj.Refno, obj.Comments, LabEntryStatus);
+
+                                                        DataTable DT_LbLg2 = LabEntryLog_Insert(StoneId, false, true, LbLg_Id, LogInID);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                        LabResponse = ex.Message.ToString();
+                                                    }
+
+                                                    DataTable dtUpdate = UpdateOrderDetIsConfirmStatus(obj.Refno, obj.Orderid);
+
+                                                    if (dtUpdate != null && dtUpdate.Rows.Count > 0)
+                                                    {
+                                                        if (dtUpdate.Rows[0]["Msg"].ToString() == "Success")
+                                                        {
+                                                            InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "", obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType, confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                        }
+                                                        else
+                                                        {
+                                                            InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "Update Fail In Sunrise OrderDet Table : " + dtUpdate.Rows[0]["Msg"].ToString(), obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "Update Fail In Sunrise OrderDet Table : " + dtUpdate.Rows[0]["Msg"].ToString(), obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+                                                    }
+
+                                                    try
+                                                    {
+                                                        SendPurchaseMail("MANUAL", "SUCCESS", obj.Orderid.ToString(), obj.Comments, obj.UserId.ToString(), LogInID.ToString(), obj.Refno, obj.SuppValue, SupplierStatus + " - " + Shairu_Status, SunriseStatus);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                    }
+
+                                                    MsgRef += obj.Refno + ",";
+
+                                                    #endregion
+                                                }
+                                                else
+                                                {
+                                                    #region SHAIRU API RETURN FAIL
+
+                                                    if (Shairu_Status != "CONFIRMED")
+                                                    {
+                                                        SupplierStatus = "";
+                                                        SunriseStatus = "Not Available";
+                                                        LabEntryStatus = "Reject";
+                                                    }
+
+                                                    try
+                                                    {
+                                                        DataTable DT_LbLg1 = LabEntryLog_Insert(StoneId, true, false, 0, LogInID);
+                                                        int LbLg_Id = 0;
+                                                        if (DT_LbLg1 != null && DT_LbLg1.Rows.Count > 0)
+                                                        {
+                                                            LbLg_Id = Convert.ToInt32(DT_LbLg1.Rows[0]["Id"].ToString());
+                                                        }
+
+                                                        LabResponse = InsertLabAutoEntry(obj.UserId.ToString(), obj.Refno, obj.Comments, LabEntryStatus);
+
+                                                        DataTable DT_LbLg2 = LabEntryLog_Insert(StoneId, false, true, LbLg_Id, LogInID);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                        LabResponse = ex.Message.ToString();
+                                                    }
+
+                                                    InsertSupplierAPIResponse(StoneId, SupplierStatus, Shairu_Status, "SHAIRU GEMS DIAMONDS PVT. LTD - (S)", "", obj.Orderid, obj.SuppValue, confirmOrderRequest.DeviceType.ToString(), confirmOrderRequest.IpAddress, LabResponse, LogInID);
+
+                                                    try
+                                                    {
+                                                        SendPurchaseMail("MANUAL", "ERROR", obj.Orderid.ToString(), obj.Comments, obj.UserId.ToString(), LogInID.ToString(), obj.Refno, obj.SuppValue, SupplierStatus + " - " + Shairu_Status, SunriseStatus);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        DAL.Common.InsertErrorLog(ex, null, Request);
+                                                    }
+
+                                                    #endregion
+                                                }
+
+                                                DataTable DT_PurLg2 = PurchaseOrderLog_Insert(StoneId, false, true, PurLg_Id, LogInID);
+
+                                                res_list.Add(new ConfirmPlaceOrderResponse()
+                                                {
+                                                    RefNo = StoneId,
+                                                    SunriseStatus = (SunriseStatus == "" ? "Fail" : SunriseStatus),
+                                                    SupplierName = dtSupplierRef.Rows[i]["Supplier"].ToString().ToUpper(),
+                                                    SupplierStatus = SupplierStatus,
+                                                    LabEntryStatus = LabEntryStatus
+                                                });
+
+                                            }
+                                        }
+
+                                        /*
+                                        string[] RefnoList = dtSupplierRef.Rows[i]["sRefno"].ToString().Split(',');
                                         string _LoginResponse = GetShairuAPITaken();
                                         ShairuApiLoginResponse _data = new ShairuApiLoginResponse();
                                         _data = (new JavaScriptSerializer()).Deserialize<ShairuApiLoginResponse>(_LoginResponse);
@@ -4811,7 +5515,7 @@ namespace Sunrise.Services.Controllers
                                                 }
                                             }
                                         }
-
+                                        */
                                     }
                                 }
                                 else if (dtSupplierRef.Rows[i]["Supplier"].ToString().ToUpper() == "J.B. AND BROTHERS PVT. LTD - (S)")
