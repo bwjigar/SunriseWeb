@@ -1,0 +1,150 @@
+﻿@model SunriseWeb.Models.UserLogin
+@using SunriseWeb.Resources
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <title>Contact Us</title>
+    <meta name="keyword" content="" />
+    <meta name="description" content="" />
+    <meta name="title" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- attach stylesheet -->
+    <link rel="stylesheet" href="~/Content/static_pages/css/bootstrap.min.css">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- main stylesheet -->
+    <link href="~/Content/static_pages/css/login.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======================== Start Navbar ============================ -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar login-myScrollspy ragistration-page" id="navigation">
+        <div class="container">
+            <div class="ragister-logo">
+                <button type="button" id="sidebarCollapse" class="custom-toggle">
+                    <i class="fa fa-align-left" aria-hidden="true"></i>
+                </button>
+                <img src="~/Content/Login/images/logo.png" class="img-responsive" alt="logo">
+                <div class="home-icon">
+                    <a href="@Url.Action("Index","Login")"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div id="myScrollspy">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="@Url.Action("Index","Login")">@LanguageProvider.get("home")</a></li>
+                    <li><a href="@Url.Action("Aboutus","Login")">@LanguageProvider.get("aboutus")</a></li>
+                    <li><a href="@Url.Action("Service","Login")">@LanguageProvider.get("service")</a></li>
+                    <li><a href="@Url.Action("ContactUs","Login")">@LanguageProvider.get("contact")</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ======================== End Navbar ============================ -->
+    <!-- ======================== Start Home ============================ -->
+    <section class="section ragistration" id="ragistration">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="ragistration-form one">
+                        <div class="personal-info common-eee service-page">
+                            <div class="r-label">
+                                <p>Contact Us</p>
+                            </div>
+                            <div class="login-pages-dta aboutus-page">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 float-left pl-1 pr-1">
+                                    <div class="contc-box-wrapper">
+                                        <div class="contc-box-heading">
+                                            SURAT
+                                        </div>
+                                        <div class="contc-box-content">
+                                            <h5>
+                                                Shairu Gems Diamonds Pvt. Ltd.
+                                                <br>
+                                                (Manufacturing Operations)
+                                            </h5>
+                                            <p>
+                                                166/A/2 170-C, Opp. SMC Swimming Pool,
+
+                                                Vasta Devdi Road, Katargam, Surat 395004 - India
+                                            </p>
+                                            <p>T: +91 261 253 6488 </p>
+                                            <p>F: +91 261 253 6855</p>
+                                            @*<p>Mr. Siddharth Mehta</p>
+                                            <p><a href="mailto:siddharth@shairugems.net" target="_blank">siddharth@shairugems.net</a></p>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 float-left pl-1 pr-1">
+                                    <div class="contc-box-wrapper">
+                                        <div class="contc-box-heading">
+                                            Mumbai
+                                        </div>
+                                        <div class="contc-box-content">
+                                            <h5>Shairu Gems Diamonds Pvt. Ltd.</h5>
+                                            <p>
+                                                DE-9012A(Entrance from DC),
+                                                <br>
+                                                Bharat Diamond Bourse, Bandra Kurla Complex, Bandra(E),Mumbai 400 051 India
+                                            </p>
+                                            <p>T: +91 22 4050 5050 </p>
+                                            <p>F: +91 22 2363 0039</p>
+                                            @*<p>Mr. Kashish Mehta</p>
+                                            <p><a href="mailto:kashish@shairugems.net" target="_blank">kashish@shairugems.net</a></p>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 float-left pl-1 pr-1">
+                                    <div class="contc-box-wrapper">
+                                        <div class="contc-box-heading">
+                                            Hong Kong
+                                        </div>
+                                        <div class="contc-box-content">
+                                            <h5>Sunrise Diamonds Ltd.</h5>
+                                            <p>
+                                                Room 1,14/F, Peninsula Square
+                                                <br>
+                                                East Wing, 18 Sung On Street Hunghom, Kowloon,
+                                                <br>
+                                                Hong Kong
+                                            </p>
+                                            <p>T: +852 2723 5100 </p>
+                                            <p>F: +852 2314 9100</p>
+                                            @*<p>Mr. Ritesh Mehta</p>*@
+                                            <p><a href="mailto:support@sunrisediam.com" target="_blank">support@sunrisediam.com</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function open_side() {
+            document.getElementById("myScrollspy").style.width = "250px";
+        }
+        function close_side() {
+            document.getElementById("myScrollspy").style.width = "0";
+        }
+    </script>
+    <!-- ======================== End Home ============================ -->
+    <!-- end of login -->
+    <script src="~/Content/static_pages/js/jquery.min.js"></script>
+    <script src="~/Content/static_pages/js/bootstrap.min.js"></script>
+    <script src="~/Content/static_pages/js/propper.min.js"></script>
+    <script src="~/Content/static_pages/js/login.js"></script>
+
+</body>
+</html>

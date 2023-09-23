@@ -1,0 +1,523 @@
+﻿@model SunriseWeb.Models.UserLogin
+@using SunriseWeb.Resources
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@LanguageProvider.get("SUNRISE_DIAMOND_LIMITED")</title>
+    <meta name="keyword" content="" />
+    <meta name="description" content="" />
+    <meta name="title" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/images/nav-logo.png">
+    <!-- attach stylesheet -->
+    <link rel="stylesheet" href="~/Content/Login/css/bootstrap.min.css">
+    <link href="~/Content/Login/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link href="~/Content/Login/css/animate.css" rel="stylesheet">
+    <!-- main stylesheet -->
+    <link href="~/Content/Login/css/main.css" rel="stylesheet">
+    <link href="~/Content/Plugins/toastr/toastr.css" rel="stylesheet" />
+
+    <style>
+        .adrress-span {
+            margin-bottom: 1px;
+            color: white;
+            background-color: #003d66;
+            padding: 3px 25px;
+            border-radius: 16px;
+            font-weight: bold;
+        }
+
+        @@media (max-width: 767px) {
+            .modalPopupnew {
+                height: 250px;
+            }
+
+            .promoimg {
+                height: 89%;
+            }
+        }
+
+        @@media (min-width: 768px) {
+            .modalPopupnew {
+                height: 570px;
+            }
+
+            .promoimg {
+                height: 95%;
+            }
+        }
+        /*@@media screen and (max-width: 5464px) and (min-width: 4099px) {
+            .fair-img {
+                display: block;
+                margin-left: 1850px;
+                padding-top: 250px;
+            }
+        }
+        @@media screen and (max-width: 4098px) and (min-width: 2733px) {
+            .fair-img {
+                display: block;
+                margin-left: 1400px;
+                padding-top: 180px;
+            }
+        }
+        @@media screen and (max-width: 2732px) and (min-width: 2500px) {
+            .fair-img {
+                display: block;
+                margin-left: 906px;
+                padding-top: 125px;
+            }
+        }
+        @@media screen and (max-width: 2499px) and (min-width: 2049px) {
+            .fair-img {
+                display: block;
+                margin-left: 705px;
+                padding-top: 105px;
+            }
+        }
+        @@media screen and (max-width: 2048px) and (min-width: 1821px) {
+            .fair-img {
+                display: block;
+                margin-left: 630px;
+                padding-top: 95px;
+            }
+        }
+        @@media screen and (max-width: 1820px) and (min-width: 1707px) {
+            .fair-img {
+                display: block;
+                margin-left: 600px;
+                padding-top: 90px;
+            }
+        }
+        @@media screen and (max-width: 1706px) and (min-width: 1517px) {
+            .fair-img {
+                display: block;
+                margin-left: 540px;
+                padding-top: 90px;
+            }
+        }
+        @@media screen and (max-width: 1516px) and (min-width: 1366px) {
+            .fair-img {
+                display: block;
+                margin-left: 457px;
+                padding-top: 80px;
+            }
+        }
+        @@media screen and (max-width: 1365px) and (min-width: 1200px) {
+            .fair-img {
+                display: block;
+                margin-left: 397px;
+                padding-top: 80px;
+            }
+        }
+        @@media screen and (max-width: 1199px) and (min-width: 1000px) {
+            .fair-img {
+                display: block;
+                margin-left: 312px;
+                padding-top: 61px;
+            }
+            .sun-logo {
+                width: 267px !important;
+                margin-left: -3px;
+            }
+        }
+        @@media screen and (max-width: 999px) and (min-width: 0px) {
+            .fair-img {
+                display: none;
+            }
+        }*/
+    </style>
+</head>
+
+<body>
+    <input type="hidden" id="hdn_Wrong_User_Name_or_Password_Kindly_Contact" value="@LanguageProvider.get("Wrong_User_Name_or_Password_Kindly_Contact")" />
+    <input type="hidden" id="hdn_User_Is_Not_Active_Please_Contact" value="@LanguageProvider.get("User_Is_Not_Active_Please_Contact")" />
+    <input type="hidden" id="hdn_Username_is_invalid_or_in_active" value="@LanguageProvider.get("Username_is_invalid_or_in_active")" />
+    <input type="hidden" id="hdn_Your_account_information_have_been_sent_to_you_on" value="@LanguageProvider.get("Your_account_information_have_been_sent_to_you_on")" />
+    <input type="hidden" id="hdn_Your_email_address_is_invalid_please_contact_our_Administrator" value="@LanguageProvider.get("Your_email_address_is_invalid_please_contact_our_Administrator")" />
+    <input type="hidden" id="hdn_User_registration_failed" value="@LanguageProvider.get("User_registration_failed")" />
+    <input type="hidden" id="hdn_User_name_is_already_exists" value="@LanguageProvider.get("User_name_is_already_exists")" />
+    <input type="hidden" id="hdn_User_Is_Not_Active_Please_Contact" value="@LanguageProvider.get("User_Is_Not_Active_Please_Contact")" />
+
+    <!-- particles.js container -->
+    <div id="particles-js"></div>
+
+    <ul class="bg-star">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <nav class="">
+        <div id="myScrollspy">
+            <ul class="nav nav-pills nav-stacked">
+
+                <li class="close_sidebar"><i class="fa fa-times" onclick="close_side()" aria-hidden="true"></i></li>
+                <li><a href="@Url.Action("Index","Login")" class="active">@LanguageProvider.get("home")</a></li>
+                <li><a href="@Url.Action("Aboutus","Login")">@LanguageProvider.get("aboutus")</a></li>
+                <li><a href="@Url.Action("Service","Login")">@LanguageProvider.get("service")</a></li>
+                @*<li><a href="#">@LanguageProvider.get("testimonial")</a></li>
+                    <li><a href="#">@LanguageProvider.get("client")</a></li>*@
+                <li><a href="@Url.Action("ContactUs","Login")">@LanguageProvider.get("contact")</a></li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="open_btn">
+        <button class="open-btn" onclick="open_side()">☰</button>
+    </div>
+    <div class="language-section">
+        <ul class="d-inline-flex pull-right">
+            @if (Request.Cookies["language"] != null)
+            {
+                if (Request.Cookies["language"].Value == "en")
+                {
+                    <li class="nav-item"><a id="en" class="active" href="javascript:void(0);" onclick="LanguageChange('en')">EN</a></li>
+                    <li class="nav-item"><a id="cn" class="" href="javascript:void(0);" onclick="LanguageChange('cn')">中文</a></li>
+                }
+                else
+                {
+                    <li class="nav-item"><a id="en" class="" href="javascript:void(0);" onclick="LanguageChange('en')">EN</a></li>
+                    <li class="nav-item"><a id="cn" class="active" href="javascript:void(0);" onclick="LanguageChange('cn')">中文</a></li>
+                }
+            }
+            else
+            {
+                <li class="nav-item"><a id="en" class="active" href="javascript:void(0);" onclick="LanguageChange('en')">EN</a></li>
+                <li class="nav-item"><a id="cn" class="" href="javascript:void(0);" onclick="LanguageChange('cn')">中文</a></li>
+            }
+
+        </ul>
+    </div>
+    <div class="footer-logo">
+        <img src="~/Content/Login/images/footer-logo.png" alt="logo" class="img-responsive">
+    </div>
+    <!-- start login -->
+    <div class="login-form">
+        <div class="login-background"></div>
+        <div class="overlay skew-part">
+            <div class="stars"></div>
+            <div class="stars2"></div>
+            <div class="stars3"></div>
+        </div>
+        <div class="coming-soon-center cmingsoon-content @*col-md-4*@">
+            <div class="logo-backdrop">
+                <img src="~/Content/Login/images/backlogo.png" class="img-fluid" alt="image">
+            </div>
+            <div class="coming-soon-logo">
+                <img src="~/Content/Login/images/logo.png" @*class="sun-logo"*@>
+            </div>
+            <div class="brand-col">
+                <p>@LanguageProvider.get("alsoavalblon")</p>
+                <div class="sld-app-download">
+                    <ul>
+                        <li>
+                            <a href="https://play.google.com/store/apps/details?id=com.dnk.shairugems" target="_blank">
+                                <img src="~/Content/Login/images/playstore-icon.png" class="img-fluid">
+                                <span>
+                                    @LanguageProvider.get("avalblon")
+                                    <br>
+                                    @LanguageProvider.get("googleplay")
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://apps.apple.com/us/app/sunrise-diamonds/id937708660?ls=1" target="_blank">
+                                <img src="~/Content/Login/images/apple-icon.png" class="img-fluid">
+                                <span>
+                                    @LanguageProvider.get("avalblon")
+                                    <br>
+                                    @LanguageProvider.get("appstore")
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                @*<center>
+                <div style="margin-top: 9px;margin-bottom: -16px !important;"><p>Address</p></div>
+                <div style="text-align: left;margin-left: 170px;margin-bottom: -90px;">
+                    Unit 1,14/F, Peninsula Square,<br />
+                    East Wing, 15 Sung On Street,<br />
+                    Hunghom, Kowloon,<br />
+                    Hong Kong,<br />
+                    TEL:+852-27235100 FAX :+852-23149100<br />
+                    SKYPE ID:SUNRISE.DIAMONDS<br />
+                    QQ ID: 1482631351<br />
+                    Support : support@sunrisediam.com<br />
+                    RAPNET ID :71657
+                </div>
+            </center>*@
+            </div>
+            
+        </div>
+        @*<div class="col-md-4 fair-img">
+            <img src="/Content/images/Fair_18_22_Sep-2023.jpeg" style="width: 84%;">
+        </div>*@
+        <div class="container @*col-md-4*@">
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="login-form-center">
+                        <div class="login-data" style="margin-bottom:20px;">
+                            <div class="login-logo text-center">
+                                <img src="~/Content/Login/images/logo.png" alt="logo" class="img-responsive" height="100px" width="100px">
+                            </div>
+                            <!-- <div class="login-title text-center"> -->
+                            <!-- <h5><b>Login </b></h5> -->
+                            <!-- </div> -->
+                            <div class="login-field">
+                                @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { id = "login-form" }))
+                                {
+                                    @Html.AntiForgeryToken();
+                                    @Html.ValidationSummary(true);
+                                    <div class="form-group wow fadeInLeft animated" data-wow-delay="1s">
+                                        <label class="fa-icon"><i class="fa fa-user" aria-hidden="true"></i></label>
+                                        @Html.TextBoxFor(a => a.Username, new { @class = "input-field", placeholder = @LanguageProvider.get("EnterUsername") })
+                                        @Html.ValidationMessageFor(m => m.Username)
+                                        @*<input type="text" class="input-field" name="username" placeholder="Enter User Name" required>*@
+
+                                    </div>
+                                    <div class="form-group wow fadeInRight animated" data-wow-delay="1s">
+                                        <label class="fa-icon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></label>
+                                        @Html.PasswordFor(a => a.Password, new { @value = Model.Password, @class = "input-field", placeholder = @LanguageProvider.get("EnterPassword") })
+                                        @Html.ValidationMessageFor(m => m.Password)
+                                        @*<input type="password" class="input-field name="password" placeholder="Enter Password" required>*@
+
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-xs-6 col-sm-6">
+                                            <label class="checkbox-label text-left">
+                                                <b>@LanguageProvider.get("rememberme")</b>
+                                                @Html.CheckBoxFor(x => x.isRemember)
+                                                @* <input type="checkbox">*@
+                                                <span class="checkbox-mark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <div class="text-right forgot-pass">
+                                                <a href="javascript:void(0);" class="forgotPwd" id="forgot-form-link"><b>@LanguageProvider.get("forgotpwd") ?</b></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3" style="display:none;">
+                                        <div class="col-xs-8 col-sm-8">
+                                            <label class="checkbox-label text-left">
+                                                <b>Switch to classic</b>
+                                                @Html.CheckBoxFor(x => x.isSwitchClassic)
+                                                <span class="checkbox-mark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <label class="login-error"><b></b></label>
+                                    <div class="form-group login-button">
+                                        <button type="submit" id="btnLogin" class="swing wow animated" data-wow-delay="1s">@LanguageProvider.get("Login")</button>
+                                        <a href="@Url.Action("Registration","Login")" class="swing wow animated signup text-center" data-wow-delay="1s">@LanguageProvider.get("Signup")</a>
+                                    </div>
+                                    <div class="app-download">
+                                        <a href="https://play.google.com/store/apps/details?id=com.dnk.shairugems" target="_blank" class="wow zoomIn animated" data-wow-delay="1s">
+                                            <img src="~/Content/Login/images/playstore-icon.png" class="img-responsive">
+                                            <span>
+                                                @LanguageProvider.get("googleplay")
+                                            </span>
+                                        </a>
+                                        <a href="https://itunes.apple.com/us/app/sunrise-diamonds/id937708660?ls=1&mt=8" target="_blank" class="wow zoomIn animated" data-wow-delay="1s">
+                                            <img src="~/Content/Login/images/apple-icon.png" class="img-responsive">
+                                            <span>
+                                                @LanguageProvider.get("appstore")
+                                            </span>
+                                        </a>
+                                    </div>
+                                }
+                                @using (Html.BeginForm("ForgotPassword", "Login", FormMethod.Post, new { id = "forgot-form", style = "display: none;" }))
+                                {
+                                    <div class="form-group wow fadeInLeft animated forgot-h2" data-wow-delay="0.5s">
+                                        <h2>@LanguageProvider.get("recoverpwd")</h2>
+                                    </div>
+                                    <div class="form-group wow fadeInRight animated forgot-p" data-wow-delay="0.5s">
+                                        <p>@LanguageProvider.get("recoverpwdtext")</p>
+                                    </div>
+                                    <div class="form-group wow fadeInLeft animated" data-wow-delay="0.5s">
+                                        <label class="fa-icon"><i class="fa fa-user" aria-hidden="true"></i></label>
+                                        <input type="text" class="input-field" name="ForgotUsername" id="txtForgotUsername" placeholder="@LanguageProvider.get("enterusernm")" required>
+                                        @*@Html.TextBoxFor(a => a.Username, new { @class = "input-field", placeholder = "Enter User Name" })
+                                    @Html.ValidationMessageFor(m => m.Username)*@
+                                    </div>
+                                    <div class="form-group login-button">
+                                        <button type="submit" class="swing wow animated" data-wow-delay="0.5s">@LanguageProvider.get("recover")</button>
+                                        <a href="javascript:void(0);" id="login-form-link" class="swing wow animated signup text-center" data-wow-delay="0.5s">@LanguageProvider.get("backtologin")</a>
+                                    </div>
+                                    <div class="app-download">
+                                        <a href="javascript:void(0);" target="_blank" class="wow zoomIn animated" data-wow-delay="0.5s">
+                                            <img src="~/Content/Login/images/playstore-icon.png" class="img-responsive">
+                                            <span>
+                                                @LanguageProvider.get("googleplay")
+                                            </span>
+                                        </a>
+                                        <a href="#" target="_blank" class="wow zoomIn animated" data-wow-delay="0.5s">
+                                            <img src="~/Content/Login/images/apple-icon.png" class="img-responsive">
+                                            <span>
+                                                @LanguageProvider.get("appstore")
+                                            </span>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <center>
+                            <a href="@Url.Action("Terms","Login")" style="color: white;">Terms & Conditions</a>
+                            <span style="color: white;">|</span>
+                            <a href="@Url.Action("Policy","Login")" style="color: white;">Privacy Policy</a>
+                        </center>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="divModels"></div>
+
+    <div class="modal fade" tabindex="-1" id="loginModal" data-keyboard="false" data-backdrop="static">
+        @*<div class="modal-dialog modal-lg modalPopupnew" style="max-width: 100%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            ×
+                        </button>
+                    </div>
+                    <center>
+                        <div class="modal-body">
+                            <img style="max-width: 100%;" id="imgEvent0" src="http://localhost:44364/InfoImages/17.jpg">
+                        </div>
+                    </center>
+                </div>
+            </div>*@
+    </div>
+
+    <!-- end of login -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
+    <script src="~/Content/Login/js/jquery.min.js"></script>
+    <script src="~/Content/Login/js/bootstrap.min.js"></script>
+    <script src="~/Content/Login/js/popper.min.js"></script>
+    <script src="~/Content/Login/js/wow.min.js"></script>
+    <script src="~/Content/Login/js/LoginCustom.js"></script>
+    <!-- ============ Animation Wow ============= -->
+    <script src="~/Content/Login/js/particles.js"></script>
+    <script src="~/Content/Login/js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script src="~/Content/Plugins/toastr/toastr.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var str = '';
+            if ('@TempData["Message"]' != '') {
+                str = replaceSpecialHtml('@TempData["Message"]');
+                str = str.replace('Wrong User Name or Password Kindly Contact :', $("#hdn_Wrong_User_Name_or_Password_Kindly_Contact").val());
+                str = str.replace('User Is Not Active, Please Contact', $("#hdn_User_Is_Not_Active_Please_Contact").val());
+                str = str.replace('Username is invalid or in-active.', $("#hdn_Username_is_invalid_or_in_active").val());
+                str = str.replace('Your account information have been sent to you on', $("#hdn_Your_account_information_have_been_sent_to_you_on").val());
+                str = str.replace('Your email address is invalid, please contact our Administrator.', $("#hdn_Your_email_address_is_invalid_please_contact_our_Administrator").val());
+                str = str.replace('User registration failed.', $("#hdn_User_registration_failed").val());
+                str = str.replace('User name is already exists.', $("#hdn_User_name_is_already_exists").val());
+                //toastr.error(str);
+                $.alert({
+                    title: '',
+                    content:str,
+                });
+            }
+            else if (location.href.indexOf("Msg=") > -1) {
+                str = location.href.substring(location.href.indexOf("Msg=") + 4);
+                str = str.replace(/%20/g, ' ');
+
+                $.alert({
+                    title: '',
+                    content: str,
+                });
+            }
+            OpenEventModel();
+        });
+        function replaceSpecialHtml(str) {
+            str = str.replace(/&lt;/g, '<');
+            str = str.replace(/&quot;/g, '"');
+            str = str.replace(/&amp;/g, '&');
+            str = str.replace(/&gt;/g, '>')
+            return str;
+        }
+        function LanguageChange(langCode) {
+            $('.nav-item').find('a').removeClass('active');
+            $('.nav-item').find('a[id="' + langCode + '"]').addClass('active');
+            $.ajax({
+                url: "/Login/ChangeLanguage",
+                async: false,
+                type: "POST",
+                data: { LangCode: langCode },
+                success: function (data, textStatus, jqXHR) {
+                    window.location.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    window.location.reload();
+                }
+            });
+        }
+
+        function OpenEventModel() {
+            $('.loading-overlay-image-container').show();
+            $('.loading-overlay').show();
+            $.ajax({
+                url: "@Url.Action("OpenEventModel","Login")",
+                type: "POST",
+                data: null,
+                success: function (data, textStatus, jqXHR) {
+                    //MoveToErrorPage(data.Status);
+                    if (data.Status != undefined) {
+                        if (data.Status == "1") {
+                            if (data.Data != null && data.Data.length > 0) {
+                                var tot = data.Data.length, i = 0, html = '';
+                                var apiUrl = '@System.Configuration.ConfigurationManager.AppSettings["APIURL"]';
+                                apiUrl = apiUrl.replace(/api/g, 'InfoImages/');
+                                for (; i < tot; i++) {
+                                    html = '<div id="imagemodel" class="modal-dialog modal-lg modalPopupnew" style="max-width:' + data.Data[i].NaturalWidth+'px">'+
+                                                '<div class="modal-content">'+
+                                                    '<div class="modal-header">'+
+                                                        '<button type="button" class="close" data-dismiss="modal" style="margin-bottom: -42px;margin-top: -26px;">×</button>'+
+                                                    '</div>'+
+                                                    '<center>'+
+                                                        '<div class="modal-body" id="img_div">'+
+                                                            '<img style="max-width: 100%;" id="imgEvent" src="">'+
+                                                        '</div>'+
+                                                    '</center>'+
+                                                '</div>'+
+                                    '</div>';
+
+                                    $('#loginModal').append(html);
+                                    $('#imgEvent').attr('src', (apiUrl + data.Data[i].FileName));
+                                    $("#loginModal").modal('show');
+                                }
+                            }
+                        }
+                        $('.loading-overlay-image-container').hide();
+                        $('.loading-overlay').hide();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    //MoveToErrorPage(0);
+                    $('.loading-overlay-image-container').hide();
+                    $('.loading-overlay').hide();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
