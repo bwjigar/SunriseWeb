@@ -2123,7 +2123,8 @@ namespace Sunrise.Services.Controllers
                                                                         PurLg_Id = Convert.ToInt32(DT_PurLg1.Rows[0]["Id"].ToString());
                                                                     }
 
-                                                                    var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+                                                                    //var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+                                                                    var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "");
 
                                                                     SupplierStatus = Shairu_Message;
 
@@ -3225,7 +3226,8 @@ namespace Sunrise.Services.Controllers
                                                     PurLg_Id = Convert.ToInt32(DT_PurLg1.Rows[0]["Id"].ToString());
                                                 }
 
-                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+                                                //var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "");
 
                                                 SupplierStatus = Shairu_Message;
 
@@ -4219,7 +4221,8 @@ namespace Sunrise.Services.Controllers
                                                     PurLg_Id = Convert.ToInt32(DT_PurLg1.Rows[0]["Id"].ToString());
                                                 }
 
-                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+                                                //var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "");
 
                                                 SupplierStatus = Shairu_Message;
 
@@ -5203,7 +5206,8 @@ namespace Sunrise.Services.Controllers
                                                     PurLg_Id = Convert.ToInt32(DT_PurLg1.Rows[0]["Id"].ToString());
                                                 }
 
-                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+                                                //var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
+                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "");
 
                                                 SupplierStatus = Shairu_Message;
 
