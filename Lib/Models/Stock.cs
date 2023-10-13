@@ -829,4 +829,59 @@ namespace Lib.Models
     {
         public string LoginDate { get; set; }
     }
+    public class SunriseStock_GET_Res
+    {
+        public string sRefNo { get; set; }
+        public string sShape { get; set; }
+        public string sCertiNo { get; set; }
+        public string sColor { get; set; }
+        public string sClarity { get; set; }
+        public double dCts { get; set; }
+        public double dDisc { get; set; }
+        public string sCut { get; set; }
+        public string sPolish { get; set; }
+        public string sSymm { get; set; }
+        public string sFls { get; set; }
+        public double dLength { get; set; }
+        public double dWidth { get; set; }
+        public double dDepth { get; set; }
+        public double dDepthPer { get; set; }
+        public double dTablePer { get; set; }
+        public string sStatus { get; set; }
+        public string sLab { get; set; }
+        public double dCrAng { get; set; }
+        public double dCrHt { get; set; }
+        public double dPavAng { get; set; }
+        public double dPavHt { get; set; }
+        public string sGirdle { get; set; }
+        public string sShade { get; set; }
+        public string sTableNatts { get; set; }
+        public string sSideNatts { get; set; }
+        public string sCulet { get; set; }
+        public string sComments { get; set; }
+        public string sSymbol { get; set; }
+        public string sLuster { get; set; }
+        public string sInscription { get; set; }
+        public double sStrLn { get; set; }
+        public double sLrHalf { get; set; }
+        public double dGirdlePer { get; set; }
+        public string sGirdleType { get; set; }
+        public string sCrownInclusion { get; set; }
+        public string sCrownNatts { get; set; }
+        public string sImglink { get; set; }
+        public string sVdoLink { get; set; }
+        public string Location { get; set; }
+        public string Certi_Path { get; set; }
+        public string BGM { get; set; }
+        public string sImglink1 { get; set; }
+        public string sImglink2 { get; set; }
+        public string sImglink3 { get; set; }
+        public string Table_Open { get; set; }
+        public string Crown_Open { get; set; }
+        public string Pav_Open { get; set; }
+        public string Girdle_Open { get; set; }
+        public string Cur_Status { get; set; }
+        public string certi_type { get; set; }
+        public string certitype_path { get; set; }
+    }
 }

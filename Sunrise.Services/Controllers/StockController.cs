@@ -10244,5 +10244,48 @@ namespace Sunrise.Services.Controllers
                 return Ok();
             }
         }
+        [HttpPost]
+        public IHttpActionResult Stock_GET()
+        {
+            try
+            {
+                Database db = new Database(Request);
+                List<IDbDataParameter> para;
+                para = new List<IDbDataParameter>();
+
+                DataTable dt = db.ExecuteSP("SunriseStock_GET", para.ToArray(), false);
+
+                List<SunriseStock_GET_Res> Res = new List<SunriseStock_GET_Res>();
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    Res = DataTableExtension.ToList<SunriseStock_GET_Res>(dt);
+                    return Ok(new ServiceResponse<SunriseStock_GET_Res>
+                    {
+                        Data = Res,
+                        Message = "SUCCESS",
+                        Status = "1"
+                    });
+                }
+                else
+                {
+                    return Ok(new ServiceResponse<SunriseStock_GET_Res>
+                    {
+                        Data = Res,
+                        Message = "No Record Found",
+                        Status = "0"
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                DAL.Common.InsertErrorLog(ex, null, Request);
+                return Ok(new ServiceResponse<SunriseStock_GET_Res>
+                {
+                    Data = new List<SunriseStock_GET_Res>(),
+                    Message = "Something Went wrong.\nPlease try again later",
+                    Status = "0"
+                });
+            }
+        }
     }
 }
