@@ -2124,7 +2124,7 @@ namespace Sunrise.Services.Controllers
                                                                     }
 
                                                                     //var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
-                                                                    var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "");
+                                                                    var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "Order From API");
 
                                                                     SupplierStatus = Shairu_Message;
 
@@ -3227,7 +3227,7 @@ namespace Sunrise.Services.Controllers
                                                 }
 
                                                 //var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
-                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "");
+                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "Order From API");
 
                                                 SupplierStatus = Shairu_Message;
 
@@ -4222,7 +4222,7 @@ namespace Sunrise.Services.Controllers
                                                 }
 
                                                 //var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
-                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "");
+                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "Order From API");
 
                                                 SupplierStatus = Shairu_Message;
 
@@ -5207,7 +5207,7 @@ namespace Sunrise.Services.Controllers
                                                 }
 
                                                 //var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, obj.Comments);
-                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "");
+                                                var (Shairu_Status, Shairu_Message) = GetShairu_New_PlaceOrder(StoneId, "Order From API");
 
                                                 SupplierStatus = Shairu_Message;
 
