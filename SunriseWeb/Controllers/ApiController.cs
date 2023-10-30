@@ -376,6 +376,8 @@ namespace SunriseWeb.Controllers
                         sSymm = item.sSymm,
                         sFls = item.sFls,
                         sLab = item.sLab,
+                        sShade = item.sShade,
+                        sLuster = item.sLuster,
                         dFromLength = item.dFromLength.Value,
                         dToLength = item.dToLength.Value,
                         dFromWidth = item.dFromWidth.Value,
@@ -404,6 +406,7 @@ namespace SunriseWeb.Controllers
                         sTableWhite = item.sTableWhite,
                         Img = item.Img,
                         Vdo = item.Vdo,
+                        Bluenile = item.Bluenile,
                         PriceMethod = item.PriceMethod,
                         PricePer = item.PricePer
                     });
@@ -422,10 +425,11 @@ namespace SunriseWeb.Controllers
             apiFilter.PolishList = _data.Data.Where(a => a.ListType.ToLower() == "polish").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
             apiFilter.SymmList = _data.Data.Where(a => a.ListType.ToLower() == "symm").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
             apiFilter.FlsList = _data.Data.Where(a => a.ListType.ToLower() == "fls").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
-            apiFilter.ShadeList = _data.Data.Where(a => a.ListType.ToLower() == "shade").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
             apiFilter.NattsList = _data.Data.Where(a => a.ListType.ToLower() == "table_natts").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
             apiFilter.InclusionList = _data.Data.Where(a => a.ListType.ToLower() == "table_incl").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
             apiFilter.LabList = _data.Data.Where(a => a.ListType.ToLower() == "lab").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
+            apiFilter.ShadeList = _data.Data.Where(a => a.ListType.ToLower() == "shade").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
+            apiFilter.LusterList = _data.Data.Where(a => a.ListType.ToLower() == "luster").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList(); 
             apiFilter.LocationList = _data.Data.Where(a => a.ListType.ToLower() == "location" && a.Id > 0).Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).OrderBy(c => c.iSr).ToList();
             apiFilter.BGMList = _data.Data.Where(a => a.ListType.ToLower() == "bgm" && a.Id > 0).Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).OrderBy(c => c.iSr).ToList();
             apiFilter.CrnBlackList = _data.Data.Where(a => a.ListType.ToLower() == "crown_natts" && a.Id > 0).Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).OrderBy(c => c.iSr).ToList();

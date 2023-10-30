@@ -35,6 +35,8 @@ var columnDefs = [
     { headerName: "Symm", field: "sSymm", tooltip: function (params) { return (params.value); }, width: 150 },
     { headerName: "Fls", field: "sFls", tooltip: function (params) { return (params.value); }, width: 150 },
     { headerName: "Lab", field: "sLab", tooltip: function (params) { return (params.value); }, width: 150 },
+    { headerName: "Shade", field: "sShade", tooltip: function (params) { return (params.value); }, width: 150 },
+    { headerName: "Luster", field: "sLuster", tooltip: function (params) { return (params.value); }, width: 150 },
     { headerName: "From Length", field: "dFromLength", tooltip: function (params) { return (params.value); }, width: 100 },
     { headerName: "To Length", field: "dToLength", tooltip: function (params) { return (params.value); }, width: 100 },
     { headerName: "From Width", field: "dFromWidth", tooltip: function (params) { return (params.value); }, width: 100 },
@@ -61,6 +63,7 @@ var columnDefs = [
     { headerName: "Table White", field: "sTableWhite", tooltip: function (params) { return (params.value); }, width: 100 },
     { headerName: "Image", field: "Img", tooltip: function (params) { return (params.value); }, width: 55 },
     { headerName: "Video", field: "Vdo", tooltip: function (params) { return (params.value); }, width: 55 },
+    { headerName: "Include Bluenile", field: "Bluenile", tooltip: function (params) { return (params.value); }, width: 65 },
     { headerName: "Price Method", field: "PriceMethod", tooltip: function (params) { return (params.value); }, width: 90 },
     { headerName: "Price Per.", field: "PricePer", tooltip: function (params) { return (params.value); }, width: 80 },
 ];
@@ -155,6 +158,9 @@ const datasource1 = {
                     params.successCallback([], 0);
                 }
                 loaderHide();
+                setInterval(function () {
+                    $(".ag-header-cell-text").addClass("grid_prewrap");
+                }, 30);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 params.successCallback([], 0);

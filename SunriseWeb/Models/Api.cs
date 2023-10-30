@@ -143,6 +143,7 @@ namespace SunriseWeb.Models
         public string Location { get; set; }
         public string Img { get; set; }
         public string Vdo { get; set; }
+        public string Bluenile { get; set; }
         public string PricingMethod { get; set; }
         public double? Percentage { get; set; }
         public string APIName { get; set; }
@@ -161,10 +162,11 @@ namespace SunriseWeb.Models
         public List<ListingModel> PolishList { get; set; }
         public List<ListingModel> SymmList { get; set; }
         public List<ListingModel> FlsList { get; set; }
-        public List<ListingModel> ShadeList { get; set; }
         public List<ListingModel> NattsList { get; set; }
         public List<ListingModel> InclusionList { get; set; }
         public List<ListingModel> LabList { get; set; }
+        public List<ListingModel> ShadeList { get; set; }
+        public List<ListingModel> LusterList { get; set; }
         public List<ListingModel> LocationList { get; set; }
         public List<ListingModel> BGMList { get; set; }
         public List<ListingModel> CrnBlackList { get; set; }
@@ -187,6 +189,8 @@ namespace SunriseWeb.Models
         public string fluoLst { get; set; }
         public string locationLst { get; set; }
         public string labLst { get; set; }
+        public string shadeLst { get; set; }
+        public string lusterLst { get; set; }
         public string ShadeLst { get; set; }
         public string NattsLst { get; set; }
         public string InclusionLst { get; set; }
@@ -244,10 +248,11 @@ namespace SunriseWeb.Models
             PolishList = new List<ListingModel>();
             SymmList = new List<ListingModel>();
             FlsList = new List<ListingModel>();
-            ShadeList = new List<ListingModel>();
             NattsList = new List<ListingModel>();
             InclusionList = new List<ListingModel>();
             LabList = new List<ListingModel>();
+            ShadeList = new List<ListingModel>();
+            LusterList = new List<ListingModel>();
             LocationList = new List<ListingModel>();
             OccuranceList = new List<SelectListItem>();
             ExportTypeList = new List<SelectListItem>();
@@ -311,6 +316,8 @@ namespace SunriseWeb.Models
         public string sSymm { get; set; }
         public string sFls { get; set; }
         public string sLab { get; set; }
+        public string sShade { get; set; }
+        public string sLuster { get; set; }
         public Single dFromLength { get; set; }
         public Single dToLength { get; set; }
         public Single dFromWidth { get; set; }
@@ -341,6 +348,7 @@ namespace SunriseWeb.Models
         public string Download { get; set; }
         public string Img { get; set; }
         public string Vdo { get; set; }
+        public string Bluenile { get; set; }
         public string PriceMethod { get; set; }
         public double? PricePer { get; set; }
     }

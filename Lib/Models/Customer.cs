@@ -209,6 +209,8 @@ namespace Lib.Models
         public string sSymm { get; set; }
         public string sFls { get; set; }
         public string sLab { get; set; }
+        public string sShade { get; set; }
+        public string sLuster { get; set; }
         public Single? dFromLength { get; set; }
         public Single? dToLength { get; set; }
         public Single? dFromWidth { get; set; }
@@ -239,6 +241,7 @@ namespace Lib.Models
         public bool Download { get; set; }
         public string Img { get; set; }
         public string Vdo { get; set; }
+        public string Bluenile { get; set; }
         public string PriceMethod { get; set; }
         public double? PricePer { get; set; }
         public string CreationDate { get; set; }

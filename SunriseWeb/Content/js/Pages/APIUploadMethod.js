@@ -228,6 +228,8 @@ function Reset_API_Filter() {
     ResetSelectedAttr('.divCheckedSymValue', SymmList);
     ResetSelectedAttr('.divCheckedFLsValue', FlsList);
     ResetSelectedAttr('.divCheckedLabValue', LabList);
+    ResetSelectedAttr('.divCheckedShadeValue', ShadeList);
+    ResetSelectedAttr('.divCheckedLusterValue', LusterList);
     $("#FromLength").val("0.00");
     $("#ToLength").val("0.00");
     $("#FromWidth").val("0.00");
@@ -703,6 +705,12 @@ var ItemClicked = function (ParameterLabel, item, curritem) {
     if (ParameterLabel == 'Lab') {
         list = LabList;
     }
+    if (ParameterLabel == 'Shade') {
+        list = ShadeList;
+    }
+    if (ParameterLabel == 'Luster') {
+        list = LusterList;
+    }
     if (ParameterLabel == 'Fls') {
         list = FlsList;
     }
@@ -1140,6 +1148,8 @@ var CreateModel = function () {
         "sSymm": _.pluck(_.filter(SymmList, function (e) { return e.isActive == true }), 'sName').join(","),
         "sFls": _.pluck(_.filter(FlsList, function (e) { return e.isActive == true }), 'sName').join(","),
         "sLab": _.pluck(_.filter(LabList, function (e) { return e.isActive == true }), 'sName').join(","),
+        "sShade": _.pluck(_.filter(ShadeList, function (e) { return e.isActive == true }), 'sName').join(","),
+        "sLuster": _.pluck(_.filter(LusterList, function (e) { return e.isActive == true }), 'sName').join(","),
         "dFromLength": $("#FromLength").val() == "" || $("#FromLength").val() == undefined || ($("#FromLength").val() == "0.00" && $("#FromLength").val() == "0.00") ? "" : $("#FromLength").val(),
         "dToLength": $("#ToLength").val() == "" || $("#ToLength").val() == undefined || $("#ToLength").val() == "0.00" ? "" : $("#ToLength").val(),
         "dFromWidth": $("#FromWidth").val() == "" || $("#FromWidth").val() == undefined || ($("#FromWidth").val() == "0.00" && $("#FromWidth").val() == "0.00") ? "0.00" : $("#FromWidth").val(),
@@ -1168,6 +1178,7 @@ var CreateModel = function () {
         "sTableWhite": _.pluck(_.filter(TblWhiteList, function (e) { return e.isActive == true }), 'sName').join(","),
         "Img": $('#Img:checked').val(),
         "Vdo": $('#Vdo:checked').val(),
+        "Bluenile": $('#Bluenile:checked').val(),
         "PriceMethod": $("#PricingMethod").val() == "" && $("#PricingMethod").val() == undefined ? "" : $("#PricingMethod").val(),
         "PricePer": $("#PricingMethod").val() == "" || $("#Percentage").val() == "" || $("#Percentage").val() == undefined ? "" : $("#Percentage").val(),
         "APIName": $("#APIName").val() == "" && $("#APIName").val() == undefined ? "" : $("#APIName").val(),
@@ -1293,6 +1304,8 @@ var SaveApiData = function () {
         var Sym = $(this).find('.Sym').html();
         var Fls = $(this).find('.Fls').html();
         var Lab = $(this).find('.Lab').html();
+        var Shade = $(this).find('.Shade').html();
+        var Luster = $(this).find('.Luster').html();
         var FromLength = $(this).find('.FromLength').html();
         var ToLength = $(this).find('.ToLength').html();
         var FromWidth = $(this).find('.FromWidth').html();
@@ -1321,6 +1334,7 @@ var SaveApiData = function () {
         var TableWhite = $(this).find('.TableWhite').html();
         var Image = $(this).find('.Image').html();
         var Video = $(this).find('.Video').html();
+        var Bluenile = $(this).find('.Bluenile').html();
         var PriceMethod = $(this).find('.PriceMethod').html();
         var Percentage = $(this).find('.Percentage').html();
 
@@ -1336,6 +1350,8 @@ var SaveApiData = function () {
             sSymm: Sym,
             sFls: Fls,
             sLab: Lab,
+            sShade: Shade,
+            sLuster: Luster,
             dFromLength: FromLength,
             dToLength: ToLength,
             dFromWidth: FromWidth,
@@ -1364,6 +1380,7 @@ var SaveApiData = function () {
             sTableWhite: TableWhite,
             Img: Image,
             Vdo: Video,
+            Bluenile: Bluenile,
             PriceMethod: PriceMethod,
             PricePer: Percentage
         });
@@ -1440,6 +1457,8 @@ var AddNewRow = function () {
     var Sym = _.pluck(_.filter(SymmList, function (e) { return e.isActive == true }), 'sName').join(",");
     var Fls = _.pluck(_.filter(FlsList, function (e) { return e.isActive == true }), 'sName').join(",");
     var Lab = _.pluck(_.filter(LabList, function (e) { return e.isActive == true }), 'sName').join(",");
+    var Shade = _.pluck(_.filter(ShadeList, function (e) { return e.isActive == true }), 'sName').join(",");
+    var Luster = _.pluck(_.filter(LusterList, function (e) { return e.isActive == true }), 'sName').join(",");
     var FromLength = $("#FromLength").val() == "" || $("#FromLength").val() == undefined || $("#FromLength").val() == "0.00" ? "0" : $("#FromLength").val();
     var ToLength = $("#ToLength").val() == "" || $("#ToLength").val() == undefined || $("#ToLength").val() == "0.00" ? "0" : $("#ToLength").val();
     var FromWidth = $("#FromWidth").val() == "" || $("#FromWidth").val() == undefined || $("#FromWidth").val() == "0.00" ? "0" : $("#FromWidth").val();
@@ -1468,6 +1487,7 @@ var AddNewRow = function () {
     var TableWhite = _.pluck(_.filter(TblWhiteList, function (e) { return e.isActive == true }), 'sName').join(",");
     var Image = $('#Img:checked').val();
     var Video = $('#Vdo:checked').val();
+    var Bluenile = $('#Bluenile:checked').val();
     var PriceMethod = $("#PricingMethod").val() == "" && $("#PricingMethod").val() == undefined ? "" : $("#PricingMethod").val();
     var Percentage = $("#PricingMethod").val() == "" || $("#Percentage").val() == "" || $("#Percentage").val() == undefined ? "" : $("#Percentage").val();
 
@@ -1484,6 +1504,8 @@ var AddNewRow = function () {
     html += "<td style=''><span class='Fi-Criteria Sym'>" + Sym + "</span></td>";
     html += "<td style=''><span class='Fi-Criteria Fls'>" + Fls + "</span></td>";
     html += "<td style=''><span class='Fi-Criteria Lab'>" + Lab + "</span></td>";
+    html += "<td style=''><span class='Fi-Criteria Shade'>" + Shade + "</span></td>";
+    html += "<td style=''><span class='Fi-Criteria Luster'>" + Luster + "</span></td>";
     html += "<td style=''><span class='Fi-Criteria FromLength'>" + FromLength + "</span></td>";
     html += "<td style=''><span class='Fi-Criteria ToLength'>" + ToLength + "</span></td>";
     html += "<td style=''><span class='Fi-Criteria FromWidth'>" + FromWidth + "</span></td>";
@@ -1512,6 +1534,7 @@ var AddNewRow = function () {
     html += "<td style=''><span class='Fi-Criteria TableWhite'>" + TableWhite + "</span></td>";
     html += "<td style=''><span class='Fi-Criteria Image'>" + Image + "</span></td>";
     html += "<td style=''><span class='Fi-Criteria Video'>" + Video + "</span></td>";
+    html += "<td style=''><span class='Fi-Criteria Bluenile'>" + Bluenile + "</span></td>";
     html += "<td style=''><span class='Fi-Criteria PriceMethod'>" + PriceMethod + "</span></td>";
     html += "<td style=''><span class='Fi-Criteria Percentage'>" + Percentage + "</span></td>";
     html += "<td style='width: 50px'>" + '<i style="cursor:pointer;" class="error RemoveCriteria"><img src="/Content/images/trash-delete-icon.png" style="width: 20px;"/></i>' + "</td>";
@@ -1742,6 +1765,26 @@ var SetModifyParameter = function (model) {
             _.each(sLablst, function (item) {
 
                 _.each(_.filter(LabList, function (e) { return e.sName == item }), function (itm) {
+
+                    itm.isActive = true;
+                });
+            });
+        }
+        if (model.sShade != null) {
+            var sShadelst = model.sShade.split(",");
+            _.each(sShadelst, function (item) {
+
+                _.each(_.filter(ShadeList, function (e) { return e.sName == item }), function (itm) {
+
+                    itm.isActive = true;
+                });
+            });
+        }
+        if (model.sLuster != null) {
+            var sLusterlst = model.sLuster.split(",");
+            _.each(sLusterlst, function (item) {
+
+                _.each(_.filter(LusterList, function (e) { return e.sName == item }), function (itm) {
 
                     itm.isActive = true;
                 });
