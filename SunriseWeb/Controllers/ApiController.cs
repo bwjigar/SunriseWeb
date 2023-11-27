@@ -349,7 +349,7 @@ namespace SunriseWeb.Controllers
                 apiFilter.APIStatus = _data1.Data[0].APIStatus;
                 apiFilter.For_iUserId = _data1.Data[0].For_iUserId;
                 apiFilter.CompanyName = _data1.Data[0].CompanyName;
-                
+
                 var input2 = new
                 {
                     sTransId = TransId
@@ -414,7 +414,7 @@ namespace SunriseWeb.Controllers
                 }
                 apiFilter.APIFilters = columns2.ToList();
             }
-            
+
 
             apiFilter.IsModify = (Request.QueryString.Count > 0 && Request.QueryString["Type"].ToLower() == "modify") ? true : false;
             apiFilter.TransId = Convert.ToInt32(Request.QueryString.Count > 0 && Request.QueryString["TransId"] != "" ? Request.QueryString["TransId"] : "0");
@@ -429,7 +429,7 @@ namespace SunriseWeb.Controllers
             apiFilter.InclusionList = _data.Data.Where(a => a.ListType.ToLower() == "table_incl").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
             apiFilter.LabList = _data.Data.Where(a => a.ListType.ToLower() == "lab").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
             apiFilter.ShadeList = _data.Data.Where(a => a.ListType.ToLower() == "shade").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
-            apiFilter.LusterList = _data.Data.Where(a => a.ListType.ToLower() == "luster").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList(); 
+            apiFilter.LusterList = _data.Data.Where(a => a.ListType.ToLower() == "luster").Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).ToList();
             apiFilter.LocationList = _data.Data.Where(a => a.ListType.ToLower() == "location" && a.Id > 0).Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).OrderBy(c => c.iSr).ToList();
             apiFilter.BGMList = _data.Data.Where(a => a.ListType.ToLower() == "bgm" && a.Id > 0).Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).OrderBy(c => c.iSr).ToList();
             apiFilter.CrnBlackList = _data.Data.Where(a => a.ListType.ToLower() == "crown_natts" && a.Id > 0).Select(b => new ListingModel() { iSr = b.Id, sName = b.Value }).OrderBy(c => c.iSr).ToList();
@@ -468,10 +468,10 @@ namespace SunriseWeb.Controllers
 
             var input_V = new
             {
-                PartyName="",
+                PartyName = "",
                 ContactPerson = "",
                 PartyPrefix = "",
-                CountryId=0,
+                CountryId = 0,
                 PageNo = 0,
                 PageSize = 0,
                 OrderBy = 0
@@ -510,30 +510,30 @@ namespace SunriseWeb.Controllers
             int index = 0;
             foreach (var item in _coldata.Data)
             {
-                if (TransId != 0)
+                //if (TransId != 0)
+                //{
+                //    columns.Add(new ColumnsSettingsModel()
+                //    {
+                //        icolumnId = item.iid,
+                //        iPriority = index + 1,
+                //        IsActive = false,
+                //        sCustMiseCaption = item.caption,
+                //        sUser_ColumnName = item.caption
+                //    });
+                //}
+                //else
+                //{
+                columns.Add(new ColumnsSettingsModel()
                 {
-                    columns.Add(new ColumnsSettingsModel()
-                    {
-                        icolumnId = item.iid,
-                        iPriority = index + 1,
-                        IsActive = false,
-                        sCustMiseCaption = item.caption,
-                        sUser_ColumnName = item.caption
-                    });
-                }
-                else
-                {
-                    columns.Add(new ColumnsSettingsModel()
-                    {
-                        icolumnId = item.iid,
-                        iPriority = index + 1,
-                        IsActive = Convert.ToInt32(item.Display_Order) == 0 ? false : true,
-                        sCustMiseCaption = item.caption,
-                        sUser_ColumnName = item.caption
-                    });
+                    icolumnId = item.iid,
+                    iPriority = index + 1,
+                    IsActive = Convert.ToInt32(item.Display_Order) == 0 ? false : true,
+                    sCustMiseCaption = item.caption,
+                    sUser_ColumnName = item.caption
+                });
 
-                }
-                
+                //}
+
                 index++;
             }
             apiFilter.ColumnList = columns.OrderBy(i => i.iPriority).ToList();
