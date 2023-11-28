@@ -1007,6 +1007,12 @@
                                         $("#ifVideo")[0].style.height = "490px";
                                         
                                     }
+                                    else if (str.includes("HTTPS://MEDIA.HDFILES.IN")) {
+                                        $("#ifVideo").parent().show();
+                                        $("#ifVideo").attr('src', data.sVdoLink);
+                                        $("#ifVideo")[0].style.height = "490px";
+
+                                    }
                                     else {
                                         bindVideos(data.certi_no, data.p_seq_no);
                                         $("#ifVideo")[0].style.height = "475px";
