@@ -618,6 +618,9 @@
                     <li>
                         <a href="@Url.Action("HoldStoneReport", "Order")">Hold Stone Report</a>
                     </li>
+                    <li>
+                        <a href="@Url.Action("UserActivity", "UserActivity")">@LanguageProvider.get("User_Activity")</a>
+                    </li>
                 }
 
                 @if ((SunriseWeb.Helper.SessionFacade.UserSession.isadmin == 1 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 9 ||
@@ -723,9 +726,6 @@
                             </li>
                             <li style="display: none">
                                 <a href="#"> @LanguageProvider.get("FeedBack")</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("UserActivity", "UserActivity")">@LanguageProvider.get("User_Activity")</a>
                             </li>
                             <li style="display:none">
                                 <a href="@Url.Action("Index", "Notification")">@LanguageProvider.get("Notification_Master")</a>

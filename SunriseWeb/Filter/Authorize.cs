@@ -74,7 +74,7 @@ namespace SunriseWeb.Filter
                     }
                     else if (cntlr == "UserActivity" && act == "UserActivity")
                     {
-                        if (SessionFacade.UserSession.isadmin != 1)
+                        if (!(SessionFacade.UserSession.isadmin == 1 || SessionFacade.UserSession.iUserType == 2))
                             filterContext.Result = new RedirectResult("~/Login/Index");
                     }
                     //else if (cntlr == "Offer" && act == "OfferHistory")

@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Linq;
+using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Hosting;
 using System.Web.Http;
 
@@ -51,10 +54,8 @@ namespace Sunrise.Services.Controllers
                 else
                     para.Add(db.CreateParam("dtToDate", DbType.Date, ParameterDirection.Input, DBNull.Value));
 
-                if (!string.IsNullOrEmpty(req.UserID))
-                    para.Add(db.CreateParam("iUserId", DbType.Int32, ParameterDirection.Input, Convert.ToInt32(req.UserID)));
-                else
-                    para.Add(db.CreateParam("iUserId", DbType.Int32, ParameterDirection.Input, DBNull.Value));
+                int userID = Convert.ToInt32((Request.GetRequestContext().Principal as ClaimsPrincipal).Claims.Where(e => e.Type == "UserID").FirstOrDefault().Value);
+                para.Add(db.CreateParam("iUserId", DbType.Int32, ParameterDirection.Input, userID));
 
                 if (!string.IsNullOrEmpty(req.EmpID))
                     para.Add(db.CreateParam("iEmpId", DbType.Int32, ParameterDirection.Input, Convert.ToInt32(req.EmpID)));
@@ -183,10 +184,8 @@ namespace Sunrise.Services.Controllers
                 else
                     para.Add(db.CreateParam("dtToDate", DbType.Date, ParameterDirection.Input, DBNull.Value));
 
-                if (!string.IsNullOrEmpty(req.UserID))
-                    para.Add(db.CreateParam("iUserId", DbType.Int32, ParameterDirection.Input, Convert.ToInt32(req.UserID)));
-                else
-                    para.Add(db.CreateParam("iUserId", DbType.Int32, ParameterDirection.Input, DBNull.Value));
+                int userID = Convert.ToInt32((Request.GetRequestContext().Principal as ClaimsPrincipal).Claims.Where(e => e.Type == "UserID").FirstOrDefault().Value);
+                para.Add(db.CreateParam("iUserId", DbType.Int32, ParameterDirection.Input, userID));
 
                 if (!string.IsNullOrEmpty(req.EmpID))
                     para.Add(db.CreateParam("iEmpId", DbType.Int32, ParameterDirection.Input, Convert.ToInt32(req.EmpID)));
