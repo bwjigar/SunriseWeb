@@ -465,6 +465,7 @@ namespace Lib.Models
         public decimal Offer_Final_Discount { get; set; }
         public decimal Offer_Final_Amount { get; set; }
         public string Offer_Remark { get; set; }
+        public string user_comments { get; set; }
     }
 
     public class SearchSummary

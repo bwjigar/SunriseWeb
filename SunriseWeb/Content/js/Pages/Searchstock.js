@@ -3539,6 +3539,10 @@ function BindColumnsSettings() {
                     else if (field == 'symbol') {
                         headerName = $("#hdn_Key_to_symbol").val();
                     }
+                    else if (field == 'user_comments') {
+                        width = 350;
+                        headerName = $("#hdn_user_comments").val();
+                    }
                     else if (field == 'sCulet') {
                         headerName = $("#hdn_Culet").val();
                     }

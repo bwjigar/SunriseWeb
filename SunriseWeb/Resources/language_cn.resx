@@ -1575,6 +1575,9 @@
   <data name="User_Activity" xml:space="preserve">
     <value>用户活动</value>
   </data>
+  <data name="user_comments" xml:space="preserve">
+    <value>用戶評論</value>
+  </data>
   <data name="User_Discount_Report" xml:space="preserve">
     <value>用户折扣报告</value>
   </data>

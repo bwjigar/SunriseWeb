@@ -1575,6 +1575,9 @@
   <data name="User_Activity" xml:space="preserve">
     <value>User Activity</value>
   </data>
+  <data name="user_comments" xml:space="preserve">
+    <value>User Comments</value>
+  </data>
   <data name="User_Discount_Report" xml:space="preserve">
     <value>User Discount Report</value>
   </data>
