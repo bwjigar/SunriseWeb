@@ -4488,7 +4488,7 @@ namespace Sunrise.Services.Controllers
             try
             {
                 holdstonerequest = JsonConvert.DeserializeObject<HoldStoneRequest_1>(data.ToString());
-                holdstonerequest.IsFromAPI = false;
+                //holdstonerequest.IsFromAPI = false;
             }
             catch (Exception ex)
             {
@@ -5009,7 +5009,7 @@ namespace Sunrise.Services.Controllers
                 else
                     para.Add(db.CreateParam("p_for_hold_refno", DbType.String, ParameterDirection.Input, DBNull.Value));
 
-                DataTable dt = db.ExecuteSP("ReleaseDet_Save", para.ToArray(), false);
+                DataTable dt = db.ExecuteSP("c", para.ToArray(), false);
 
                 if (dt != null && dt.Rows.Count > 0 && dt.Rows[0]["Status"].ToString() == "1" && dt.Rows[0]["Message"].ToString() == "Success")
                 {

@@ -791,6 +791,7 @@ namespace SunriseWeb.Controllers
 
         public JsonResult HoldStone_1(HoldStoneRequest_1 req)
         {
+            req.IsFromAPI = false;
             string inputJson = (new JavaScriptSerializer()).Serialize(req);
             string _response = _api.CallAPI(Constants.HoldStone_1, inputJson);
             CommonResponse _data = (new JavaScriptSerializer()).Deserialize<CommonResponse>(_response);
