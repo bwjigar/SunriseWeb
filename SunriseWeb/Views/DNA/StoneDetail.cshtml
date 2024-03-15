@@ -478,11 +478,14 @@
                                                 {
                                                     <img src="@Model.sImglink">
                                                 }
+                                                else if (@Model.sImglink.ToUpper().Contains("HTTPS://D1G2OUDKNJS8JF.CLOUDFRONT.NET/PRODPOLWEB/IMGFILES/"))
+                                                {
+                                                    <img src="@Model.sImglink">
+                                                }
                                                 else
                                                 {
                                                     <iframe height="450" frameborder="0" id="image1" src="@Model.sImglink&amp;resize=299" style="text-align: center; width: 100%;"></iframe>
                                                 }
-
                                             }
                                             else
                                             {
@@ -592,6 +595,10 @@
                                                     {
                                                         <iframe frameborder="0" id="video1" src="@Model.sVdoLink&amp;resize=315&amp;autoplay=1" style="text-align: center;width: 100%;height:400px;"></iframe>
                                                     }
+                                                    else if (Model.movie_url.ToUpper().Contains("HTTPS://DYFFW9LB8WUR6.CLOUDFRONT.NET"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink" style="text-align: center;width: 100%;height:400px;"></iframe>
+                                                    }
                                                     else
                                                     {
                                                         <iframe height="400" frameborder="0" id="video1" src="@Model.movie_url" style="text-align: center; width: 100%;"></iframe>
@@ -624,6 +631,10 @@
                                                     else if (Model.movie_url.ToUpper().Contains("X=I"))
                                                     {
                                                         <iframe frameborder="0" id="video1" src="@Model.sVdoLink&amp;resize=315&amp;autoplay=1" style="text-align: center;width: 100%;height:400px;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("HTTPS://DYFFW9LB8WUR6.CLOUDFRONT.NET"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink" style="text-align: center;width: 100%;height:400px;"></iframe>
                                                     }
                                                     else
                                                     {
@@ -1246,11 +1257,11 @@
                                                                     </li>
                                                                 </ul>
                                                                 @*<ul>
-            <li class="one">Lab :</li>
-            <li class="two" id="liLab">
+                                                                        <li class="one">Lab :</li>
+                                                                        <li class="two" id="liLab">
 
-            </li>
-        </ul>*@
+                                                                        </li>
+                                                                    </ul>*@
                                                                 <ul>
                                                                     <li class="one">Inscription :</li>
                                                                     <li class="two">
