@@ -41,7 +41,7 @@ namespace SunriseWeb.Helper
         /// Gets/Sets Session for UserId
         ///
 
-        public static KeyAccountDataResponse UserSession
+        public static KeyAccountDataFullResponseForWeb UserSession
         {
             get
             {
@@ -58,7 +58,7 @@ namespace SunriseWeb.Helper
                     return null;
                 }
                 else
-                    return (KeyAccountDataResponse)HttpContext.Current.Session[User];
+                    return (KeyAccountDataFullResponseForWeb)HttpContext.Current.Session[User];
             }
             set { HttpContext.Current.Session[User] = value; }
         }

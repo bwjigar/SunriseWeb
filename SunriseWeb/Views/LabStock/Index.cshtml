@@ -909,16 +909,16 @@
                 @*<div id="divButtons" class="row">*@
                 <div class="bottom-button-bar text-right">
                     <ul class="two">
-                        @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 9 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 15
-                            || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 39 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 10) // Nilesh, Ankit Shah, Sandeep, jigijiga
+                        @if (SunriseWeb.Helper.SessionFacade.UserSession.UserID == 9 || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 15
+                            || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 39 || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 10) // Nilesh, Ankit Shah, Sandeep, jigijiga
                         {
                             <li><a style="width: 100% !important;" href="javascript:void(0);" class="obtn excelbtn" onclick="CustomerExcel(2);"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Customer Excel With Image</a></li>
-                            if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 9 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 15) // Nilesh, Ankit Shah
+                            if (SunriseWeb.Helper.SessionFacade.UserSession.UserID == 9 || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 15) // Nilesh, Ankit Shah
                             {
                                 <li><a style="width: 100% !important;" href="javascript:void(0);" class="obtn excelbtn" onclick="CustomerExcel(4);"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Buyer List</a></li>
                             }
                         }
-                        else if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 2528) //mehta_ritesh
+                        else if (SunriseWeb.Helper.SessionFacade.UserSession.UserID == 2528) //mehta_ritesh
                         {
                             <li><a style="width: 100% !important;" href="javascript:void(0);" class="obtn excelbtn" onclick="CustomerExcel(4);"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Buyer List</a></li>
                         }

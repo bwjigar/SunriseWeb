@@ -304,7 +304,7 @@
         </div>*@
     <input type="hidden" id="hdnisadminflg" value="@SunriseWeb.Helper.SessionFacade.UserSession.isadmin" />
     <input type="hidden" id="hdnisempflg" value="@SunriseWeb.Helper.SessionFacade.UserSession.isemp" />
-    <input type="hidden" id="hdniUserid" value="@SunriseWeb.Helper.SessionFacade.UserSession.iUserid" />
+    <input type="hidden" id="hdniUserid" value="@SunriseWeb.Helper.SessionFacade.UserSession.UserID" />
 
     <input type="hidden" id="hdnUserType" value="@SunriseWeb.Helper.SessionFacade.UserSession.iUserType" />
     <input type="hidden" id="hdnIsPrimary" value="@SunriseWeb.Helper.SessionFacade.UserSession.IsPrimary.ToString()" />
@@ -575,7 +575,7 @@
                             @LanguageProvider.get("Information")
                         </a>
                     </li>
-                    if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 2528)
+                    if (SunriseWeb.Helper.SessionFacade.UserSession.UserID == 2528)
                     {
                         <li>
                             <a href="@Url.Action("Index", "LabStock")">@LanguageProvider.get("Lab_Stock")</a>
@@ -623,9 +623,9 @@
                     </li>
                 }
 
-                @if ((SunriseWeb.Helper.SessionFacade.UserSession.isadmin == 1 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 9 ||
-                    SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 10 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 15 ||
-                    SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 39) &&
+                @if ((SunriseWeb.Helper.SessionFacade.UserSession.isadmin == 1 || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 9 ||
+                    SunriseWeb.Helper.SessionFacade.UserSession.UserID == 10 || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 15 ||
+                    SunriseWeb.Helper.SessionFacade.UserSession.UserID == 39) &&
                     SunriseWeb.Helper.SessionFacade.UserSession.sUsername.ToUpper() != "SUN_TEST")
                 {
                     <li>
@@ -635,9 +635,9 @@
                         <a href="@Url.Action("SupplierOrderLog", "ConfirmOrder")">@LanguageProvider.get("SuppplierOrderLog")</a>
                     </li>
                 }
-                @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 9 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 10
-                    || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 15 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 39
-                    || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 41 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 2922)
+                @if (SunriseWeb.Helper.SessionFacade.UserSession.UserID == 9 || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 10
+                    || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 15 || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 39
+                    || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 41 || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 2922)
                 {
                     <li>
                         <a href="@Url.Action("Index", "LabStock")">@LanguageProvider.get("Lab_Stock")</a>
@@ -667,7 +667,7 @@
                         </a>
                     </li>
                 }
-                @if (SessionFacade.UserSession.iUserid == 6526)
+                @if (SessionFacade.UserSession.UserID == 6526)
                 {
                     <li>
                         <a href="@Url.Action("Index", "LabStock")">@LanguageProvider.get("Lab_Stock")</a>
@@ -761,8 +761,8 @@
                             <li>
                                 <a href="@Url.Action("LabByRequest", "LabStock")">Buy Request</a>
                             </li>
-                            @if (SessionFacade.UserSession.iUserid == 1 || SessionFacade.UserSession.iUserid == 8 ||
-                                    SessionFacade.UserSession.iUserid == 2003 || SessionFacade.UserSession.iUserid == 6526)
+                            @if (SessionFacade.UserSession.UserID == 1 || SessionFacade.UserSession.UserID == 8 ||
+                                    SessionFacade.UserSession.UserID == 2003 || SessionFacade.UserSession.UserID == 6526)
                             {
                                 <li>
                                     <a target="_blank" href="@Url.Action("LabStockAPI", "LabStock")">Lab Stock API</a>
@@ -771,7 +771,7 @@
                             <li>
                                 <a href="@Url.Action("Index", "Information")">@LanguageProvider.get("Information")</a>
                             </li>
-                            @if (SessionFacade.UserSession.iUserid == 1)
+                            @if (SessionFacade.UserSession.UserID == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("StockPrefix", "Settings")">Stock Prefix</a>
@@ -794,8 +794,8 @@
                 }
                 else
                 {
-                    if (SessionFacade.UserSession.iUserid == 10 || SessionFacade.UserSession.iUserid == 5682 ||
-                        SessionFacade.UserSession.iUserid == 41)
+                    if (SessionFacade.UserSession.UserID == 10 || SessionFacade.UserSession.UserID == 5682 ||
+                        SessionFacade.UserSession.UserID == 41)
                     {
                         <li>
                             <a target="_blank" href="@Url.Action("LabStockAPI", "LabStock")">Lab Stock API</a>
@@ -865,7 +865,7 @@
                         </a>
 
                     </li>
-                    @if (SessionFacade.UserSession.iUserid != 6492)// restrict for jbbrothers username
+                    @if (SessionFacade.UserSession.UserID != 6492)// restrict for jbbrothers username
                     {
                         <!-- Download Stock -->
                         <li class="nav-item dropdown no-arrow">

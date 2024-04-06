@@ -226,7 +226,7 @@
     </style>
 }
 
-@if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 41)
+@if (SunriseWeb.Helper.SessionFacade.UserSession.UserID == 41)
 {
     <input type="hidden" id="hdn_iUserid_41" value="1" />
 }
@@ -345,7 +345,7 @@ else
                         <input type="text" id="txtToDate" name="To" value="" class="offer-input" autocomplete="off" />
                     </div>
                 </div>
-                @if (SunriseWeb.Helper.SessionFacade.UserSession.isadmin == 1 || SunriseWeb.Helper.SessionFacade.UserSession.iUserid == 41)
+                @if (SunriseWeb.Helper.SessionFacade.UserSession.isadmin == 1 || SunriseWeb.Helper.SessionFacade.UserSession.UserID == 41)
                 {
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 float-left mb-2">
                         <div class="order-company-name common-order">

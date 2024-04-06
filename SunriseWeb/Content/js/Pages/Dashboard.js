@@ -33,7 +33,7 @@ $(document).ready(function () {
     else {
         OpenEventModel();
     }
-    GetLastLoggedin();
+    //GetLastLoggedin();
     //$('#EventModel').modal('show');
     $('.select2').select2();
     GetDashboardCount();
@@ -97,8 +97,8 @@ function Colla() {
         //$('.cartbody').addClass('CB-show');
         $('.crt').removeClass('fa fa-caret-down');
         $('.crt').addClass('fa fa-caret-up');
-        GetSaveSearch();
-        GetRecentSearch();
+        //GetSaveSearch();
+        //GetRecentSearch();
         $(".cartbody").show(250);
     }
 }
@@ -678,7 +678,7 @@ function GetDashboardCount() {
         }
     });
 }
-function GetLastLoggedin() {
+/*function GetLastLoggedin() {
     $.ajax({
         url: "/Dashboard/GetLastLoggedin",
         type: "POST",
@@ -696,7 +696,7 @@ function GetLastLoggedin() {
             loaderHide();
         }
     });
-}
+}*/
 function BindDynamicChart() {
     //$('.loading-overlay-image-container').show();
     //$('.loading-overlay').show();

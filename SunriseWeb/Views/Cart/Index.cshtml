@@ -181,7 +181,7 @@ else
                                     <li><a class="effect-one" href="javascript:void(0);" data-toggle="modal" @*data-target="#ConfirmOrderModal"*@ onclick="ConfirmOrderModal();" data-placement="bottom" title="@LanguageProvider.get("Place_Order")"><i class="flaticon-checked"></i></a></li>
                                 }
                                 <li><a class="effect-one" href="javascript:void(0);" data-toggle="modal" data-target="#RemoveCart" data-placement="bottom" title="@LanguageProvider.get("Remove_Stones")"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
-                                @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid != 6492)// restrict for jbbrothers username
+                                @if (SunriseWeb.Helper.SessionFacade.UserSession.UserID != 6492)// restrict for jbbrothers username
                                 {
                                     <li><a class="effect-one" href="javascript:void(0);" data-toggle="modal" data-target="#EmailModal" data-placement="bottom" title="@LanguageProvider.get("emailstone")"><i class="flaticon-email"></i></a></li>
                                 }
@@ -273,12 +273,12 @@ else
                                 <div><center><span class="g-head-t">@LanguageProvider.get("cts")</span></center><center><span id="tab1cts" class="g-amt-t"></span></center></div>
                                 <div><center><span class="g-head-t">@LanguageProvider.get("Offer_Disc_Per")</span></center><center><span id="tab1disc" class="g-amt-t"></span></center></div>
                                 <div><center><span class="g-head-t">@LanguageProvider.get("Offer_Value_Dollar")</span></center><center><span id="tab1totAmt" class="g-amt-t"></span></center></div>
-                                @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid != 6492)// restrict for jbbrothers username
+                                @if (SunriseWeb.Helper.SessionFacade.UserSession.UserID != 6492)// restrict for jbbrothers username
                                 {
                                     <div><center><span class="g-head-t">@LanguageProvider.get("Price_Cts")</span></center><center><span id="tab1ppcts" class="g-amt-t"></span></center></div>
                                 }
                                 <div id="tab1_WebDisc_t" style="display:none;"><center><span class="g-head-t">@LanguageProvider.get("Web_Disc_Dollar")</span></center><center><span id="tab1Web_Disc" class="g-amt-t" style="color: blue;"></span></center></div>
-                                @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid != 6492)// restrict for jbbrothers username
+                                @if (SunriseWeb.Helper.SessionFacade.UserSession.UserID != 6492)// restrict for jbbrothers username
                                 {
                                     <div id="tab1_FinalValue_t" style="display:none;"><center><span class="g-head-t">@LanguageProvider.get("Final_Disc_Per")</span></center><center><span id="tab1Final_Disc" class="g-amt-t" style="color: red;"></span></center></div>
                                     <div id="tab1_FinalDisc_t" style="display:none;"><center><span class="g-head-t">@LanguageProvider.get("Final_Value")</span></center><center><span id="tab1Net_Value" class="g-amt-t" style="color: red;"></span></center></div>

@@ -3000,13 +3000,13 @@ function BindColumnsSettings() {
         $('.loading-overlay-image-container').show();
         $('.loading-overlay').show();
     }
-    debugger
+    
     $.ajax({
         url: "/SearchStock/GetColumnsConfigForSearch",
         async: false,
         type: "POST",
         data: null,
-        success: function (data, textStatus, jqXHR) {debugger
+        success: function (data, textStatus, jqXHR) {
             $.each(data.Data, function (i, item) {
                 var headerName = item.Caption;
                 var field = item.SPSearchColumn;

@@ -174,7 +174,7 @@
                                     <li><a class="effect-one" onclick="AddToCart()" href="javascript:void(0);" data-placement="bottom" title="@LanguageProvider.get("addtocart")"><i class="flaticon-shopping-cart"></i><span onclick="GoToCart()" class="cntCart"></span></a></li>
                                 }
                                 <li><a class="effect-one" href="javascript:void(0);" data-toggle="modal" data-target="#RemoveCart" data-placement="bottom" title="@LanguageProvider.get("Remove_Stones")"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
-                                @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid != 6492)// restrict for jbbrothers username
+                                @if (SunriseWeb.Helper.SessionFacade.UserSession.UserID != 6492)// restrict for jbbrothers username
                                 {
                                     <li><a class="effect-one" href="javascript:void(0);" data-toggle="modal" data-target="#EmailModal" data-placement="bottom" title="@LanguageProvider.get("emailstone")"><i class="flaticon-email"></i></a></li>
                                 }

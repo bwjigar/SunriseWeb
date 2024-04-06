@@ -22,7 +22,7 @@ namespace SunriseWeb.Controllers
         public ContentResult LabStockAPI()
         {
             string loginUrl = ConfigurationManager.AppSettings["NewLabWebsiteURL"], Username = string.Empty, Password = string.Empty;
-            int iUserid = Convert.ToInt32(SessionFacade.UserSession.iUserid);
+            int iUserid = Convert.ToInt32(SessionFacade.UserSession.UserID);
 
             UserDetailGet_Req req = new UserDetailGet_Req();
             req.UserId = iUserid;

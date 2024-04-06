@@ -61,10 +61,10 @@ namespace SunriseWeb.Filter
                     }
                     else if ((cntlr == "LabStock" && act == "Index") || (cntlr == "LabStock" && act == "LabByRequest") || (cntlr == "LabStock" && act == "LabByRequestCart"))
                     {
-                        if (!(SessionFacade.UserSession.isadmin == 1 || SessionFacade.UserSession.iUserid == 9 || SessionFacade.UserSession.iUserid == 10 
-                            || SessionFacade.UserSession.iUserid == 15 || SessionFacade.UserSession.iUserid == 39 || SessionFacade.UserSession.iUserid == 41
-                            || SessionFacade.UserSession.iUserid == 2922 || SessionFacade.UserSession.iUserid == 2003 || SessionFacade.UserSession.iUserid == 2528
-                            || SessionFacade.UserSession.iUserid == 6526))
+                        if (!(SessionFacade.UserSession.isadmin == 1 || SessionFacade.UserSession.UserID == 9 || SessionFacade.UserSession.UserID == 10 
+                            || SessionFacade.UserSession.UserID == 15 || SessionFacade.UserSession.UserID == 39 || SessionFacade.UserSession.UserID == 41
+                            || SessionFacade.UserSession.UserID == 2922 || SessionFacade.UserSession.UserID == 2003 || SessionFacade.UserSession.UserID == 2528
+                            || SessionFacade.UserSession.UserID == 6526))
                             filterContext.Result = new RedirectResult("~/Login/Index");
                     }
                     else if (cntlr == "Notification" && act == "Index")
@@ -99,18 +99,18 @@ namespace SunriseWeb.Filter
                     }
                     else if ((cntlr == "ConfirmOrder" && act == "ConfirmOrderHistory") || (cntlr == "ConfirmOrder" && act == "SupplierOrderLog"))
                     {
-                        if (!((SessionFacade.UserSession.isadmin == 1 || SessionFacade.UserSession.iUserid == 9 ||
-                            SessionFacade.UserSession.iUserid == 10 || SessionFacade.UserSession.iUserid == 15 ||
-                            SessionFacade.UserSession.iUserid == 39) &&
+                        if (!((SessionFacade.UserSession.isadmin == 1 || SessionFacade.UserSession.UserID == 9 ||
+                            SessionFacade.UserSession.UserID == 10 || SessionFacade.UserSession.UserID == 15 ||
+                            SessionFacade.UserSession.UserID == 39) &&
                             SessionFacade.UserSession.sUsername.ToUpper() != "SUN_TEST"))
                             filterContext.Result = new RedirectResult("~/Login/Index");
                     }
                     else if (cntlr == "LabStock" && act == "LabStockAPI")
                     {
-                        if (!(SessionFacade.UserSession.iUserid == 1 || SessionFacade.UserSession.iUserid == 8 || 
-                            SessionFacade.UserSession.iUserid == 10 || SessionFacade.UserSession.iUserid == 2003 || 
-                            SessionFacade.UserSession.iUserid == 5682 || SessionFacade.UserSession.iUserid == 41 ||
-                            SessionFacade.UserSession.iUserid == 6526))
+                        if (!(SessionFacade.UserSession.UserID == 1 || SessionFacade.UserSession.UserID == 8 || 
+                            SessionFacade.UserSession.UserID == 10 || SessionFacade.UserSession.UserID == 2003 || 
+                            SessionFacade.UserSession.UserID == 5682 || SessionFacade.UserSession.UserID == 41 ||
+                            SessionFacade.UserSession.UserID == 6526))
                             filterContext.Result = new RedirectResult("~/Login/Index");
                     }
                     else if (cntlr == "User" && act == "MessageMst")

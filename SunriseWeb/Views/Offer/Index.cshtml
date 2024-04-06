@@ -333,7 +333,7 @@
 <input type="hidden" id="hdn_No_Any_Stones_are_Available_for_Make_an_Offer" value="@LanguageProvider.get("No_Any_Stones_are_Available_for_Make_an_Offer")" />
 <input type="hidden" id="hdn_No_stone_selected_for_download_as_a_excel" value="@LanguageProvider.get("No_stone_selected_for_download_as_a_excel")" />
 <input type="hidden" id="hdn_Please_Select_Excel_File_For_Upload" value="@LanguageProvider.get("Please_Select_Excel_File_For_Upload")" />
-<input type="hidden" id="hdnUserId" value="@SunriseWeb.Helper.SessionFacade.UserSession.iUserid" />
+<input type="hidden" id="hdnUserId" value="@SunriseWeb.Helper.SessionFacade.UserSession.UserID" />
 
 
 <div class="tab-pane fade result-page-content show active" id="profile-tab" style="padding: 0 0 0 0;">
@@ -352,12 +352,12 @@
                     <div><center><span class="g-head-t">@LanguageProvider.get("cts")</span></center><center><span id="tabcts" class="g-amt-t"></span></center></div>
                     <div><center><span class="g-head-t">@LanguageProvider.get("Offer_Disc_Per")</span></center><center><span id="tabdisc" class="g-amt-t"></span></center></div>
                     <div><center><span class="g-head-t">@LanguageProvider.get("Offer_Value_Dollar")</span></center><center><span id="tabtotAmt" class="g-amt-t"></span></center></div>
-                    @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid != 6492)// restrict for jbbrothers username
+                    @if (SunriseWeb.Helper.SessionFacade.UserSession.UserID != 6492)// restrict for jbbrothers username
                     {
                         <div><center><span class="g-head-t">@LanguageProvider.get("Price_Cts")</span></center><center><span id="tabppcts" class="g-amt-t"></span></center></div>
                     }
                     <div id="tab1_WebDisc_t" style="display:none;"><center><span class="g-head-t">@LanguageProvider.get("Web_Disc_Dollar")</span></center><center><span id="tab1Web_Disc" class="g-amt-t" style="color: blue;"></span></center></div>
-                    @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid != 6492)// restrict for jbbrothers username
+                    @if (SunriseWeb.Helper.SessionFacade.UserSession.UserID != 6492)// restrict for jbbrothers username
                     {
                         <div id="tab1_FinalValue_t" style="display:none;"><center><span class="g-head-t">@LanguageProvider.get("Final_Disc_Per")</span></center><center><span id="tab1Final_Disc" class="g-amt-t" style="color: red;"></span></center></div>
                         <div id="tab1_FinalDisc_t" style="display:none;"><center><span class="g-head-t">@LanguageProvider.get("Final_Value")</span></center><center><span id="tab1Net_Value" class="g-amt-t" style="color: red;"></span></center></div>
@@ -394,7 +394,7 @@
                                     <li id="liAll_1">
                                         <a href="javascript:void(0);" onclick="ALLDownload()" data-placement="bottom" data-toggle="tooltip" title="@LanguageProvider.get("download") @LanguageProvider.get("excel"), @LanguageProvider.get("image"), @LanguageProvider.get("video"), @LanguageProvider.get("certificate")">@LanguageProvider.get("All")</a>
                                     </li>
-                                    @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserid != 6492)// restrict for jbbrothers username
+                                    @if (SunriseWeb.Helper.SessionFacade.UserSession.UserID != 6492)// restrict for jbbrothers username
                                     {
                                         <li>
                                             <a href="javascript:void(0);" onclick="OpenDownloadPopup('Excel')" id="Export" data-placement="bottom" data-toggle="tooltip" title="@LanguageProvider.get("download") @LanguageProvider.get("excel")">@LanguageProvider.get("excel")</a>

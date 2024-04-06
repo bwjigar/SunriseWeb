@@ -16,6 +16,8 @@ using SunriseWeb.Resources;
 using System.Configuration;
 using System.Net.NetworkInformation;
 using System.Threading;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace SunriseWeb.Controllers
 {
@@ -94,27 +96,34 @@ namespace SunriseWeb.Controllers
 
 
                     string _response = _api.CallAPIUrlEncoded(Constants.UserLogin, inputJson);
-                    //string _response = _api.CallAPIUrlEncodedWithWebReq(Constants.UserLogin, inputJson);
                     if (_response.ToLower().Contains(@"""error") && _response.ToLower().Contains(@"""error_description"))
                     {
                         OAuthErrorMsg _authErrorMsg = new OAuthErrorMsg();
                         _authErrorMsg = (new JavaScriptSerializer()).Deserialize<OAuthErrorMsg>(_response);
                         inputJson = (new JavaScriptSerializer()).Serialize(input);
-                        string _keyresponse = _api.CallAPIUrlEncoded(Constants.KeyAccountData, inputJson);
-                        ServiceResponse<KeyAccountDataResponse> _objresponse = (new JavaScriptSerializer()).Deserialize<ServiceResponse<KeyAccountDataResponse>>(_keyresponse);
-                        
                         TempData["Message"] = _authErrorMsg.error_description;
                     }
                     else
                     {
-                        LoginFullResponse _data = new LoginFullResponse();
+                        KeyAccountDataFullResponseForWeb _data = new KeyAccountDataFullResponseForWeb();
                         try
                         {
-                            _data = (new JavaScriptSerializer()).Deserialize<LoginFullResponse>(_response);
+                            // Define the regular expression pattern to match the datetime format
+                            string pattern = @"\b\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2} (AM|PM)\b";
+
+                            // Replace all occurrences of the datetime format in _response with the desired format
+                            _response = Regex.Replace(_response, pattern, match =>
+                            {
+                                // Parse the matched datetime string and convert it to the desired format
+                                DateTime parsedDate = DateTime.ParseExact(match.Value, "dd-MM-yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+                                return parsedDate.ToString("yyyy-MM-ddTHH:mm:ss");
+                            });
+
+                            _data = (new JavaScriptSerializer()).Deserialize<KeyAccountDataFullResponseForWeb>(_response);
+                            //_data = JsonConvert.DeserializeObject<KeyAccountDataFullResponse>(_response);
                         }
                         catch (WebException ex)
                         {
-                            //if (ex.Status)
                             var webException = ex as WebException;
                             if ((Convert.ToString(webException.Status)).ToUpper() == "PROTOCOLERROR")
                             {
@@ -130,28 +139,25 @@ namespace SunriseWeb.Controllers
                             TempData["Message"] = ex.Message;
                         }
 
-                        if (_data.UserID > 0)
+                        if (_data != null && _data.UserID > 0)
                         {
                             SessionFacade.TokenNo = _data.access_token;
                             inputJson = (new JavaScriptSerializer()).Serialize(input);
-                            string _keyresponse = _api.CallAPI(Constants.KeyAccountData, inputJson);
-                            ServiceResponse<KeyAccountDataResponse> _objresponse = (new JavaScriptSerializer()).Deserialize<ServiceResponse<KeyAccountDataResponse>>(_keyresponse);
-
                             string _imageResponse = _api.CallAPI(Constants.GetUserProfilePicture, string.Empty);
 
-                            if (_objresponse.Data != null && _objresponse.Data.Count > 0)
+                            if (_data != null)
                             {
-                                SessionFacade.UserSession = _objresponse.Data.FirstOrDefault();
+                                SessionFacade.UserSession = _data;
                                 SessionFacade.UserSession.ProfileImage = _imageResponse.Replace("\"", "");
 
-                                var obj = _objresponse.Data.FirstOrDefault();
+                                var obj = _data;
 
-                                Response.Cookies["Userid_DNA"].Value = obj.iUserid.Value.ToString();
+                                Response.Cookies["Userid_DNA"].Value = obj.UserID.Value.ToString();
 
                                 var _input1 = new
                                 {
                                     IPAddress = GetIpValue(),
-                                    UserId = obj.iUserid,
+                                    UserId = obj.UserID,
                                     Type = "STORED"
                                 };
                                 var _inputJson_1 = (new JavaScriptSerializer()).Serialize(_input1);
@@ -176,6 +182,111 @@ namespace SunriseWeb.Controllers
                 return View(_obj);
             }
         }
+        /*public ActionResult Index(UserLogin _obj)
+        {
+            if (_obj.isSwitchClassic)
+            {
+                string loginUrl = ConfigurationManager.AppSettings["OldSiteURL"];
+                return Content("<form action='" + loginUrl + "' id='frmTest' method='post'>" +
+                    "<input type='hidden' name='hdnUser' value='" + _obj.Username + "' /><input type='hidden' name='hdnPwd' value='" + _obj.Password + "' />" +
+                    "</form><script>document.getElementById('frmTest').submit();</script>");
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    string _ipAddress = _common.gUserIPAddresss();
+                    var input = new LoginRequest
+                    {
+                        UserName = _obj.Username,
+                        Password = _obj.Password,
+                        Source = "",
+                        IpAddress = _ipAddress,
+                        UDID = "",
+                        LoginMode = "",
+                        DeviseType = "Web",
+                        DeviceName = "",
+                        AppVersion = "",
+                        Location = "",
+                        Login = "",
+                        grant_type = "password"
+                    };
+
+                    string inputJson = string.Join("&", input.GetType()
+                                                                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                                                                .Where(p => p.GetValue(input, null) != null)
+                                                    .Select(p => $"{p.Name}={Uri.EscapeDataString(p.GetValue(input).ToString())}"));
+
+                    string _response = _api.CallAPIUrlEncoded(Constants.UserLogin, inputJson);
+                    if (_response.ToLower().Contains(@"""error") && _response.ToLower().Contains(@"""error_description"))
+                    {
+                        OAuthErrorMsg _authErrorMsg = (new JavaScriptSerializer()).Deserialize<OAuthErrorMsg>(_response);
+                        TempData["Message"] = _authErrorMsg.error_description;
+                    }
+                    else
+                    {
+                        KeyAccountDataFullResponse _data = new KeyAccountDataFullResponse();
+                        try
+                        {
+                            _data = (new JavaScriptSerializer()).Deserialize<KeyAccountDataFullResponse>(_response);
+                            //_data = JsonConvert.DeserializeObject<KeyAccountDataFullResponse>(_response);
+                        }
+                        catch (WebException ex)
+                        {
+                            var webException = ex as WebException;
+                            if ((Convert.ToString(webException.Status)).ToUpper() == "PROTOCOLERROR")
+                            {
+                                OAuthErrorMsg error = JsonConvert.DeserializeObject<OAuthErrorMsg>(API.ExtractResponseString(webException));
+                                TempData["Message"] = error.error_description;
+                            }
+                            TempData["Message"] = ex.Message;
+                        }
+                        catch (Exception ex)
+                        {
+                            TempData["Message"] = ex.Message;
+                        }
+
+                        if (_data != null && _data.UserID > 0)
+                        {
+                            SessionFacade.TokenNo = _data.access_token;
+                            string _imageResponse = _api.CallAPI(Constants.GetUserProfilePicture, string.Empty);
+
+                            if (_data != null)
+                            {
+                                SessionFacade.UserSession = _data;
+                                SessionFacade.UserSession.ProfileImage = _imageResponse.Replace("\"", "");
+
+                                Response.Cookies["Userid_DNA"].Value = _data.UserID.Value.ToString();
+
+                                var _input1 = new
+                                {
+                                    IPAddress = GetIpValue(),
+                                    UserId = _data.UserID,
+                                    Type = "STORED"
+                                };
+                                var _inputJson_1 = (new JavaScriptSerializer()).Serialize(_input1);
+                                string _Response_1 = _api.CallAPI(Constants.IP_Wise_Login_Detail, _inputJson_1);
+
+                            }
+                            if (_obj.isRemember)
+                            {
+                                Response.Cookies["UserName"].Value = _obj.Username;
+                                Response.Cookies["Password"].Value = _obj.Password;
+                                Response.Cookies["IsRemember"].Value = _obj.isRemember.ToString();
+                            }
+
+                            return RedirectToAction("Index", "Dashboard");
+                        }
+                        else
+                        {
+                            TempData["Message"] = _data != null ? _data.Message : "No data received from API";
+                        }
+                    }
+                }
+                return View(_obj);
+            }
+        }*/
+
         public JsonResult CustModalOK()
         {
             SessionFacade.UserSession.MessageShow = false;

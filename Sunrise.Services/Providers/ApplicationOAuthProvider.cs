@@ -77,40 +77,78 @@ namespace Sunrise.Services.Providers
                 Login = form["Login"]
             };
 
-            LoginResponse loginResponse = userController.CheckLogin(loginRequest);
-            if (loginResponse.Message.ToUpper() != "SUCCESS")
+            if (loginRequest.DeviseType == "Web") 
             {
-                // Settings.  
-                context.SetError("invalid_grant", loginResponse.Message);
-                // Retuen info.  
+                KeyAccountDataResponseForWeb loginResponse = userController.CheckLoginForWeb(loginRequest);
+                if (loginResponse.Message.ToUpper() != "SUCCESS")
+                {
+                    // Settings.  
+                    context.SetError("invalid_grant", loginResponse.Message);
+                    // Retuen info.  
 
-                //Add your flag to the header of the response
-                context.Response.Headers.Add(ServiceConstants.OwinChallengeFlag,
-                         new[] { ((int)HttpStatusCode.Unauthorized).ToString() });
+                    //Add your flag to the header of the response
+                    context.Response.Headers.Add(ServiceConstants.OwinChallengeFlag,
+                             new[] { ((int)HttpStatusCode.Unauthorized).ToString() });
 
-                return;
+                    return;
+                }
+
+                // Initialization.  
+                var claims = new List<Claim>();
+
+
+                // Setting Claim Identities for OAUTH 2 protocol.  
+                ClaimsIdentity oAuthClaimIdentity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
+                ClaimsIdentity cookiesClaimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType);
+
+                // Setting user authentication.  
+                AuthenticationProperties properties = CreatePropertiesForWeb(loginResponse, loginRequest);
+                AuthenticationTicket ticket = new AuthenticationTicket(oAuthClaimIdentity, properties);
+
+                if (loginResponse.Message.ToUpper() == "SUCCESS")
+                {
+                    // Grant access to authorize user.  
+                    context.Validated(ticket);
+                    context.Request.Context.Authentication.SignIn(cookiesClaimIdentity);
+                }
             }
-
-            // Initialization.  
-            var claims = new List<Claim>();
-
-            
-            // Setting Claim Identities for OAUTH 2 protocol.  
-            ClaimsIdentity oAuthClaimIdentity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesClaimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType);
-
-            // Setting user authentication.  
-            AuthenticationProperties properties = CreateProperties(loginResponse,loginRequest);
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthClaimIdentity, properties);
-
-            if (loginResponse.Message.ToUpper() == "SUCCESS")
+            else
             {
-                // Grant access to authorize user.  
-                context.Validated(ticket);
-                context.Request.Context.Authentication.SignIn(cookiesClaimIdentity);
+                LoginResponse loginResponse = userController.CheckLogin(loginRequest);
+                if (loginResponse.Message.ToUpper() != "SUCCESS")
+                {
+                    // Settings.  
+                    context.SetError("invalid_grant", loginResponse.Message);
+                    // Retuen info.  
+
+                    //Add your flag to the header of the response
+                    context.Response.Headers.Add(ServiceConstants.OwinChallengeFlag,
+                             new[] { ((int)HttpStatusCode.Unauthorized).ToString() });
+
+                    return;
+                }
+
+                // Initialization.  
+                var claims = new List<Claim>();
+
+
+                // Setting Claim Identities for OAUTH 2 protocol.  
+                ClaimsIdentity oAuthClaimIdentity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
+                ClaimsIdentity cookiesClaimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType);
+
+                // Setting user authentication.  
+                AuthenticationProperties properties = CreateProperties(loginResponse,loginRequest);
+                AuthenticationTicket ticket = new AuthenticationTicket(oAuthClaimIdentity, properties);
+
+                if (loginResponse.Message.ToUpper() == "SUCCESS")
+                {
+                    // Grant access to authorize user.  
+                    context.Validated(ticket);
+                    context.Request.Context.Authentication.SignIn(cookiesClaimIdentity);
+                }
             }
         }
-
+        
         #endregion
 
         #region Token endpoint override method.  
@@ -207,6 +245,24 @@ namespace Sunrise.Services.Providers
         /// <param name="loginResponse">Login Response parameter</param>  
         /// <returns>Returns authenticated properties.</returns>  
         public static AuthenticationProperties CreateProperties(LoginResponse loginResponse, LoginRequest loginRequest)
+        {
+            // Settings.  
+            IDictionary<string, string> data = loginResponse.GetType()
+                                                            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                                                            .ToDictionary(prop => prop.Name, prop => Convert.ToString(prop.GetValue(loginResponse, null)));
+
+            IDictionary<string, string> reqdata = loginRequest.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                        .ToDictionary(prop => "Identity_" + prop.Name, prop => Convert.ToString(prop.GetValue(loginRequest, null)));
+            foreach (KeyValuePair<string,string> reqItem in reqdata)
+            {
+                data.Add(reqItem.Key, reqItem.Value);
+            }
+
+            // Return info.  
+            return new AuthenticationProperties(data);
+        }
+        public static AuthenticationProperties CreatePropertiesForWeb(KeyAccountDataResponseForWeb loginResponse, LoginRequest loginRequest)
         {
             // Settings.  
             IDictionary<string, string> data = loginResponse.GetType()
