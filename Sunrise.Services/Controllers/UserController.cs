@@ -1848,27 +1848,26 @@ namespace Sunrise.Services.Controllers
                     keyAccountDataResponse.Message = "<div style=\"color:red\">User Name '" + UserName + "' or Password is Wrong, Kindly Contact : </div>" + AssistDetail;
                 }
 
-                else if (keyAccountDataResponse.Status == "False" && string.IsNullOrEmpty(keyAccountDataResponse.Status))
+                else if (keyAccountDataResponse.Status == "False" || string.IsNullOrEmpty(keyAccountDataResponse.Status))
                 {
-                    keyAccountDataResponse = new KeyAccountDataResponseForWeb();
                     if (keyAccountDataResponse.Days > 90 && keyAccountDataResponse.isadmin == 0 && keyAccountDataResponse.isemp == 0 && keyAccountDataResponse.isguest == 0)
                     {
                         var str = "";
                         if (keyAccountDataResponse.AssistBy1 != "")
                         {
-                            str = str + "<div><i class=\"fa fa-user\" style=\"font-size: 20px;color: teal;\"></i>&nbsp;" + dt.Rows[0]["AssistBy1"].ToString() + "</div>";
+                            str = str + "<div><i class=\"fa fa-user\" style=\"font-size: 20px;color: teal;\"></i>&nbsp;" + keyAccountDataResponse.AssistBy1 + "</div>";
                         }
                         if (keyAccountDataResponse.mob_AssistBy1 != "")
                         {
-                            str = str + "<div><i class=\"fa fa-mobile\" style=\"font-size: 25px;color: #27c4cc;\"></i>&nbsp;" + dt.Rows[0]["mob_AssistBy1"].ToString() + "</div>";
+                            str = str + "<div><i class=\"fa fa-mobile\" style=\"font-size: 25px;color: #27c4cc;\"></i>&nbsp;" + keyAccountDataResponse.mob_AssistBy1 + "</div>";
                         }
                         if (keyAccountDataResponse.Email_AssistBy1 != "")
                         {
-                            str = str + "<div><i class=\"fa fa-envelope-o\" style=\"font-size: 20px;color: red;\"></i>&nbsp;" + dt.Rows[0]["Email_AssistBy1"].ToString() + "</div>";
+                            str = str + "<div><i class=\"fa fa-envelope-o\" style=\"font-size: 20px;color: red;\"></i>&nbsp;" + keyAccountDataResponse.Email_AssistBy1 + "</div>";
                         }
                         if (keyAccountDataResponse.wechat_AssistBy1 != "")
                         {
-                            str = str + "<div><i class=\"fa fa-weixin\" style=\"font-size: 21px;color: #2dc100;\"></i>&nbsp;" + dt.Rows[0]["wechat_AssistBy1"].ToString() + "</div>";
+                            str = str + "<div><i class=\"fa fa-weixin\" style=\"font-size: 21px;color: #2dc100;\"></i>&nbsp;" + keyAccountDataResponse.wechat_AssistBy1 + "</div>";
                         }
                         keyAccountDataResponse.Status = "0";
                         keyAccountDataResponse.Message = "Your Account Is Suspended Kindly Contact At : " + str;
@@ -1888,7 +1887,6 @@ namespace Sunrise.Services.Controllers
                 }
                 else if (dts != null && dts.Rows.Count > 0 && Convert.ToBoolean(dts.Rows[0]["TotalDays"]) == true)
                 {
-                    keyAccountDataResponse = new KeyAccountDataResponseForWeb();
                     Database dbUp = new Database(Request);
                     List<IDbDataParameter> paraUp;
                     paraUp = new List<IDbDataParameter>();
@@ -1920,7 +1918,7 @@ namespace Sunrise.Services.Controllers
                     {
                         ToEmailAdd = "tejash@brainwaves.co.in";
                     }
-                    Lib.Models.Common.EmailOfSuspendedUser("Account Suspend – " + DAL.Common.GetHKTime().ToString("dd-MMM-yyyy hh:mm:ss"), ToEmailAdd.TrimEnd(','), "", dt.Rows[0]["USER_NAME"].ToString(), keyAccountDataResponse.Comp_Name);
+                    Lib.Models.Common.EmailOfSuspendedUser("Account Suspend – " + DAL.Common.GetHKTime().ToString("dd-MMM-yyyy hh:mm:ss"), ToEmailAdd.TrimEnd(','), "", keyAccountDataResponse.sUsername, keyAccountDataResponse.Comp_Name);
 
                     var str = "";
                     if (keyAccountDataResponse.AssistBy1 != "")

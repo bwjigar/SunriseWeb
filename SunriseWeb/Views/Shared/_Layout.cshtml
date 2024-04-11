@@ -771,7 +771,7 @@
                             <li>
                                 <a href="@Url.Action("Index", "Information")">@LanguageProvider.get("Information")</a>
                             </li>
-                            @if (SessionFacade.UserSession.UserID == 1)
+                            @*@if (SessionFacade.UserSession.UserID == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("StockPrefix", "Settings")">Stock Prefix</a>
@@ -788,7 +788,7 @@
                                 <li>
                                     <a href="@Url.Action("SuppPriceList", "Settings")">Supplier Wise Price List</a>
                                 </li>
-                            }
+                            }*@
                         </ul>
                     </li>
                 }
