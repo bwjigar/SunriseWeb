@@ -1,0 +1,224 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\SunriseWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{46B66457-A523-4C43-8D01-9470BD1491D6}|Sunrise.Services\\Sunrise.Services.csproj|D:\\Projects\\SunriseWeb\\sunrise.services\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46B66457-A523-4C43-8D01-9470BD1491D6}|Sunrise.Services\\Sunrise.Services.csproj|solutionrelative:sunrise.services\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46B66457-A523-4C43-8D01-9470BD1491D6}|Sunrise.Services\\Sunrise.Services.csproj|d:\\projects\\sunriseweb\\sunrise.services\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46B66457-A523-4C43-8D01-9470BD1491D6}|Sunrise.Services\\Sunrise.Services.csproj|solutionrelative:sunrise.services\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46B66457-A523-4C43-8D01-9470BD1491D6}|Sunrise.Services\\Sunrise.Services.csproj|D:\\Projects\\SunriseWeb\\sunrise.services\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{46B66457-A523-4C43-8D01-9470BD1491D6}|Sunrise.Services\\Sunrise.Services.csproj|solutionrelative:sunrise.services\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|D:\\Projects\\SunriseWeb\\sunriseweb\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|solutionrelative:sunriseweb\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46B66457-A523-4C43-8D01-9470BD1491D6}|Sunrise.Services\\Sunrise.Services.csproj|D:\\Projects\\SunriseWeb\\sunrise.services\\connected services\\fortuneservice\\service.disco||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{46B66457-A523-4C43-8D01-9470BD1491D6}|Sunrise.Services\\Sunrise.Services.csproj|solutionrelative:sunrise.services\\connected services\\fortuneservice\\service.disco||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|D:\\Projects\\SunriseWeb\\sunriseweb\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|solutionrelative:sunriseweb\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52288EC7-70CD-4082-8ADF-0F1340DF4BA9}|DAL\\DAL.csproj|D:\\Projects\\SunriseWeb\\dal\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52288EC7-70CD-4082-8ADF-0F1340DF4BA9}|DAL\\DAL.csproj|solutionrelative:dal\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|D:\\Projects\\SunriseWeb\\sunriseweb\\content\\js\\pages\\orderhistory.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|solutionrelative:sunriseweb\\content\\js\\pages\\orderhistory.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|D:\\Projects\\SunriseWeb\\sunriseweb\\views\\order\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|solutionrelative:sunriseweb\\views\\order\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|D:\\Projects\\SunriseWeb\\sunriseweb\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BD5F0A3-8D4D-41E0-A23A-B2D8A5A9637E}|SunriseWeb\\SunriseWeb.csproj|solutionrelative:sunriseweb\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 244,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Views\\Web.config",
+              "RelativeDocumentMoniker": "SunriseWeb\\Views\\Web.config",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Views\\Web.config",
+              "RelativeToolTip": "SunriseWeb\\Views\\Web.config",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-01-03T12:49:25.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Web.config",
+              "RelativeDocumentMoniker": "SunriseWeb\\Web.config",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Web.config",
+              "RelativeToolTip": "SunriseWeb\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-01-03T12:49:06.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\Sunrise.Services\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "Sunrise.Services\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\Sunrise.Services\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "Sunrise.Services\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAGAJAAAAAAAAAAAnwIEJAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-28T12:23:28.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\Sunrise.Services\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Sunrise.Services\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\Sunrise.Services\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Sunrise.Services\\Controllers\\UserController.cs",
+              "ViewState": "AgIAANAGAAAAAAAAAAAjwBQGAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T13:11:43.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Service.disco",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\Sunrise.Services\\Connected Services\\FortuneService\\Service.disco",
+              "RelativeDocumentMoniker": "Sunrise.Services\\Connected Services\\FortuneService\\Service.disco",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\Sunrise.Services\\Connected Services\\FortuneService\\Service.disco",
+              "RelativeToolTip": "Sunrise.Services\\Connected Services\\FortuneService\\Service.disco",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001049|",
+              "WhenOpened": "2024-07-23T04:16:20.171Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\Sunrise.Services\\Web.config",
+              "RelativeDocumentMoniker": "Sunrise.Services\\Web.config",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\Sunrise.Services\\Web.config",
+              "RelativeToolTip": "Sunrise.Services\\Web.config",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAkwKQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-09-02T07:23:19.325Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\DAL\\Order.cs",
+              "RelativeDocumentMoniker": "DAL\\Order.cs",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\DAL\\Order.cs",
+              "RelativeToolTip": "DAL\\Order.cs",
+              "ViewState": "AgIAAAQBAAAAAAAAAAAwwBQBAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T12:36:17.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "OrderHistory.cshtml",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Views\\Order\\OrderHistory.cshtml",
+              "RelativeDocumentMoniker": "SunriseWeb\\Views\\Order\\OrderHistory.cshtml",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Views\\Order\\OrderHistory.cshtml",
+              "RelativeToolTip": "SunriseWeb\\Views\\Order\\OrderHistory.cshtml",
+              "ViewState": "AgIAAAYBAAAAAAAAAAAmwBoBAABdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-22T12:26:00.103Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "orderhistory.js",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Content\\js\\Pages\\orderhistory.js",
+              "RelativeDocumentMoniker": "SunriseWeb\\Content\\js\\Pages\\orderhistory.js",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Content\\js\\Pages\\orderhistory.js",
+              "RelativeToolTip": "SunriseWeb\\Content\\js\\Pages\\orderhistory.js",
+              "ViewState": "AgIAAEMBAAAAAAAAAAAawFUBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-07-22T12:25:11.185Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "SunriseWeb\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\Projects\\SunriseWeb\\SunriseWeb\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "SunriseWeb\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAwDsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T05:14:23.656Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 306,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 244,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{5a4e9529-b6a0-46b5-be4f-0f0b239bc0eb}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

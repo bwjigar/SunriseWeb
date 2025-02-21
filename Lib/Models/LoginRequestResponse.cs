@@ -318,9 +318,9 @@ namespace Lib.Models
         public int iEmpId2 { get; set; }
         public short iLoginFailed { get; set; }
         public bool bIsDeleted { get; set; }
-        public DateTime dtModifiedDate { get; set; }
+        public DateTime? dtModifiedDate { get; set; }
         public int iModifiedBy { get; set; }
-        public DateTime dtCreatedDate { get; set; }
+        public DateTime? dtCreatedDate { get; set; }
         public string sWeChatId { get; set; }
         public string sCompEmail2 { get; set; }
         public string AssistBy1 { get; set; }

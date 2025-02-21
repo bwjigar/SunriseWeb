@@ -1,10 +1,10 @@
 ﻿using DAL;
 using EpExcelExportLib;
+using Google.Apis.Auth.OAuth2;
 using Lib.Constants;
 using Lib.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Oracle.DataAccess.Client;
 using Sunrise.Services.Models;
 using System;
 using System.Collections.Generic;
@@ -15,11 +15,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
+using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Script.Serialization;
-using System.Web.UI;
 
 namespace Sunrise.Services.Controllers
 {
@@ -2399,7 +2400,70 @@ namespace Sunrise.Services.Controllers
                 return resp;
             }
         }
-        public void PublishNotification(string DeviceType, string DeviceIds, string title, string body, string clickaction)
+
+        public async Task PublishNotification(string DeviceType, string DeviceIds, string title, string body, string clickaction)
+        {
+            try
+            {
+                string projectId = "sunrise-diamonds-live";
+                string url = $"https://fcm.googleapis.com/v1/projects/{projectId}/messages:send";
+
+                string[] strDevice = DeviceIds.Split(',');
+
+                var message = new
+                {
+                    message = new
+                    {
+                        token = strDevice,
+                        notification = new
+                        {
+                            body = body,
+                            message = body,
+                            title = title,
+                            click_action = clickaction
+                        }
+                    }
+                };
+
+                string jsonMessage = JsonConvert.SerializeObject(message);
+
+                string serviceAccountJson = @"{
+                                ""type"": ""service_account"",
+                                ""project_id"": ""sunrise-diamonds-live"",
+                                ""private_key_id"": ""9f6064a823f8cec80b71a9f9a3c6271e89e677cc"",
+                                ""private_key"": ""-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDFWIUrThU1l38k\nN0P4mzNZJiQUTtnSJvByHJ5hXTnCGRwqORbRnt3DQ3XiOjdZT8JBHnBJiGysjfql\nSkXBxNUgEVHhU4pBHRGk4S4JpRzw455VOrUY0lKhi5RVKn1F1QY4ro6pdSoIjNWj\nSlr9Gkdt+M5Pitq/XKcIcsjUduUQb3+GLINeCj5HX2GSVHKM3HYoo64YjqPXP0uN\n/l0kzU38OsDaY5mHuWs1GFb0n9ev/J+sG6r7owJ1DkVSjzRoKlYYjf/8EZPJWD67\nxYDLbyJ35IZ9DRIZvk+dTLQWk1WChiZnd0g0bou3UQxsDYy5VJidU/3HMQ7imnHr\noPE46Ri5AgMBAAECggEAGkdiXFTmgB9vX8w4MefA27M3hLjHSrPCuv9Sm9aFNXKQ\njJLTlhBYqYLXNMvZyPvU+0TpYPFYv1WctdwBE/94/e8wfxfXxjnvuov9zGz/QJie\n4eySZv7C4B4tH3Yr/luSm4OrHaerdD4EyNzC5wdT0bIbDv6HiIn2+CoI0joO4LQs\nF9VtrBCMXf4RNLStLAL+m76D2r9t7FnCbbsYeY5J7T8eLChuhmMRVFYt3BtWj8Em\npqL31X+RRzgt7duecFpzoGUHu/IipozjLh9iHc+ATOH+JN0kWyd3Ulr+/pE3j5rX\newNGyj0iUdsPJ0YnlZJzD2Cz0YIEom6Rq7EU7epS7QKBgQDLgx3LeJu0PgGikEX/\nykh96Mjfq95bGXWuFkOoOyaksr3g/88Zki/4KYOncKilLlFKKEjynPSqiGv6kBXy\nAxmBVTtSKxYY1dZ03BE25TfV5Tq+vRowi2xRCCEC8NPZ44NJ6PmS+5i5BrzhIdco\nW4M8srnNmJgWkc/MIF/R9HpldwKBgQD4PkSerwKimlLE8LGq6junyxJKCAjTFo/z\nUI1/H7iSAmFYu3BPiJn5D8K8D+ncJM4zWMWJCj7KtyxsMxnij4P/emh4dUIKfi78\nYxrsFSl6u9cDTXLjqMj10SZfSdKp6nJyP+2ftHO2f/X4HwX+pLA43fdZGN2boq/V\nR0lvUhC/TwKBgCh7EDYk63PS0ahwYjwbFIhXAX3cRgKA8fOK4jJYcbtZAoP63ksL\n1RbbyyBHPIR+zhSeJsR7i/9P24qfln3pN+2N8prJjz+paVsdWx88QPr++cxu+QKm\n+Qi1QTvAg6NXqgnNmbcu7JYBTRjLDm0sptIwCt1mePokTt0fo2+z3ZTJAoGAGX7z\nt0SMRb0J4TZDWSWDiQE/WKEont2DXV8ZmUPdxgk+jEl8CH8kKUNoIb6Uq0qQbw+g\nAiouNs3HXzmEYBOTYArnbe/FH6TEGKHpIvQtdXCTbcBnm2A7e5vGkCTZ4R+2L2vH\ncQ6sj8LmtVwiVnv9qWmKvPjj0ddMreALd8Z699sCgYAiYmSZ5DZXKm8iIMYmmmh2\ntudKmbkJHcAjbOsNcaOJaw/VCAhHVABLVZw8doN577h8vVNwvYUVtJpFPeu1wXeK\nSdfBKAoympggpvNTCEEwnaid71vtJQeAm61574+KFBTDLOxPZMyTLgGW3GPuz+rp\nYGtDpRAc0jxXnRMpll9WJA==\n-----END PRIVATE KEY-----\n"",
+                                ""client_email"": ""firebase-adminsdk-hy4yy@sunrise-diamonds-live.iam.gserviceaccount.com"",
+                                ""client_id"": ""106655948401922051566"",
+                                ""auth_uri"": ""https://accounts.google.com/o/oauth2/auth"",
+                                ""token_uri"": ""https://oauth2.googleapis.com/token"",
+                                ""auth_provider_x509_cert_url"": ""https://www.googleapis.com/oauth2/v1/certs"",
+                                ""client_x509_cert_url"": ""https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-hy4yy%40sunrise-diamonds-live.iam.gserviceaccount.com"",
+                                ""universe_domain"": ""googleapis.com""
+                            }";
+
+                var credential = GoogleCredential.FromJson(serviceAccountJson)
+                    .CreateScoped("https://www.googleapis.com/auth/firebase.messaging");
+
+                var accessToken = await credential.UnderlyingCredential.GetAccessTokenForRequestAsync();
+
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var response = await client.PostAsync(url, new StringContent(jsonMessage, Encoding.UTF8, "application/json"));
+                    string responseString = await response.Content.ReadAsStringAsync();
+
+                    Console.WriteLine("Response: " + responseString);
+                }
+            }
+            catch (Exception ex)
+            {
+                DAL.Common.InsertErrorLog(ex, null, Request);
+            }
+        }
+
+        public void PublishNotification_Old(string DeviceType, string DeviceIds, string title, string body, string clickaction)
         {
             try
             {
@@ -2495,7 +2559,7 @@ namespace Sunrise.Services.Controllers
             }
             catch (Exception ex)
             {
-
+                
             }
         }
 
@@ -3633,7 +3697,7 @@ namespace Sunrise.Services.Controllers
                 System.Data.DataTable dtHold;
                 FortuneService.CommonResultResponse dtHold_StoneID;
                 DateTime dDate = DateTime.Now;
-                FortuneService.ServiceSoapClient wbService = new FortuneService.ServiceSoapClient();
+                FortuneService.ServiceSoapClient wbService = new FortuneService.ServiceSoapClient("ServiceSoap");
                 ConfirmOrderRequest_Web_1 obj = new ConfirmOrderRequest_Web_1();
                 obj.StoneID = StoneID;
                 obj.Hold_Stone_List = Hold_StoneID;
@@ -3670,6 +3734,13 @@ namespace Sunrise.Services.Controllers
 
                 try
                 {
+                    if (wbService.State == CommunicationState.Faulted)
+                    {
+                        // Handle the faulted state (e.g., log the error, reset the client, etc.)
+                        wbService.Abort(); // Abort the communication object to move it out of the faulted state
+                        wbService = new FortuneService.ServiceSoapClient("ServiceSoap12"); // Recreate the client instance
+                    }
+
                     dtHold = wbService.CheckStoneForHold(Device_Type.ToString(), StoneID).Tables[0];
                 }
                 catch (Exception ex)
