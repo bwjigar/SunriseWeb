@@ -762,6 +762,7 @@
     <EmbeddedResource Include="Resources\language.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>language.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\language_cn.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

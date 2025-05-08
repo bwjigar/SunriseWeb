@@ -1863,10 +1863,20 @@
             <form class="form-horizontal" id="frmSaveOrder">
                 <div id="divHoldList"></div>
                 <div class="col-md-12" id="pPlaceOrderMsg" style="font-size: 13px;margin-top: 4px;"></div>
-                <div class="col-md-12" id="divPlaceOrderHoldCompany" style="display:none;">
-                    <span style="font-size: 12px;font-weight: 600;color: #003d66;">Company Name :</span>
-                    <input type="text" tabindex="1" class="form-control" onkeydown="CmpnynmRst();" id="txtCompanyName" name="txtCompanyName" placeholder="Search with Company Name, User Name, Fortune Party Code" autocomplete="none" style="font-size: 12.5px;">
-                </div>
+                @if (SunriseWeb.Helper.SessionFacade.UserSession.iUserType != 2)
+                {
+                    <div class="col-md-12" id="divPlaceOrderHoldCompany" style="display:none;">
+                        <span style="font-size: 12px;font-weight: 600;color: #003d66;">Company Name :</span>
+                        <input type="text" tabindex="1" class="form-control" onkeydown="CmpnynmRst();" id="txtCompanyName" name="txtCompanyName" placeholder="Search with Company Name, User Name, Fortune Party Code" autocomplete="none" style="font-size: 12.5px;">
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-12" id="divPlaceOrderHoldCompany" style="display:none;">
+                        <span style="font-size: 12px;font-weight: 600;color: #003d66;">Company Name :  <span class="reqvalidation">*</span></span>
+                        <input type="text" tabindex="1" class="form-control required" onkeydown="CmpnynmRst();" id="txtCompanyName" name="txtCompanyName" placeholder="Search with Company Name, User Name, Fortune Party Code" autocomplete="none" style="font-size: 12.5px;">
+                    </div>
+                }
                 <div class="modal-body" id="Selected" style="margin-top: -13px;">
                     <div class="form-group">
                         <label>@LanguageProvider.get("comments") : <span class="reqvalidation">*</span></label>

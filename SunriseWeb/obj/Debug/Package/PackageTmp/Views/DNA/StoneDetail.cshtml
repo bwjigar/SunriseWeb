@@ -1,0 +1,1964 @@
+﻿@model Lib.Models.SearchStone
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stone Detail</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/css/StoneDetail/bootstrap.min.css">
+    <!-- font-awesome CSS -->
+    <link href="~/Content/css/StoneDetail/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/StoneDetail/enlarge.css" rel="stylesheet">
+    <link href="~/Content/css/StoneDetail/magnific-popup.css" rel="stylesheet">
+    <link href="~/Content/Plugins/toastr/toastr.css" rel="stylesheet" />
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="~/Content/css/StoneDetail/style.css">
+    <style>
+        .tab-content {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            /*padding-top: 100%;*/
+        }
+
+        .responsive-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .jb-video-iframe {
+            margin-top: -47px;
+        }
+
+        .loading-overlay {
+            display: none;
+            background: rgba( 26, 26, 26, 0.7 );
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            top: 0;
+        }
+
+        .loading-overlay-image-container {
+            display: none;
+            position: fixed;
+            z-index: 7;
+            top: 50%;
+            left: 50%;
+            transform: translate( -50%, -50% );
+        }
+
+        .loading-overlay-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        .Multidown {
+            display: inline-block;
+            border-radius: 5px;
+            margin: 10px 0px;
+            position: relative;
+            background: #003d66;
+            padding: 7px 10px;
+            color: #fff !important;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .Multidown-item {
+            display: block;
+            width: 100%;
+            padding: .25rem 1.5rem;
+            clear: both;
+            font-weight: 400;
+            color: #212529;
+            text-align: inherit;
+            white-space: nowrap;
+            background-color: transparent;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .dropdown-menu a:hover {
+            color: white;
+            background-color: #003d66;
+            text-decoration: none;
+        }
+
+        #a {
+            width: 500px;
+        }
+
+        img {
+            width: 100%;
+            height: auto
+        }
+
+        .Down_divider {
+            margin: 1px 0px -3px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-overlay"></div>
+    <div class="loading-overlay-image-container">
+        <img src="~/Content/images/loader.gif" class="loading-overlay-img" />
+    </div>
+    @if (Model != null)
+    {
+        <input type="hidden" id="hdnStoneRefNo" value="@Model.stone_ref_no" />
+        <input type="hidden" id="hdn_IsOverseas" value="@Model.IsOverseas" />
+        <input type="hidden" id="hdn_cur_rap_rate" value="@Model.cur_rap_rate" />
+        <input type="hidden" id="hdn_lab" value="@Model.lab" />
+        <input type="hidden" id="hdn_Certi_Type" value="@Model.Certi_Type" />
+
+        if (Model.bPRimg != null && Model.bPRimg.Value == true)
+        {
+            <input type="hidden" id="hdnbPRimg" value="true" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnbPRimg" value="" />
+        }
+
+        if (Model.bHBimg != null && Model.bHBimg.Value == true)
+        {
+            <input type="hidden" id="hdnbHBimg" value="true" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnbHBimg" value="" />
+        }
+
+        if (Model.bHTimg != null && Model.bHTimg.Value == true)
+        {
+            <input type="hidden" id="hdnbHTimg" value="true" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnbHTimg" value="" />
+        }
+
+        if (Model.bASimg != null && Model.bASimg.Value == true)
+        {
+            <input type="hidden" id="hdnbASimg" value="true" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnbASimg" value="" />
+        }
+
+        <input type="hidden" id="hdnMovieUrl" value="@Model.movie_url" />
+        <input type="hidden" id="hdnViewCertiUrl" value="@Model.view_certi_url" />
+        <input type="hidden" id="hdnCertiNo" value="@Model.certi_no" />
+
+        if (Model.sImglink != null && Model.sImglink != "")
+        {
+            <input type="hidden" id="hdnOSImglink" value="@Model.sImglink" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOSImglink" value="" />
+        }
+        if (Model.sVdoLink != null && Model.sVdoLink != "")
+        {
+            <input type="hidden" id="hdnOSVdoLink" value="@Model.sVdoLink" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOSVdoLink" value="" />
+        }
+    }
+    else
+    {
+        <input type="hidden" id="hdnStoneRefNo" value="" />
+        <input type="hidden" id="hdn_cur_rap_rate" value="" />
+        <input type="hidden" id="hdnbPRimg" value="" />
+        <input type="hidden" id="hdnbHBimg" value="" />
+        <input type="hidden" id="hdnbHTimg" value="" />
+        <input type="hidden" id="hdnbASimg" value="" />
+        <input type="hidden" id="hdnMovieUrl" value="" />
+        <input type="hidden" id="hdnViewCertiUrl" value="" />
+        <input type="hidden" id="hdnCertiNo" value="" />
+        <input type="hidden" id="hdnOSImglink" value="" />
+        <input type="hidden" id="hdnOSVdoLink" value="" />
+    }
+
+    @if (Model != null && Model.IsOverseas == 1)
+    {
+
+        if (Model.pointer != null && Model.pointer != "")
+        {
+            <input type="hidden" id="hdnOS_Pointer" value="@Model.pointer" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_Pointer" value="" />
+        }
+        if (Model.shape != null && Model.shape != "")
+        {
+            <input type="hidden" id="hdnOS_Shape" value="@Model.shape" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_Shape" value="" />
+        }
+        if (Model.stone_ref_no != null && Model.stone_ref_no != "")
+        {
+            <input type="hidden" id="hdnOS_stone_ref_no" value="@Model.stone_ref_no" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_stone_ref_no" value="" />
+        }
+        if (Model.color != null && Model.color != "")
+        {
+            <input type="hidden" id="hdnOS_Color" value="@Model.color" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_Color" value="" />
+        }
+        if (Model.polish != null && Model.polish != "")
+        {
+            <input type="hidden" id="hdnOS_Polish" value="@Model.polish" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_Polish" value="" />
+        }
+        if (Model.clarity != null && Model.clarity != "")
+        {
+            <input type="hidden" id="hdnOS_Clarity" value="@Model.clarity" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_Clarity" value="" />
+        }
+        if (Model.symbol != null && Model.symbol != "")
+        {
+            <input type="hidden" id="hdnOS_symbol" value="@Model.symbol" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_symbol" value="" />
+        }
+        if (Model.symbol != null && Model.symbol != "")
+        {
+            <input type="hidden" id="hdnOS_Symm" value="@Model.symbol" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_Symm" value="" />
+        }
+        if (Model.fls != null && Model.fls != "")
+        {
+            <input type="hidden" id="hdnOS_Fls" value="@Model.fls" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_Fls" value="" />
+        }
+        if (Model.Location != null && Model.Location != "")
+        {
+            <input type="hidden" id="hdnOS_Location" value="@Model.Location" />
+        }
+        else
+        {
+            <input type="hidden" id="hdnOS_Location" value="" />
+        }
+    }
+    @if (Model != null)
+    {
+        <div class="wrapper">
+
+            <!-- Page Content  -->
+            <div id="content" class="contnt search-contnt">
+
+
+                <!--- start of stone-detail part---->
+                <div class="container-fluid stone-detail p-0">
+                    <div class="" id="">
+                        <div class="search-page-content offersearch">
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                    <div class="tab-content">
+                                        @if (Model != null && Model.IsOverseas == 0)
+                                        {
+                                            if (Model != null &&
+                                            (Model.bPRimg == true || Model.bHBimg == true || Model.bHTimg == true || Model.bASimg == true))
+                                            {
+                                                if (Model.bPRimg == true)
+                                                {
+                                                    <div class="stone-big-img tab-pane active" id="PR_@(Model.certi_no)_PR">
+                                                        <div class="enlarge_pane_contain">
+                                                            <div class="enlarge_pane">
+                                                                <div class="enlarge">
+                                                                    <div class="enlarge_contain">
+                                                                        <img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/PR.jpg">
+                                                                    </div>
+                                                                    <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/PR.jpg" class="enlarge_btn" title="Toggle Zoom"></a>
+                                                                </div>
+                                                                <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/PR.jpg" title="" class="img-zoom"><i class="fa fa-expand" aria-hidden="true"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                if (Model.bASimg == true)
+                                                {
+                                                    if (Model.bPRimg == false)
+                                                    {
+                                                        <div class="stone-big-img tab-pane active" id="AS_@(Model.certi_no)_AS">
+                                                            <div class="enlarge_pane_contain">
+                                                                <div class="enlarge_pane">
+                                                                    <div class="enlarge">
+                                                                        <div class="enlarge_contain">
+                                                                            <img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/AS.jpg">
+                                                                        </div>
+                                                                        <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/AS.jpg" class="enlarge_btn" title="Toggle Zoom"></a>
+                                                                    </div>
+                                                                    <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/AS.jpg" title="" class="img-zoom"><i class="fa fa-expand" aria-hidden="true"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="stone-big-img tab-pane fade" id="AS_@(Model.certi_no)_AS">
+                                                            <div class="enlarge_pane_contain">
+                                                                <div class="enlarge_pane">
+                                                                    <div class="enlarge">
+                                                                        <div class="enlarge_contain">
+                                                                            <img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/AS.jpg">
+                                                                        </div>
+                                                                        <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/AS.jpg" class="enlarge_btn" title="Toggle Zoom"></a>
+                                                                    </div>
+                                                                    <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/AS.jpg" title="" class="img-zoom"><i class="fa fa-expand" aria-hidden="true"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                }
+                                                if (Model.bHBimg == true)
+                                                {
+                                                    if (Model.bASimg == false && Model.bPRimg == false)
+                                                    {
+                                                        <div class="stone-big-img tab-pane active" id="HB_@(Model.certi_no)_HB">
+                                                            <div class="enlarge_pane_contain">
+                                                                <div class="enlarge_pane">
+                                                                    <div class="enlarge">
+                                                                        <div class="enlarge_contain">
+                                                                            <img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HB.jpg">
+                                                                        </div>
+                                                                        <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HB.jpg" class="enlarge_btn" title="Toggle Zoom"></a>
+                                                                    </div>
+                                                                    <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HB.jpg" title="" class="img-zoom"><i class="fa fa-expand" aria-hidden="true"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="stone-big-img tab-pane fade" id="HB_@(Model.certi_no)_HB">
+                                                            <div class="enlarge_pane_contain">
+                                                                <div class="enlarge_pane">
+                                                                    <div class="enlarge">
+                                                                        <div class="enlarge_contain">
+                                                                            <img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HB.jpg">
+                                                                        </div>
+                                                                        <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HB.jpg" class="enlarge_btn" title="Toggle Zoom"></a>
+                                                                    </div>
+                                                                    <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HB.jpg" title="" class="img-zoom"><i class="fa fa-expand" aria-hidden="true"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                                if (Model.bHTimg == true)
+                                                {
+                                                    if (Model.bASimg == false && Model.bPRimg == false && Model.bHBimg == false)
+                                                    {
+                                                        <div class="stone-big-img tab-pane active" id="HT_@(Model.certi_no)_HT">
+                                                            <div class="enlarge_pane_contain">
+                                                                <div class="enlarge_pane">
+                                                                    <div class="enlarge">
+                                                                        <div class="enlarge_contain">
+                                                                            <img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HT.jpg">
+                                                                        </div>
+                                                                        <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HT.jpg" class="enlarge_btn" title="Toggle Zoom"></a>
+                                                                    </div>
+                                                                    <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HT.jpg" title="" class="img-zoom"><i class="fa fa-expand" aria-hidden="true"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <div class="stone-big-img tab-pane fade" id="HT_@(Model.certi_no)_HT">
+                                                            <div class="enlarge_pane_contain">
+                                                                <div class="enlarge_pane">
+                                                                    <div class="enlarge">
+                                                                        <div class="enlarge_contain">
+                                                                            <img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HT.jpg">
+                                                                        </div>
+                                                                        <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HT.jpg" class="enlarge_btn" title="Toggle Zoom"></a>
+                                                                    </div>
+                                                                    <a href="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HT.jpg" title="" class="img-zoom"><i class="fa fa-expand" aria-hidden="true"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    }
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (Model.image_url.ToUpper().Contains("VIEWMEDIA"))
+                                                {
+                                                    <div class="tab-content">
+                                                        <b style="color: #1c2f7a; ">Stone Image Link : </b><a href="@Model.sImglink" target="_blank" style="color: #1c2f7a;">Click Here To Enlarge...</a>
+                                                        <iframe height="450" frameborder="0" id="image1" src="@Model.image_url&amp;resize=260" style="text-align: center; width: 100%;"></iframe>
+                                                    </div>
+
+                                                }
+                                                else if (Model.image_url.ToUpper().Contains("HTTPS://D1G2OUDKNJS8JF.CLOUDFRONT.NET/PRODPOLWEB/IMGFILES/"))
+                                                {
+                                                    <div class="tab-content">
+                                                        <b style="color: #1c2f7a; ">Stone Image Link : </b><a href="@Model.sImglink" target="_blank" style="color: #1c2f7a;">Click Here To Enlarge...</a>
+                                                        <img src="@Model.image_url">
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="stone-big-img tab-pane active">
+                                                        <div class="enlarge_pane_contain">
+                                                            <div class="enlarge_pane">
+                                                                <div class="">
+                                                                    <div class="enlarge_contain">
+                                                                        <img src="~/Content/images/no-img1.jpg">
+                                                                    </div>
+                                                                    <a href="~/Content/images/no-img1.jpg" class="enlarge_btn" title="Toggle Zoom"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                        else if (Model != null && Model.IsOverseas == 1)
+                                        {
+                                            if (Model.sImglink != null && Model.sImglink != "")
+                                            {
+
+                                                @*<div id="divOSImage"></div>*@
+                                                <b style="color: #1c2f7a; ">Stone Image  Link : </b><a href="@Model.sImglink" target="_blank" style="color: #1c2f7a;"> Click Here To Enlarge...</a>
+                                                if (@Model.sImglink.Contains(".jpg"))
+                                                {
+                                                    <img src="@Model.sImglink">
+                                                }
+                                                else if (@Model.sImglink.ToUpper().Contains("HTTPS://D1G2OUDKNJS8JF.CLOUDFRONT.NET/PRODPOLWEB/IMGFILES/"))
+                                                {
+                                                    <img src="@Model.sImglink">
+                                                }
+                                                else
+                                                {
+                                                    <iframe height="450" frameborder="0" id="image1" src="@Model.sImglink&amp;resize=299" style="text-align: center; width: 100%;"></iframe>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="stone-big-img tab-pane active">
+                                                    <div class="enlarge_pane_contain">
+                                                        <div class="enlarge_pane">
+                                                            <div class="">
+                                                                <div class="enlarge_contain">
+                                                                    <img src="~/Content/images/no-img1.jpg">
+                                                                </div>
+                                                                <a href="~/Content/images/no-img1.jpg" class="enlarge_btn" title="Toggle Zoom"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+
+                                    </div>
+                                    @if (Model != null && Model.IsOverseas == 0)
+                                    {
+                                        if (Model != null &&
+                                        (Model.bPRimg == true || Model.bHBimg == true || Model.bHTimg == true || Model.bASimg == true))
+                                        {
+                                            <div class="stone-det-big-img">
+                                                <div class="dna-images">
+                                                    <ul class="nav nav-tabs">
+                                                        @if (Model.bPRimg == true)
+                                                        {
+                                                            <li class="">
+                                                                <a id="one" data-toggle="tab" href="#PR_@(Model.certi_no)_PR" class="nav-link active"><img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/PR.jpg"></a>
+                                                            </li>
+                                                        }
+                                                        @if (Model.bASimg == true)
+                                                        {
+                                                            <li class="">
+                                                                @if (Model.bPRimg == false)
+                                                                {
+                                                                    <a id="two" data-toggle="tab" href="#AS_@(Model.certi_no)_AS" class="nav-link active"><img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/AS.jpg"></a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a id="two" data-toggle="tab" href="#AS_@(Model.certi_no)_AS" class="nav-link"><img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/AS.jpg"></a>
+                                                                }
+                                                            </li>
+                                                        }
+                                                        @if (Model.bHBimg == true)
+                                                        {
+                                                            <li class="">
+                                                                @if (Model.bASimg == false && Model.bPRimg == false)
+                                                                {
+                                                                    <a id="three" data-toggle="tab" href="#HB_@(Model.certi_no)_HB" class="nav-link active"><img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HB.jpg"></a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a id="three" data-toggle="tab" href="#HB_@(Model.certi_no)_HB" class="nav-link"><img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HB.jpg"></a>
+                                                                }
+                                                            </li>
+                                                        }
+                                                        @if (Model.bHTimg == true)
+                                                        {
+                                                            <li class="">
+                                                                @if (Model.bASimg == false && Model.bPRimg == false && Model.bHBimg == false)
+                                                                {
+                                                                    <a id="four" data-toggle="tab" href="#HT_@(Model.certi_no)_HT" class="nav-link active"><img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HT.jpg"></a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a id="four" data-toggle="tab" href="#HT_@(Model.certi_no)_HT" class="nav-link"><img src="https://4e0s0i2r4n0u1s0.com/img/@(Model.certi_no)/HT.jpg"></a>
+                                                                }
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    <div class="video">
+                                        @*<div class="title">
+                                                <span style="display:none;">v360</span>
+
+                                            </div>*@
+                                        @if (Model != null && Model.IsOverseas == 0)
+                                        {
+                                            if (Model.movie_url != null && Model.movie_url != "")
+                                            {
+                                                <div class="tab-content">
+                                                    <b style="color: #1c2f7a; ">Stone  Video Link : </b><a href="@Model.movie_url" target="_blank" style="color: #1c2f7a;">Click Here To Enlarge...</a>
+                                                    @if (Model.movie_url.ToUpper().Contains("VIEWVIDEOMP4.ASPX"))
+                                                    {
+                                                        <iframe height="400" frameborder="0" id="video1" src="@Model.movie_url&amp;autoplay=1" style="text-align: center; width: 100%;height:420px;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("X=C"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink&amp;height=83&amp;autoplay=1" style="text-align: center;width: 100%;height:547px;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("X=E"))
+                                                    {
+                                                        <iframe height="385" frameborder="0" id="video1" src="@Model.sVdoLink&amp;resize=270&amp;autoplay=1" style="text-align: center;width: 100%;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("X=M"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink&amp;resize=370&amp;autoplay=1" style="text-align: center;width: 100%;height:400px;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("X=I"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink&amp;resize=315&amp;autoplay=1" style="text-align: center;width: 100%;height:400px;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("HTTPS://DYFFW9LB8WUR6.CLOUDFRONT.NET"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink" style="text-align: center;width: 100%;height:400px;"></iframe>
+                                                    }
+                                                    else
+                                                    {
+                                                        <iframe height="400" frameborder="0" id="video1" src="@Model.movie_url" style="text-align: center; width: 100%;"></iframe>
+                                                    }
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <img src="/Content/images/no-video-available.png" width="100%" height="400">
+                                            }
+                                        }
+                                        else if (Model != null && Model.IsOverseas == 1)
+                                        {
+                                            if (Model.sVdoLink != null && Model.sVdoLink != "")
+                                            {
+                                                <div class="tab-content">
+                                                    <b style="color: #1c2f7a;">Stone Video Link : </b><a href="@Model.sVdoLink" target="_blank" style="color: #1c2f7a;">Click Here To Enlarge...</a>
+                                                    @if (Model.movie_url.ToUpper().Contains("X=C"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink&amp;height=83&amp;autoplay=1" style="text-align: center;width: 100%;height:547px;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("X=E"))
+                                                    {
+                                                        <iframe height="385" frameborder="0" id="video1" src="@Model.sVdoLink&amp;resize=270&amp;autoplay=1" style="text-align: center;width: 100%;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("X=M"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink&amp;resize=370&amp;autoplay=1" style="text-align: center;width: 100%;height:400px;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("X=I"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink&amp;resize=315&amp;autoplay=1" style="text-align: center;width: 100%;height:400px;"></iframe>
+                                                    }
+                                                    else if (Model.movie_url.ToUpper().Contains("HTTPS://DYFFW9LB8WUR6.CLOUDFRONT.NET"))
+                                                    {
+                                                        <iframe frameborder="0" id="video1" src="@Model.sVdoLink" style="text-align: center;width: 100%;height:400px;"></iframe>
+                                                    }
+                                                    else
+                                                    {
+                                                        <iframe height="370" frameborder="0" id="video1" src="@Model.sVdoLink&amp;height=95&amp;autoplay=1" style="text-align: center;width: 100%;"></iframe>
+                                                    }
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <img src="/Content/images/no-video-available.png" width="100%" height="400">
+                                            }
+                                        }
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                                    @if (Model != null && @Model.stone_ref_no != "")
+                                    {
+                                        <div>
+                                            <div class="stone-detail-bx-main download-box-main">
+                                                <div class="stone-detail-head" style="padding: 15px 15px;">
+                                                    <input type="hidden" id="sendtype" value="" />
+                                                    @*Download*@
+                                                </div>
+                                                @*<div class="download-main" style="display:none;">
+                                                        <ul>
+
+                                                            @if (Model != null && Model.IsOverseas == 1)
+                                                            {
+                                                            if (Model != null && Model.sImglink != null)
+                                                            {
+                                                            <li onclick="openpopup('image')"><i class="fa fa-whatsapp" aria-hidden="true"></i> IMAGE</li>
+                                                            }
+                                                            }
+                                                            else
+                                                            {
+                                                            if (Model != null &&
+                                                            (Model.bPRimg == true || Model.bHBimg == true || Model.bHTimg == true || Model.bASimg == true))
+                                                            {
+                                                            <li onclick="openpopup('image')"><i class="fa fa-whatsapp" aria-hidden="true"></i> IMAGE</li>
+                                                            }
+                                                            }
+
+                                                            @if (Model != null && Model.IsOverseas == 1)
+                                                            {
+                                                            if (Model != null && Model.sVdoLink != null)
+                                                            {
+                                                            <li onclick="openpopup('video')"><i class="fa fa-whatsapp" aria-hidden="true"></i> VIDEO</li>
+                                                            }
+                                                            }
+                                                            else
+                                                            {
+                                                            if (Model != null &&
+                                                            (Model.movie_url != null && Model.movie_url != ""))
+                                                            {
+                                                            <li onclick="openpopup('video')"><i class="fa fa-whatsapp" aria-hidden="true"></i> VIDEO</li>
+                                                            }
+                                                            }
+
+                                                            @if (Model != null && Model.IsOverseas == 0)
+                                                            {
+                                                            if (Model != null && Model.view_certi_url != null)
+                                                            {
+                                                            <li onclick="openpopup('certi')"><i class="fa fa-whatsapp" aria-hidden="true"></i> CERTIFICATE</li>
+                                                            }
+                                                            }
+
+
+                                                            @if (Model != null && Model.IsOverseas == 1)
+                                                            {
+                                                            if (Model != null && Model.sImglink != null)
+                                                            {
+                                                            <li onclick="Download('Image')"><i class="fa fa-download" aria-hidden="true"></i> IMAGE</li>
+                                                            }
+                                                            }
+                                                            else
+                                                            {
+                                                            if (Model != null &&
+                                                            (Model.bPRimg == true || Model.bHBimg == true || Model.bHTimg == true || Model.bASimg == true))
+                                                            {
+                                                            <li onclick="Download('Image')"><i class="fa fa-download" aria-hidden="true"></i> IMAGE</li>
+                                                            }
+                                                            }
+
+                                                            @if (Model != null && Model.IsOverseas == 1)
+                                                            {
+                                                            if (Model != null && Model.sVdoLink != null)
+                                                            {
+                                                            <li onclick="Download('Video')"><i class="fa fa-download" aria-hidden="true"></i> VIDEO</li>
+                                                            }
+                                                            }
+                                                            else
+                                                            {
+                                                            if (Model != null &&
+                                                            (Model.movie_url != null && Model.movie_url != ""))
+                                                            {
+                                                            <li onclick="Download('Video')"><i class="fa fa-download" aria-hidden="true"></i> VIDEO</li>
+                                                            }
+                                                            }
+
+                                                            @if (Model != null && Model.IsOverseas == 0)
+                                                            {
+                                                            if (Model != null && Model.view_certi_url != null)
+                                                            {
+                                                            <li onclick="Download('Certificate')"><i class="fa fa-download" aria-hidden="true"></i> CERTIFICATE</li>
+                                                            }
+                                                            }
+
+                                                            <li onclick="Download('Excel')"><i class="fa fa-file-excel-o" aria-hidden="true"></i> EXCEL</li>
+                                                        </ul>
+                                                    </div>*@
+
+                                                <div class="container" style="width: 300px;">
+                                                    <nav class="navbar navbar-expand-md navbar-light bg-light">
+                                                        <ul class="nav navbar-nav btn-download-id">
+                                                            <li class="nav-item dropdown download-main" style="flex: none;">
+                                                                <a href="#" class="nav-link dropdown-toggle Multidown" data-toggle="dropdown" aria-expanded="false">DOWNLOAD <i class="fa fa-download" aria-hidden="true" style="font-size: 16px;"></i></a>
+                                                                <div class="dropdown-menu btn-download-cls" style="margin-top: -8px;">
+                                                                    @if (Model != null && Model.IsOverseas == 1)
+                                                                    {
+                                                                        if (Model.sImglink != "" && Model.sImglink != null)
+                                                                        {
+                                                                            @*<a href="javascript:void(0);" onclick="OverSeasExcelDownload('Image')" class="Multidown-item">Image</a>
+                                                                                <div class="dropdown-divider Down_divider"></div>*@
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (Model != null &&
+                                                                        (Model.bPRimg == true || Model.bHBimg == true || Model.bHTimg == true || Model.bASimg == true))
+                                                                        {
+                                                                            <a href="javascript:void(0);" onclick="Download('Image')" class="Multidown-item">Image</a>
+                                                                            <div class="dropdown-divider Down_divider"></div>
+                                                                        }
+                                                                    }
+
+                                                                    @if (Model != null && Model.IsOverseas == 1)
+                                                                    {
+                                                                        if (Model.sVdoLink != "" && Model.sVdoLink != null)
+                                                                        {
+                                                                            @*<a id="aOS_Video" href="javascript:void(0);" onclick="OverSeasExcelDownload('Video')" class="Multidown-item">Video</a>
+                                                                                <div class="dropdown-divider Down_divider"></div>*@
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (Model != null &&
+                                                                        (Model.movie_url != null && Model.movie_url != ""))
+                                                                        {
+                                                                            <a href="javascript:void(0);" onclick="Download('Video')" class="Multidown-item">Video</a>
+                                                                            <div class="dropdown-divider Down_divider"></div>
+                                                                        }
+                                                                    }
+
+                                                                    @if (Model != null && Model.IsOverseas == 0)
+                                                                    {
+                                                                        if (Model.view_certi_url != "" && Model.view_certi_url != null)
+                                                                        {
+                                                                            <a href="javascript:void(0);" onclick="Download('Certificate')" class="Multidown-item">Certificate</a>
+                                                                            <div class="dropdown-divider Down_divider"></div>
+                                                                        }
+                                                                    }
+                                                                    @if (Model != null && Model.IsOverseas == 0)
+                                                                    {
+                                                                        <a href="javascript:void(0);" onclick="Download('Excel')" class="Multidown-item">Excel</a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @*<a href="javascript:void(0);" onclick="OverSeasExcelDownload('Excel')" class="Multidown-item">Excel</a>*@
+                                                                    }
+
+
+                                                                    @if (Model != null && Model.IsOverseas == 1)
+                                                                    {
+                                                                        if (Model != null && (Model.sImglink != null || Model.sVdoLink != null || Model.sImglink != "" || Model.sVdoLink != ""))
+                                                                        {
+                                                                            @*<div class="dropdown-divider Down_divider"></div>
+                                                                                <a href="javascript:void(0);" onclick="OverSeasExcelDownload('All')" class="Multidown-item">All</a>*@
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (Model != null &&
+                                                                        (Model.bPRimg == true || Model.bHBimg == true || Model.bHTimg == true || Model.bASimg == true || Model.movie_url != null && Model.movie_url != "" && Model.view_certi_url != null && Model.view_certi_url != ""))
+                                                                        {
+                                                                            <div class="dropdown-divider Down_divider"></div>
+                                                                            <a href="javascript:void(0);" onclick="Download('All')" class="Multidown-item">All</a>
+                                                                        }
+                                                                    }
+
+
+
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="nav navbar-nav btn-share-id" style="padding-left:5px;">
+                                                            <li class="nav-item dropdown" style="flex: none;">
+                                                                <a href="#" class="nav-link dropdown-toggle Multidown" data-toggle="dropdown" aria-expanded="false">SHARE <i class="fa fa-share-alt" aria-hidden="true" style="font-size: 16px;"></i></a>
+                                                                <div class="dropdown-menu btn-share-cls" style="margin-top: -8px;">
+
+                                                                    @if (Model != null && Model.IsOverseas == 1)
+                                                                    {
+                                                                        if (Model.sImglink != "" && Model.sImglink != null)
+                                                                        {
+                                                                            <a href="javascript:void(0);" onclick="openpopup('image')" class="Multidown-item">Image</a>
+                                                                            <div class="dropdown-divider Down_divider"></div>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (Model != null &&
+                                                                        (Model.bPRimg == true || Model.bHBimg == true || Model.bHTimg == true || Model.bASimg == true))
+                                                                        {
+                                                                            <a href="javascript:void(0);" onclick="openpopup('image')" class="Multidown-item">Image</a>
+                                                                            <div class="dropdown-divider Down_divider"></div>
+                                                                        }
+                                                                    }
+
+                                                                    @if (Model != null && Model.IsOverseas == 1)
+                                                                    {
+                                                                        if (Model.sVdoLink != "" && Model.sVdoLink != null)
+                                                                        {
+                                                                            <a href="javascript:void(0);" onclick="openpopup('video')" class="Multidown-item">Video</a>
+                                                                            <div class="dropdown-divider Down_divider"></div>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (Model != null && (Model.movie_url != null && Model.movie_url != ""))
+                                                                        {
+                                                                            <a href="javascript:void(0);" onclick="openpopup('video')" class="Multidown-item">Video</a>
+                                                                            <div class="dropdown-divider Down_divider"></div>
+                                                                        }
+                                                                    }
+
+                                                                    @if (Model.view_certi_url != null && Model.view_certi_url != "")
+                                                                    {
+                                                                        <a href="javascript:void(0);" onclick="openpopup('certi')" class="Multidown-item">Certificate</a>
+                                                                        <div class="dropdown-divider Down_divider"></div>
+                                                                    }
+
+                                                                    @if (Model != null && Model.IsOverseas == 1)
+                                                                    {
+                                                                        if (Model.sImglink != null && Model.sVdoLink != null && Model.sImglink != "" && Model.sVdoLink != "")
+                                                                        {
+                                                                            <a href="javascript:void(0);" onclick="openpopup('All')" class="Multidown-item">All</a>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (Model != null &&
+                                                                        (Model.bPRimg == true || Model.bHBimg == true || Model.bHTimg == true || Model.bASimg == true || Model.movie_url != null && Model.movie_url != "" && Model.view_certi_url != null && Model.view_certi_url != ""))
+                                                                        {
+                                                                            <a href="javascript:void(0);" onclick="openpopup('All')" class="Multidown-item">All</a>
+                                                                        }
+                                                                    }
+
+
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Model.view_certi_url != null && Model.view_certi_url != "")
+                                    {
+                                        <div class="stone-det-big-img p-0" ng-hide="CertDiv">
+                                            @if (Model.IsOverseas == 0)
+                                            {
+                                                <iframe id="CertiFrame" width="100%" height="600" frameborder="0" src="@Model.view_certi_url" style="text-align: center;width: 100%;"></iframe>
+                                            }
+                                            else if (Model.IsOverseas == 1)
+                                            {
+                                                if (Model.certitype_fordna == "IMAGE")
+                                                {
+                                                    <img src="@Model.view_certi_url" />
+                                                }
+                                                else if (Model.certitype_fordna == "PDF")
+                                                {
+                                                    <iframe id="CertiFrame" width="100%" height="600" frameborder="0" src="@Model.view_certi_url" style="text-align: center;width: 100%;"></iframe>
+                                                }
+
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="stone-det-big-img p-0" ng-hide="CertDiv">
+                                            <img src="/Content/images/certificate-not-available.png">
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="col-lg-2 col-sm-12">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="stone-detail-bx-main">
+                                                <div id="accordion">
+                                                    <div class="card">
+                                                        <div class="stone-detail-head" style="cursor:pointer;" onclick="CollaOne();">
+
+                                                            <a class="card-link" data-toggle="collapse">
+                                                                <i class="fa fa-minus-circle" id="iconcollapseOne" aria-hidden="true"></i> ADDITIONAL INFO
+                                                            </a>
+                                                        </div>
+                                                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                                            <div class="stn-dtl-row card-body">
+
+                                                                <ul>
+                                                                    <li class="one">Stock ID :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.stone_ref_no}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Certi No :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.certi_no}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Location :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.Location}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Shape :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.shape}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Carat :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.cts}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Color :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.color}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Clarity :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.clarity}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Rap Price :</li>
+                                                                    <li id="liRapPrice" class="two">
+                                                                        @if (Model != null)
+                                                                        {
+                                                                            if (@Model.cur_rap_rate != 0)
+                                                                            {
+                                                                                @Model.cur_rap_rate
+                                                                            }
+                                                                        }
+                                                                    <li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Rap Value :</li>
+                                                                    <li id="liRapValue" class="two">
+                                                                        @if (Model != null)
+                                                                        {
+                                                                            if (@Model.cur_rap_rate != 0)
+                                                                            {
+                                                                                @Model.rap_amount
+                                                                            }
+                                                                        }
+                                                                    </li>
+                                                                </ul>
+                                                                @if (@Model.iUserid != 0)
+                                                                {
+                                                                    <ul>
+                                                                        <li class="one">Disc :</li>
+                                                                        <li class="two" style="color: red;">
+                                                                            @if (Model != null)
+                                                                            {
+                                                                                if (@Model.cur_rap_rate != 0)
+                                                                                {
+                                                                                    @Model.sales_disc_per
+                                                                                }
+                                                                            }
+                                                                        </li>
+                                                                    </ul>
+                                                                    <ul>
+                                                                        <li class="one">Total$ :</li>
+                                                                        <li id="liTotal" class="two" style="color: red;">
+                                                                            @if (Model != null)
+                                                                            {@Model.net_amount}
+                                                                        </li>
+                                                                    </ul>
+                                                                }
+                                                                <ul>
+                                                                    <li class="one">Status :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.status}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Cut :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.cut}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Polish :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.polish}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Symmetry :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.symm}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Fls :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.fls}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Table Black :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.table_natts}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Crown Black :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.Crown_Natts}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Table White :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.inclusion}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Crown White :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.Crown_Inclusion}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Lab :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {
+                                                                            if (Model.lab != null)
+                                                                            {
+                                                                                if (Model.lab == "GIA")
+                                                                                {
+                                                                                    <a target="_blank" style="color:blue;text-decoration: underline;font-weight: 600;" href="http://www.gia.edu/cs/Satellite?pagename=GST%2FDispatcher&childpagename=GIA%2FPage%2FReportCheck&c=Page&cid=1355954554547&reportno=@Model.certi_no">@Model.lab</a>
+                                                                                }
+                                                                                else if (Model.lab == "HRD")
+                                                                                {
+                                                                                    <a target="_blank" style="color:blue;text-decoration: underline;font-weight: 600;" href="https://my.hrdantwerp.com/?id=34&record_number=@Model.certi_no">@Model.lab</a>
+                                                                                }
+                                                                                else if (Model.lab == "IGI")
+                                                                                {
+                                                                                    <a target="_blank" style="color:blue;text-decoration: underline;font-weight: 600;" href="https://www.igi.org/reports/verify-your-report?r=@Model.certi_no">@Model.lab</a>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    @Model.lab
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Certi Type :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {
+                                                                            if (Model.CertiTypeLink != null && Model.Certi_Type != null)
+                                                                            {
+                                                                                <a target="_blank" style="color:blue;text-decoration: underline;font-weight: 600;" href="@Model.CertiTypeLink">@Model.Certi_Type</a>
+                                                                            }
+                                                                            else if (Model.CertiTypeLink == null && Model.Certi_Type != null)
+                                                                            {
+                                                                                @Model.Certi_Type
+                                                                            }
+                                                                        }
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="stone-detail-bx-main">
+                                                <div id="accordion">
+                                                    <div class="card">
+                                                        <div class="stone-detail-head" style="cursor:pointer;" onclick="CollaTwo();">
+                                                            <a class="card-link" data-toggle="collapse">
+                                                                <i class="fa fa-plus-circle" id="iconcollapseTwo" aria-hidden="true"></i> PARAMETER INFO
+                                                            </a>
+                                                        </div>
+                                                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                                            <div class="stn-dtl-row card-body">
+                                                                <ul>
+                                                                    <li class="one">Ratio :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.RATIO}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Length :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.length}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Width :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.width}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Depth :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.depth}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Depth % :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.depth_per}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Table % :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.table_per}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Girdle % :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.girdle_per}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Girdle Type :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.girdle_type}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Crown Angle :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.crown_angle}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Crown Height :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.crown_height}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Pav Angle :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.pav_angle}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Pav Height :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.pav_height}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Culet :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.sCulet}
+                                                                    </li>
+                                                                </ul>
+                                                                @*<ul>
+                                                                        <li class="one">Lab :</li>
+                                                                        <li class="two" id="liLab">
+
+                                                                        </li>
+                                                                    </ul>*@
+                                                                <ul>
+                                                                    <li class="one">Inscription :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.sInscription}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">GIA Comments :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {
+                                                                            @Model.sComments.ToUpper()
+                                                                        }
+                                                                    </li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li class="one">Key to Symbols :</li>
+                                                                    <li class="two">
+                                                                        @if (Model != null)
+                                                                        {@Model.symbol}
+                                                                    <li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+    <div class="f-video">
+        <video controls poster="~/Content/images/PR.jpg" id="video">
+            <source src="video.mp4" type="video/mp4">
+            <source src="video.ogg" type="video/ogg">
+            Your browser does not support the video tag.
+        </video>
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+
+    </div>
+
+
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+
+    <script src="~/Content/js/StoneDetail/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <!-- Popper.JS -->
+    <script src="~/Content/js/StoneDetail/popper.min.js"></script>
+
+    <script src="~/Content/js/StoneDetail/enlarge.js"></script>
+    <script src="~/Content/js/StoneDetail/enlarge.init.js"></script>
+    <script src="~/Content/js/StoneDetail/init.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Content/js/StoneDetail/bootstrap.min.js"></script>
+    <script src="~/Content/js/StoneDetail/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/StoneDetail/custom.js"></script>
+    <script src="~/Content/Plugins/toastr/toastr.js"></script>
+</body>
+
+</html>
+<div class="modal fade social-model" id="MobileModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                @* <h4 class="modal-title">Place Order</h4>*@
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form class="form-horizontal" id="frmSaveOrder">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Mobile No :</label>
+                        <input type="text" class="form-control required" onkeypress="return whatsAppKeypress(event);" name="MobileNo" id="txtMobileNo" placeholder="Enter MobileNo with country code" autocomplete="off">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-darkblue" type="button" onclick="sendWhatsapp()">OK</button>
+                    <button class="btn btn-darkblue" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@*@section scripts{*@
+<script>
+    var AllD = false;
+    var vars = [];
+    function OverSeasExcelDownload(type) {
+        if (type == "Excel") {
+            OverSeasExcel();
+        }
+        else if (type == "Image") {
+            OverSeasImage();
+        }
+        else if (type == "Video") {
+            OverSeasVideo();
+        }
+        else if (type == "All") {
+            AllD = true;
+            $('.loading-overlay-image-container').show();
+            $('.loading-overlay').show();
+
+            OverSeasImage();
+            OverSeasVideo();
+            OverSeasExcel();
+
+            $('.loading-overlay-image-container').hide();
+            $('.loading-overlay').hide();
+            AllD = false;
+        }
+    }
+    function OverSeasExcel() {
+        if (AllD == false) {
+            $('.loading-overlay-image-container').show();
+            $('.loading-overlay').show();
+        }
+
+        var sobj = {};
+        sobj.Clarity = $("#hdnOS_Clarity").val();
+        sobj.Color = $("#hdnOS_Color").val();
+        sobj.PageNo = 1;
+        sobj.Shape = $("#hdnOS_Shape").val();
+        sobj.StoneID = $("#hdnOS_stone_ref_no").val();
+        sobj.isAdmin = false;
+        sobj.isEmp = false;
+        sobj.keytosymbol = $("#hdnOS_symbol").val();
+        $.ajax({
+            url: "/Common/OverseasStockExcelDownload",
+            type: "POST",
+            data: { obj: sobj, tabNo: "1" },
+            success: function (data, textStatus, jqXHR) {
+                if (AllD == false) {
+                    $('.loading-overlay-image-container').hide();
+                    $('.loading-overlay').hide();
+                }
+                if (data.indexOf('proper format') > -1) {
+                    toastr.warning(data);
+                }
+                else {
+                    location.href = data;
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('.loading-overlay-image-container').hide();
+                $('.loading-overlay').hide();
+            }
+        });
+    }
+    function OverSeasImage() {
+        if (getExtension(OverSeasExcelMediaURLGet('Image')) == "jpg") {
+            if (AllD == false) {
+                $('.loading-overlay-image-container').show();
+                $('.loading-overlay').show();
+            }
+            $.ajax({
+                url: "/Common/OverseasDNAMediaDownloadByURLWithoutToken",
+                type: "POST",
+                data: { URL: OverSeasExcelMediaURLGet('Image'), Type: 'Image', StoneId: $("#hdnStoneRefNo").val() },
+                success: function (data, textStatus, jqXHR) {
+                    if (data.search('.zip') == -1) {
+                        toastr.warning(data);
+                    } else {
+                        location.href = data;
+                    }
+                    if (AllD == false) {
+                        $('.loading-overlay-image-container').hide();
+                        $('.loading-overlay').hide();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('.loading-overlay-image-container').hide();
+                    $('.loading-overlay').hide();
+                }
+            });
+        }
+        else {
+            toastr.warning("Image is not .jpg format in this stone !");
+        }
+    }
+    function OverSeasVideo() {
+        if (getExtension(OverSeasExcelMediaURLGet('Video')) == "mp4") {
+            if (AllD == false) {
+                $('.loading-overlay-image-container').show();
+                $('.loading-overlay').show();
+            }
+            $.ajax({
+                url: "/Common/OverseasDNAMediaDownloadByURLWithoutToken",
+                type: "POST",
+                data: { URL: OverSeasExcelMediaURLGet('Video'), Type: 'Video', StoneId: $("#hdnStoneRefNo").val() },
+                success: function (data, textStatus, jqXHR) {
+                    if (data.search('.zip') == -1) {
+                        toastr.warning(data);
+                    } else {
+                        location.href = data;
+                    }
+                    if (AllD == false) {
+                        $('.loading-overlay-image-container').hide();
+                        $('.loading-overlay').hide();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('.loading-overlay-image-container').hide();
+                    $('.loading-overlay').hide();
+                }
+            });
+        }
+        else {
+            toastr.warning("Video is not .mp4 format in this stone !");
+        }
+    }
+    function OverSeasExcelMediaURLGet(type) {
+        if (type == "Image") {
+            return $("#hdnOSImglink").val();
+            //if (getUrlVars($("#hdnOSImglink").val())["x"] == "A") {
+            //    return "http://diamondimages.co/Home/StoneDetail?ReportNo=" + getUrlVars($("#hdnOSImglink").val())["c"];
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "B") {
+            //    return "https://diamonds.kirangems.com:8080/imaged/imaged/" + getUrlVars($("#hdnOSImglink").val())["c"] + "/ still.jpg";
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "C") {
+            //    return "https://dna.stonehdfile.com/stoneimages/" + getUrlVars($("#hdnOSImglink").val())["s"] + ".jpg";
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "D") {
+            //    return "https://media.hdfiles.in:8520/HD4/imaged/" + getUrlVars($("#hdnOSImglink").val())["s"] + "/still.jpg";
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "E") {
+            //    return "https://storageweweb.blob.core.windows.net/files/INVENTORYDATA/VISION360/imaged/" + getUrlVars($("#hdnOSImglink").val())["s"] + "/still.jpg";
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "F") {
+            //    return "https://www.laxmidiamond.com/certifiedstone/diamondimages/" + getUrlVars($("#hdnOSImglink").val())["s"] + "/" + getUrlVars($("#hdnOSImglink").val())["s"] + "_1.jpg";
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "G") {
+            //    return "http://61.93.195.114/Krishdiam/KDViewDiamondImageDesk.aspx?sid=" + getUrlVars($("#hdnOSImglink").val())["s"];
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "I") {
+            //    return "https://diamanti.s3.amazonaws.com/images/diamond/" + getUrlVars($("#hdnOSImglink").val())["s"] + ".jpg";
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "K") {
+            //    return "https://starrays.com/diaImages/Images/" + getUrlVars($("#hdnOSImglink").val())["s"] + ".jpg";
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "L") {
+            //    return "https://diamond.ankitgems.com:4443/DIAMONDIMG/" + getUrlVars($("#hdnOSImglink").val())["s"] + ".jpg";
+            //}
+            //else if (getUrlVars($("#hdnOSImglink").val())["x"] == "M") {
+            //    return "https://4e0s0i2r4n0u1s0.com/img/" + getUrlVars($("#hdnOSImglink").val())["c"] + "/PR.jpg";
+            //}
+        }
+        else if (type == "Video") {
+            return $("#hdnOSVdoLink").val();
+            //if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "A") {
+            //    return "https://v360.in/Excellent/vision360.html?d=" + getUrlVars($("#hdnOSVdoLink").val())["s"];
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "B") {
+            //    return "https://photo.diamondasset.in/photo/NewViewer/Vision360.html?d=" + getUrlVars($("#hdnOSVdoLink").val())["c"];
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "C") {
+            //    return "https://dna.stonehdfile.com/ViewHD.html?d=" + getUrlVars($("#hdnOSVdoLink").val())["s"];
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "D") {
+            //    return "https://media.hdfiles.in:8520/HD4//Vision360.html?d=" + getUrlVars($("#hdnOSVdoLink").val())["s"] + "&btn=0,1,2,3,5,6&sv=0,2,3,4,5&faceupviewSpeed=30&sideviewSpeed=30&zoomslide=1&z=0&v=4&s=-10&h=450&displayEyeScan=1&sw=200&sh=200";
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "E") {
+            //    return "https://storageweweb.blob.core.windows.net/files/INVENTORYDATA/VISION360/Vision360.html?d=" + getUrlVars($("#hdnOSVdoLink").val())["s"] + "&autoPlay=1";
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "F") {
+            //    return "https://www.certifiedstone.info/viewer/Vision360.html?d=" + getUrlVars($("#hdnOSVdoLink").val())["s"];
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "G") {
+            //    return "http://61.93.195.114/Krishdiam/KDWatchVideoDesk.aspx?sno=" + getUrlVars($("#hdnOSVdoLink").val())["s"];
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "H") {
+            //    return "https://v360.in/viewer4.0/vision360.html?d=" + getUrlVars($("#hdnOSVdoLink").val())["s"] + "&z=1&surl=https%3a%2f%2fs4.v360.in%2fimages%2fcompany%2f256%2f";
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "I") {
+            //    return "https://diamanti.s3.amazonaws.com/video/Vision360.html?d=" + getUrlVars($("#hdnOSVdoLink").val())["s"];
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "J") {
+            //    return "https://v360.in/Excellent/vision360.html?d=" + getUrlVars($("#hdnOSVdoLink").val())["s"];
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "K") {
+            //    return "https://starrays.com/diaImages/Movies/MV" + getUrlVars($("#hdnOSVdoLink").val())["s"] + ".mp4";
+            //}
+            //else if (getUrlVars($("#hdnOSVdoLink").val())["x"] == "L") {
+            //    return "https://diamond.ankitgems.com:4443/VIDEOS/" + getUrlVars($("#hdnOSVdoLink").val())["s"] + ".html";
+            //}
+        }
+        else if (type == "Certi") {
+            return $("#hdnViewCertiUrl").val();
+        }
+    }
+
+    function CollaOne() {
+        if ($('#collapseOne.show').length == 1) {
+            $('#collapseOne').removeClass('show');
+            $('#collapseOne').addClass('hide');
+            $('#iconcollapseOne').removeClass('fa-minus-circle');
+            $('#iconcollapseOne').addClass('fa-plus-circle');
+        }
+        else {
+            $('#collapseOne').removeClass('hide');
+            $('#collapseOne').addClass('show');
+            $('#iconcollapseOne').removeClass('fa-plus-circle');
+            $('#iconcollapseOne').addClass('fa-minus-circle');
+        }
+    }
+    function CollaTwo() {
+        if ($('#collapseTwo.show').length == 1) {
+            $('#collapseTwo').removeClass('show');
+            $('#collapseTwo').addClass('hide');
+            $('#iconcollapseTwo').removeClass('fa-minus-circle');
+            $('#iconcollapseTwo').addClass('fa-plus-circle');
+        }
+        else {
+            $('#collapseTwo').removeClass('hide');
+            $('#collapseTwo').addClass('show');
+            $('#iconcollapseTwo').removeClass('fa-plus-circle');
+            $('#iconcollapseTwo').addClass('fa-minus-circle');
+        }
+    }
+    function Download(type) {
+        if (type == "Excel") {
+            DownloadExcel();
+        }
+        else if (type == "Image") {
+            DownloadImage();
+        }
+        else if (type == "Video") {
+            DownloadVideo();
+        }
+        else if (type == "Certificate") {
+            DownloadCertificate();
+        }
+        else if (type == "All") {
+            AllD = true;
+            $('.loading-overlay-image-container').show();
+            $('.loading-overlay').show();
+
+            DownloadExcel();
+            DownloadImage();
+            DownloadVideo();
+            DownloadCertificate();
+
+
+            $('.loading-overlay-image-container').hide();
+            $('.loading-overlay').hide();
+            AllD = false;
+        }
+    }
+
+    function DownloadImage() {
+        if (AllD == false) {
+            $('.loading-overlay-image-container').show();
+            $('.loading-overlay').show();
+        }
+        var stoneId = $("#hdnStoneRefNo").val();
+
+        $.ajax({
+            url: "/Common/StockMediaDownloadByStoneIdWithoutToken",
+            type: "POST",
+            data: { StoneID: stoneId, MediaType: 'Image' },
+            success: function (data, textStatus, jqXHR) {
+                debugger
+                if (data.search('.zip') == -1 && data.search('.pdf') == -1) {
+                    toastr.warning(data);
+                } else {
+                    location.href = data;
+                }
+                if (AllD == false) {
+                    $('.loading-overlay-image-container').hide();
+                    $('.loading-overlay').hide();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('.loading-overlay-image-container').hide();
+                $('.loading-overlay').hide();
+            }
+        });
+    }
+    function DownloadVideo() {
+        if (AllD == false) {
+            $('.loading-overlay-image-container').show();
+            $('.loading-overlay').show();
+        }
+        var stoneId = $("#hdnStoneRefNo").val();
+        $.ajax({
+            url: "/Common/StockMediaDownloadByStoneIdWithoutToken",
+            type: "POST",
+            data: { StoneID: stoneId, MediaType: 'Video' },
+            success: function (data, textStatus, jqXHR) {
+                debugger
+                if (data.search('.zip') == -1 && data.search('.pdf') == -1) {
+                    toastr.warning(data);
+                } else {
+                    location.href = data;
+                }
+                if (AllD == false) {
+                    $('.loading-overlay-image-container').hide();
+                    $('.loading-overlay').hide();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('.loading-overlay-image-container').hide();
+                $('.loading-overlay').hide();
+            }
+        });
+    }
+    function DownloadCertificate() {
+        if (AllD == false) {
+            $('.loading-overlay-image-container').show();
+            $('.loading-overlay').show();
+        }
+        var stoneId = $("#hdnStoneRefNo").val();
+        $.ajax({
+            url: "/Common/StockMediaDownloadByStoneIdWithoutToken",
+            type: "POST",
+            data: { StoneID: stoneId, MediaType: 'Certificate' },
+            success: function (data, textStatus, jqXHR) {
+                debugger
+                if (data.search('.zip') == -1 && data.search('.pdf') == -1) {
+                    toastr.warning(data);
+                } else {
+                    location.href = data;
+                }
+                if (AllD == false) {
+                    $('.loading-overlay-image-container').hide();
+                    $('.loading-overlay').hide();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('.loading-overlay-image-container').hide();
+                $('.loading-overlay').hide();
+            }
+        });
+    }
+    function DownloadExcel() {
+        if (AllD == false) {
+            $('.loading-overlay-image-container').show();
+            $('.loading-overlay').show();
+        }
+        var stoneId = $("#hdnStoneRefNo").val();
+
+        $.ajax({
+            url: "/Common/StockExcelDownloadByStoneIdWithoutToken",
+            type: "POST",
+            data: { StoneID: stoneId },
+            success: function (data, textStatus, jqXHR) {
+                debugger
+                location.href = data;
+                if (AllD == false) {
+                    $('.loading-overlay-image-container').hide();
+                    $('.loading-overlay').hide();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('.loading-overlay-image-container').hide();
+                $('.loading-overlay').hide();
+            }
+        });
+    }
+
+
+    function formatNumber(number) {
+        return (parseFloat(number).toFixed(2)).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    }
+    jQuery(document).ready(function ($) {
+        //if ($("#hdn_IsOverseas").val() == "1") {
+        //    alert('hi')
+        //    //$("#video1").addClass("jb-video-iframe");
+        //    $("#myIframe").addClass("jb-video-iframe");
+
+
+        //}
+        debugger
+        var certi_type = ($("#hdn_Certi_Type").val() != "" ? " " + $("#hdn_Certi_Type").val() : "");
+        $("#liLab").html($("#hdn_lab").val());
+
+        if ($('.btn-share-cls a').length == 0) {
+            $('.btn-share-id').hide();
+            document.querySelector('.container').style.width = '226px';
+        }
+        if ($('.btn-download-cls a').length == 0) {
+            $('.btn-download-id').hide();
+            document.querySelector('.container').style.width = '300px';
+        }
+
+        if ($("#hdnStoneRefNo").val() != "") {
+            if (($("#hdn_cur_rap_rate").val() != "" && $("#hdn_cur_rap_rate").val() != null ? $("#hdn_cur_rap_rate").val() : 0) != 0) {
+                if ($("#liRapPrice").text() != "") {
+                    $("#liRapPrice").text(($("#liRapPrice").text() != "" ? formatNumber($("#liRapPrice").text()) : ""));
+                }
+
+                if ($("#liRapValue").text() != "") {
+                    $("#liRapValue").text(($("#liRapValue").text() != "" ? formatNumber($("#liRapValue").text()) : ""));
+                }
+            }
+        }
+        if ($("#liTotal").text() != "") {
+            $("#liTotal").text(formatNumber($("#liTotal").text()));
+        }
+
+        $("#playvideo").click(function () {
+            var symbol = $("#video1")[0].src.indexOf("?") > -1 ? "&" : "?";
+            $("#video1")[0].src += symbol + "autoplay=1";
+        });
+        if (window.location.protocol.indexOf('http') == 0) {
+            var el = document.createElement('meta')
+            el.setAttribute('http-equiv', 'Content-Security-Policy')
+            el.setAttribute('content', 'upgrade-insecure-requests')
+            document.head.append(el)
+        }
+        //$('.slick-slider').slick({
+        //    dots: false,
+        //    infinite: true,
+        //    speed: 500,
+        //    slidesToShow: 1,
+        //    slidesToScroll: 1,
+        //    autoplay: false,
+        //    autoplaySpeed: 500,
+        //    arrows: true,
+        //    responsive: [{
+        //        breakpoint: 600,
+        //        settings: {
+        //            slidesToShow: 1,
+        //            slidesToScroll: 1
+        //        }
+        //    },
+        //    {
+        //        breakpoint: 400,
+        //        settings: {
+        //            arrows: false,
+        //            slidesToShow: 1,
+        //            slidesToScroll: 1
+        //        }
+        //    }]
+        //});
+
+
+    });
+
+    function openpopup(type) {
+        if (type != "") {
+            //$('#sendtype').val(type);
+            //$('#MobileModal').modal('show');
+            sendWhatsapp(type);
+        }
+    }
+    function whatsAppKeypress(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode == 43 || (charCode >= 48 && charCode <= 57)) {
+            return true;
+        }
+        if (charCode == 13) {
+            sendWhatsapp();
+            return true;
+        }
+
+        return false;
+    }
+    function sendWhatsapp(type) {
+        //var isvalid = $('#frmSaveOrder').valid();
+        //if (!isvalid) {
+        //    return false;
+        //}
+        //else {
+        var message = "";
+        //var type = $('#sendtype').val();
+
+        if ($("#hdn_IsOverseas").val() == "0") {
+            var bPRimg = $("#hdnbPRimg").val();
+            var bHBimg = $("#hdnbHBimg").val();
+            var bHTimg = $("#hdnbHTimg").val();
+            var bASimg = $("#hdnbASimg").val();
+            var movie_url = $("#hdnMovieUrl").val();
+            var view_certi_url = $("#hdnViewCertiUrl").val();
+
+            if (type == 'image') {
+                if (bPRimg.toLowerCase() == 'true' || bPRimg.toLowerCase() == '1') {
+                    message = message + "https://4e0s0i2r4n0u1s0.com/img/" + $("#hdnCertiNo").val() + "/PR.jpg \n";
+                }
+
+                if (bHBimg.toLowerCase() == 'true' || bHBimg.toLowerCase() == '1') {
+                    message = message + "https://4e0s0i2r4n0u1s0.com/img/" + $("#hdnCertiNo").val() + "/HB.jpg \n";
+                }
+
+                if (bHTimg.toLowerCase() == 'true' || bHTimg.toLowerCase() == '1') {
+                    message = message + "https://4e0s0i2r4n0u1s0.com/img/" + $("#hdnCertiNo").val() + "/HT.jpg \n";
+                }
+
+                if (bASimg.toLowerCase() == 'true' || bASimg.toLowerCase() == '1') {
+                    message = message + "https://4e0s0i2r4n0u1s0.com/img/" + $("#hdnCertiNo").val() + "/AS.jpg \n";
+                }
+            }
+            if (type == 'video') {
+                if (movie_url.toLowerCase() != "") {
+                    message = message + movie_url;
+                }
+            }
+            if (type == 'certi') {
+                if (view_certi_url.toLowerCase() != "") {
+                    message = message + view_certi_url;
+                }
+            }
+            if (type == 'All') {
+                if (bPRimg.toLowerCase() == 'true' || bPRimg.toLowerCase() == '1') {
+                    message = message + "https://4e0s0i2r4n0u1s0.com/img/" + $("#hdnCertiNo").val() + "/PR.jpg \n";
+                }
+
+                if (bHBimg.toLowerCase() == 'true' || bHBimg.toLowerCase() == '1') {
+                    message = message + "https://4e0s0i2r4n0u1s0.com/img/" + $("#hdnCertiNo").val() + "/HB.jpg \n";
+                }
+
+                if (bHTimg.toLowerCase() == 'true' || bHTimg.toLowerCase() == '1') {
+                    message = message + "https://4e0s0i2r4n0u1s0.com/img/" + $("#hdnCertiNo").val() + "/HT.jpg \n";
+                }
+
+                if (bASimg.toLowerCase() == 'true' || bASimg.toLowerCase() == '1') {
+                    message = message + "https://4e0s0i2r4n0u1s0.com/img/" + $("#hdnCertiNo").val() + "/AS.jpg \n";
+                }
+
+                if (movie_url.toLowerCase() != "") {
+                    message = message + movie_url + " \n ";
+                }
+
+                if (view_certi_url.toLowerCase() != "") {
+                    message = message + view_certi_url + " \n ";
+                }
+            }
+        }
+        else if ($("#hdn_IsOverseas").val() == "1") {
+            if (type == 'image') {
+                if ($("#hdnOSImglink").val() != "") {
+                    message = message + OverSeasExcelMediaURLGet('Image') + " \n";
+                }
+            }
+            if (type == 'video') {
+                if ($("#hdnOSVdoLink").val() != "") {
+                    message = message + OverSeasExcelMediaURLGet('Video') + " \n"
+                }
+            }
+            if (type == 'certi') {
+                if ($("#hdnViewCertiUrl").val() != "") {
+                    message = message + OverSeasExcelMediaURLGet('Certi') + " \n"
+                }
+            }
+            if (type == 'All') {
+                if ($("#hdnOSImglink").val() != "") {
+                    message = message + OverSeasExcelMediaURLGet('Image') + " \n";
+                }
+                if ($("#hdnOSVdoLink").val() != "") {
+                    message = message + OverSeasExcelMediaURLGet('Video') + " \n"
+                }
+                if ($("#hdnViewCertiUrl").val() != "") {
+                    message = message + OverSeasExcelMediaURLGet('Certi') + " \n"
+                }
+            }
+        }
+        navigator.clipboard.writeText(message);
+        //var mobileno = $('#txtMobileNo').val();
+        //var URL = "https://api.whatsapp.com/send?phone=+" + mobileno + "&text=" + message;
+        //window.open(URL);
+        //$('#txtMobileNo').val("");
+        //$('#MobileModal').modal('hide');
+        //}
+    }
+    function getUrlVars(URL) {
+        var hash;
+        var hashes = URL.slice(URL.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+    function getExtension(path) {
+        var basename = path.split(/[\\/]/).pop(), pos = basename.lastIndexOf(".");
+        if (basename === "" || pos < 1)
+            return "";
+
+        return basename.slice(pos + 1);
+    }
+
+</script>
+
+@*}*@

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
+﻿using DAL;
 using OfficeOpenXml;
-using System.Web.UI.WebControls;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls.Adapters;
-using System.Text.RegularExpressions;
-using System.IO;
-using DAL;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace EpExcelExportLib
 {

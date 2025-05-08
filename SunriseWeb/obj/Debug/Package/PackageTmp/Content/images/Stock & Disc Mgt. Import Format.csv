@@ -1,0 +1,10 @@
+UserName,Supplier,Download,View,Price Method,Price Per.,,,,
+winwing,SUNRISE,Y,Y,Disc,-1,,,1. Disc must be Negative and Value must be Positive,
+winwing,SHAIRU GEMS DIAMONDS PVT. LTD - (S),Y,N,Disc,-2,,,2. Below Supplier List,
+winwing,J.B. AND BROTHERS PVT. LTD - (S),Y,Y,Disc,-2,,,,SUNRISE
+nelson,SUNRISE,Y,Y,Value,1,,,,SHAIRU GEMS DIAMONDS PVT. LTD - (S)
+nelson,KGK DIAMONDS BVBA - (S),Y,N,Value,2,,,,J.B. AND BROTHERS PVT. LTD - (S)
+vijaypatna,RATNA,Y,N,Disc,-2,,,,RATNA
+vijaypatna,VENUS JEWEL - (S),Y,N,Disc,-2,,,,KGK DIAMONDS BVBA - (S)
+vikashjay,REDEXIM,Y,N,Disc,-2,,,,REDEXIM
+,,,,,,,,,VENUS JEWEL - (S)

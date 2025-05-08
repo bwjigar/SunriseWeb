@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Lib.Models;
+using Newtonsoft.Json;
+using SunriseWeb.Data;
+using SunriseWeb.Helper;
+using SunriseWeb.Models;
+using System;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
-using System.Web;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using SunriseWeb.Models;
-using SunriseWeb.Data;
-using Lib.Models;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Net;
-using Newtonsoft.Json;
-using SunriseWeb.Helper;
-using SunriseWeb.Resources;
-using System.Configuration;
-using System.Net.NetworkInformation;
-using System.Threading;
-using System.Text.RegularExpressions;
-using System.Globalization;
 
 namespace SunriseWeb.Controllers
 {
@@ -108,19 +104,15 @@ namespace SunriseWeb.Controllers
                         KeyAccountDataFullResponseForWeb _data = new KeyAccountDataFullResponseForWeb();
                         try
                         {
-                            // Define the regular expression pattern to match the datetime format
-                            string pattern = @"\b\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2} (AM|PM)\b";
+                            string pattern = @"\b\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}\b";
 
-                            // Replace all occurrences of the datetime format in _response with the desired format
                             _response = Regex.Replace(_response, pattern, match =>
                             {
-                                // Parse the matched datetime string and convert it to the desired format
-                                DateTime parsedDate = DateTime.ParseExact(match.Value, "dd-MM-yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+                                DateTime parsedDate = DateTime.ParseExact(match.Value, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                                 return parsedDate.ToString("yyyy-MM-ddTHH:mm:ss");
                             });
 
                             _data = (new JavaScriptSerializer()).Deserialize<KeyAccountDataFullResponseForWeb>(_response);
-                            //_data = JsonConvert.DeserializeObject<KeyAccountDataFullResponse>(_response);
                         }
                         catch (WebException ex)
                         {

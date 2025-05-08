@@ -9226,6 +9226,15 @@ function ConfirmOrderModal() {
 function SaveOrder() {
     debugger
     company_Userid = '', company_Fortunecode = '';
+
+    if ($("#hdnUserType").val() == "2") {
+        if ($("#txtCompanyName").val().trim() == "") {
+            $("#txtCompanyName").val("");
+            $("#txtCompanyName").focus();
+            toastr.warning("Enter Company");
+            return;
+        }
+    }
     if ($("#Comments").val().trim() == "") {
         $("#Comments").val("");
         $("#Comments").focus();

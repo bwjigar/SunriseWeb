@@ -1,0 +1,118 @@
+﻿@model SunriseWeb.Models.UserLogin
+@using SunriseWeb.Resources
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <title>Terms & Conditions</title>
+    <meta name="keyword" content="" />
+    <meta name="description" content="" />
+    <meta name="title" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- attach stylesheet -->
+    <link rel="stylesheet" href="~/Content/static_pages/css/bootstrap.min.css">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- main stylesheet -->
+    <link href="~/Content/static_pages/css/login.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======================== Start Navbar ============================ -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar login-myScrollspy ragistration-page" id="navigation">
+        <div class="container">
+            <div class="ragister-logo">
+                <button type="button" id="sidebarCollapse" class="custom-toggle">
+                </button>
+                <img src="~/Content/Login/images/logo.png" class="img-responsive" alt="logo">
+                <div class="home-icon">
+                    <a href="@Url.Action("Index","Login")"><i class="fa fa-times" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- ======================== End Navbar ============================ -->
+    <!-- ======================== Start Home ============================ -->
+    <section class="section ragistration" id="ragistration">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="ragistration-form one">
+                        <div class="personal-info common-eee">
+                            <div class="r-label">
+                                <p>Terms & Conditions</p>
+                            </div>
+                            <div class="login-pages-dta aboutus-page">
+                                <p>
+                                    Welcome to our website. Please read these terms and conditions of use (“Conditions”) carefully before using our website. By using our website, You indicate that You accept these Conditions and that You agree to abide by them. If You do not agree to these Conditions, please refrain from using our website.
+                                </p>
+                                <p>
+                                    <b>Information about us</b><br />
+                                    1) “This website is operated by SHAIRU GEMS DIAMONDS PVT. LTD. (“We” or “Us”) whose registered office is DE-9012A, 9TH FLOOR, BHARAT DIAMOND BOURSE, BANDRA KURLA COMPLEX, BANDRA (E), MUMBAI - 400051, INDIA. We are registered in India under Part IX of the Company Act, 1956 and the registration number is CIN : U36941MH2013PTC247457. The term “You” refers to the user or viewer of our website.”
+                                </p>
+                                <p>
+                                    <b>Accessing our website</b><br />
+                                    1) The content of the pages of our website is for your general information and use only. It is subject to change without notice and We reserve the right to withdraw or amend the service We provide on our website without notice. We will not be liable if for any reason our website is not available at any time or for any period.
+                                    <br />2) From time to time, We may restrict access to some parts of our website, or our entire website, to users who have registered with Us.
+                                    <br />3) Unauthorised use of our website may give to a claim for damages and/or be a criminal offence.
+                                </p>
+                                <p>
+                                    <b>Intellectual property rights</b><br />
+                                    1) We are the owner or the licensee of all intellectual property rights in our site, and in the material published on it. Those works are protected by copyright laws and treaties around the world. All such rights are reserved.
+                                    <br />2) You may print off one copy, and may download extracts, of any page(s) from our website for your personal reference and You may draw the attention of others within your organisation to material posted on our site.
+                                    <br />3) Our status (and that of any identified contributors) as the authors of material on our website must always be acknowledged.
+                                    <br />4) You may not use any part of the materials on our website for commercial purposes without obtaining our prior written consent.
+                                    <br />5) All trademarks reproduced on our website, which are neither our property nor licensed to Us, are acknowledged on our website.
+                                </p>
+                                <p>
+                                    <b>Reliance on information on our website</b><br />
+                                    1) Your use of any information or materials on this website is entirely at your own risk, and We therefore disclaim all liability and responsibility arising from any reliance placed on such information or materials by any visitor to our website, or by anyone who may be informed of its contents.
+                                </p>
+                                <p>
+                                    <b>Our liability</b><br />
+                                    1) The material displayed on our website is provided without any warranty or guarantee whatsoever as to its accuracy, timeliness, performance, completeness or suitability for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and We expressly exclude any liability for any such inaccuracies or errors to the fullest extent permitted by law (including, but not limited to, any indirect or consequential loss of any kind howsoever arising). This does not affect our liability for death or personal injury resulting from our negligence, nor our liability for fraudulent misrepresentation, nor any other liability that cannot be excluded or limited by law.
+                                </p>
+                                <p>
+                                    <b>External links</b><br />
+                                    1) Our website may also include links to other websites. These links are provided for your convenience to provide further information only and do not signify that We endorse those websites. We have no control over the content of those websites and We accept no responsibility for any loss or damage that may arise from your use of them.
+                                </p>
+                                <p>
+                                    <b>Links to our website</b><br />
+                                    1) You may link to our website, provided You do so in a way that is fair and legal and does not damage our reputation or take advantage of it, but You must not establish a link in such a way as to suggest any form of association, approval or endorsement on our part where none exists. You must not establish a link from any website that is not owned by You.
+                                </p>
+                                <p>
+                                    <b>General</b><br />
+                                    1) We may revise these Conditions at any time by amending this page. You are expected to check this page from time to time to take notice of any changes we make as they will be binding on You.
+                                    <br />2) If any provision of these Conditions is determined to be illegal, invalid or otherwise unenforceable by reason of the laws of any state or country in which they are intended to be effective, that provision or part-provision shall, to the extent required, be deemed not to form part of these Conditions, and the validity and enforceability of the other provisions of these Conditions shall not be affected.
+                                    <br />3) Any failure or delay by Us to exercise any right or remedy provided by these Conditions does not waive our right to enforce such right or remedy nor shall it preclude or restrict our further exercise of that or any other right or remedy. No single or partial exercise of such right or remedy shall preclude or restrict our further exercise of that or any other right or remedy.
+                                    <br />4) Your use of our website and any dispute arising out of or in connection with it, or with these Conditions, is subject to the laws of India.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function open_side() {
+            document.getElementById("myScrollspy").style.width = "250px";
+        }
+        function close_side() {
+            document.getElementById("myScrollspy").style.width = "0";
+        }
+    </script>
+    <!-- ======================== End Home ============================ -->
+    <!-- end of login -->
+    <script src="~/Content/static_pages/js/jquery.min.js"></script>
+    <script src="~/Content/static_pages/js/bootstrap.min.js"></script>
+    <script src="~/Content/static_pages/js/propper.min.js"></script>
+    <script src="~/Content/static_pages/js/login.js"></script>
+
+</body>
+</html>

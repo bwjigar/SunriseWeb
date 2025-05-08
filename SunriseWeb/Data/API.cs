@@ -81,8 +81,11 @@ namespace SunriseWeb.Data
                     json = API.ExtractResponseString(webException);
                     return json;
                 }
-                //json = ex.Message;
-                return json = "";
+                else
+                {
+                    json = ex.Message;
+                    return json = "";
+                }
             }
             catch (Exception ex)
             {

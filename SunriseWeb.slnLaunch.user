@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Sunrise.Services\\Sunrise.Services.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "SunriseWeb\\SunriseWeb.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
